@@ -7,6 +7,7 @@ use Livewire\Volt\Volt;
 Route::get('/', \App\Livewire\Guests\Home::class)->name('home');
 Route::get('/about', \App\Livewire\Guests\About::class)->name('about');
 Route::get('/our-model', \App\Livewire\Guests\OurModel::class)->name('our-model');
+Route::get('/impact', \App\Livewire\Guests\Impact::class)->name('impact');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

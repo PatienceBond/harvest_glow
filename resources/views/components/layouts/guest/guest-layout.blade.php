@@ -14,7 +14,7 @@
 <body class="h-full antialiased bg-background text-foreground" x-data="{ mobileMenuOpen: false }">
     <!-- Navigation Header -->
 <!-- Navigation Header -->
-<header class="sticky top-0 left-0 right-0 z-50 bg-background border-b border-border">
+<header class="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border opacity-95">
     <x-ui.container class="py-0 sm:px-6 lg:px-0">
         <div class="flex justify-between items-center py-3">
             <!-- Logo -->
@@ -29,7 +29,7 @@
                 <a href="{{ route('home') }}" class="hover:text-primary transition">Home</a>
                 <a href="{{ route('about') }}" class="hover:text-primary transition">About</a>
                 <a href="{{ route('our-model') }}" class="hover:text-primary transition">Our Model</a>
-                <a href="#impact" class="hover:text-primary transition">Impact</a>
+                <a href="{{ route('impact') }}" class="hover:text-primary transition">Impact</a>
                 <a href="#team" class="hover:text-primary transition">Team</a>
                 <a href="#partners" class="hover:text-primary transition">Partners</a>
             </div>
@@ -62,7 +62,7 @@
                 <a href="{{ route('home') }}" class="block hover:text-primary transition">Home</a>
                 <a href="{{ route('about') }}" class="block hover:text-primary transition">About</a>
                 <a href="{{ route('our-model') }}" class="block hover:text-primary transition">Our Model</a>
-                <a href="#impact" class="block hover:text-primary transition">Impact</a>
+                <a href="{{ route('impact') }}" class="block hover:text-primary transition">Impact</a>
                 <a href="#team" class="block hover:text-primary transition">Team</a>
                 <a href="#partners" class="block hover:text-primary transition">Partners</a>
             </div>
