@@ -30,7 +30,7 @@
                 <a href="{{ route('about') }}" class="hover:text-primary transition">About</a>
                 <a href="{{ route('our-model') }}" class="hover:text-primary transition">Our Model</a>
                 <a href="{{ route('impact') }}" class="hover:text-primary transition">Impact</a>
-                <a href="#team" class="hover:text-primary transition">Team</a>
+                <a href="{{ route('team') }}" class="hover:text-primary transition">Team</a>
                 <a href="#partners" class="hover:text-primary transition">Partners</a>
             </div>
 
@@ -63,7 +63,7 @@
                 <a href="{{ route('about') }}" class="block hover:text-primary transition">About</a>
                 <a href="{{ route('our-model') }}" class="block hover:text-primary transition">Our Model</a>
                 <a href="{{ route('impact') }}" class="block hover:text-primary transition">Impact</a>
-                <a href="#team" class="block hover:text-primary transition">Team</a>
+                <a href="{{ route('team') }}" class="block hover:text-primary transition">Team</a>
                 <a href="#partners" class="block hover:text-primary transition">Partners</a>
             </div>
         </div>
