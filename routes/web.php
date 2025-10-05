@@ -12,6 +12,7 @@ Route::get('/team', \App\Livewire\Guests\Team::class)->name('team');
 Route::get('/partners', \App\Livewire\Guests\Partners::class)->name('partners');
 Route::get('/contact', \App\Livewire\Guests\Contact::class)->name('contact');
 Route::get('/news/{slug?}', \App\Livewire\Guests\NewsDetails::class)->name('news-details');
+Route::get('/loader-demo', \App\Livewire\Guests\LoaderDemo::class)->name('loader-demo');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

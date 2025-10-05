@@ -12,6 +12,9 @@
     @livewireStyles
 </head>
 <body class="h-full antialiased bg-background text-foreground">
+    <!-- Top Loader -->
+    <x-ui.top-loader color="#059669" />
+    
     <div class="min-h-screen flex items-center justify-center bg-muted/30 py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-md w-full space-y-8">
             <!-- Logo Section -->
