@@ -5,6 +5,7 @@ use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 
 Route::get('/', \App\Livewire\Guests\Home::class)->name('home');
+Route::get('/about', \App\Livewire\Guests\About::class)->name('about');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

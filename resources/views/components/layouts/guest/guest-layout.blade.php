@@ -27,7 +27,7 @@
             <!-- Desktop Navigation Links -->
             <div class="hidden md:flex items-center space-x-8 text-foreground">
                 <a href="{{ route('home') }}" class="hover:text-primary transition">Home</a>
-                <a href="#about" class="hover:text-primary transition">About</a>
+                <a href="{{ route('about') }}" class="hover:text-primary transition">About</a>
                 <a href="#model" class="hover:text-primary transition">Our Model</a>
                 <a href="#impact" class="hover:text-primary transition">Impact</a>
                 <a href="#team" class="hover:text-primary transition">Team</a>
@@ -60,7 +60,7 @@
         <div class="md:hidden" x-show="mobileMenuOpen" x-transition>
             <div class="mt-2 space-y-2 bg-background border border-border rounded-lg shadow-lg p-4 text-foreground">
                 <a href="{{ route('home') }}" class="block hover:text-primary transition">Home</a>
-                <a href="#about" class="block hover:text-primary transition">About</a>
+                <a href="{{ route('about') }}" class="block hover:text-primary transition">About</a>
                 <a href="#model" class="block hover:text-primary transition">Our Model</a>
                 <a href="#impact" class="block hover:text-primary transition">Impact</a>
                 <a href="#team" class="block hover:text-primary transition">Team</a>
