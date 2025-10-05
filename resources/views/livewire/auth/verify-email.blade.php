@@ -7,7 +7,7 @@ use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
-new #[Layout('components.layouts.auth')] class extends Component {
+new #[Layout('components.layouts.auth.harvestglow')] class extends Component {
     /**
      * Send an email verification notification to the user.
      */
@@ -41,24 +41,28 @@ new #[Layout('components.layouts.auth')] class extends Component {
     }
 }; ?>
 
-<div class="mt-4 flex flex-col gap-6">
-    <flux:text class="text-center">
-        {{ __('Please verify your email address by clicking on the link we just emailed to you.') }}
-    </flux:text>
+<div class="text-center space-y-6">
+    <div>
+        <x-heroicon-o-envelope class="w-16 h-16 text-primary mx-auto mb-4" />
+        <h2 class="text-2xl font-bold text-foreground mb-2">Verify Your Email</h2>
+        <p class="text-muted-foreground">
+            Please verify your email address by clicking on the link we just emailed to you.
+        </p>
+    </div>
 
     @if (session('status') == 'verification-link-sent')
-        <flux:text class="text-center font-medium !dark:text-green-400 !text-green-600">
-            {{ __('A new verification link has been sent to the email address you provided during registration.') }}
-        </flux:text>
+        <div class="p-4 bg-success/10 border border-success/20 rounded-lg text-success text-sm">
+            A new verification link has been sent to the email address you provided during registration.
+        </div>
     @endif
 
-    <div class="flex flex-col items-center justify-between space-y-3">
-        <flux:button wire:click="sendVerification" variant="primary" class="w-full">
-            {{ __('Resend verification email') }}
-        </flux:button>
+    <div class="space-y-4">
+        <button wire:click="sendVerification" class="w-full bg-primary text-white py-3 px-4 rounded-lg hover:bg-primary/90 transition-colors font-medium">
+            Resend Verification Email
+        </button>
 
-        <flux:link class="text-sm cursor-pointer" wire:click="logout" data-test="logout-button">
-            {{ __('Log out') }}
-        </flux:link>
+        <button wire:click="logout" class="w-full text-muted-foreground hover:text-foreground transition-colors text-sm">
+            Log out
+        </button>
     </div>
 </div>

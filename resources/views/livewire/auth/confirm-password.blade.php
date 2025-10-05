@@ -1,28 +1,40 @@
-<x-layouts.auth>
-    <div class="flex flex-col gap-6">
-        <x-auth-header
-            :title="__('Confirm password')"
-            :description="__('This is a secure area of the application. Please confirm your password before continuing.')"
-        />
+<x-layouts.auth.harvestglow>
+    <div class="text-center space-y-6">
+        <div>
+            <x-heroicon-o-lock-closed class="w-16 h-16 text-primary mx-auto mb-4" />
+            <h2 class="text-2xl font-bold text-foreground mb-2">Confirm Password</h2>
+            <p class="text-muted-foreground">
+                This is a secure area of the application. Please confirm your password before continuing.
+            </p>
+        </div>
 
-        <x-auth-session-status class="text-center" :status="session('status')" />
+        @if (session('status'))
+            <div class="p-4 bg-success/10 border border-success/20 rounded-lg text-success text-sm">
+                {{ session('status') }}
+            </div>
+        @endif
 
-        <form method="POST" action="{{ route('password.confirm.store') }}" class="flex flex-col gap-6">
+        <form method="POST" action="{{ route('password.confirm.store') }}" class="space-y-6">
             @csrf
 
-            <flux:input
-                name="password"
-                :label="__('Password')"
-                type="password"
-                required
-                autocomplete="current-password"
-                :placeholder="__('Password')"
-                viewable
-            />
+            <div>
+                <label for="password" class="block text-sm font-medium mb-2">Password</label>
+                <input 
+                    name="password"
+                    id="password" 
+                    type="password" 
+                    required 
+                    autocomplete="current-password"
+                    class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="Enter your password"
+                >
+            </div>
 
-            <flux:button variant="primary" type="submit" class="w-full" data-test="confirm-password-button">
-                {{ __('Confirm') }}
-            </flux:button>
+            <div>
+                <button type="submit" class="w-full bg-primary text-white py-3 px-4 rounded-lg hover:bg-primary/90 transition-colors font-medium">
+                    Confirm
+                </button>
+            </div>
         </form>
     </div>
-</x-layouts.auth>
+</x-layouts.auth.harvestglow>

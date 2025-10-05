@@ -1,43 +1,45 @@
-<x-layouts.auth>
-    <div class="flex flex-col gap-6">
-        <div
-            class="relative w-full h-auto"
-            x-cloak
-            x-data="{
-                showRecoveryInput: @js($errors->has('recovery_code')),
-                code: '',
-                recovery_code: '',
-                toggleInput() {
-                    this.showRecoveryInput = !this.showRecoveryInput;
+<x-layouts.auth.harvestglow>
+    <div
+        class="relative w-full h-auto"
+        x-cloak
+        x-data="{
+            showRecoveryInput: @js($errors->has('recovery_code')),
+            code: '',
+            recovery_code: '',
+            toggleInput() {
+                this.showRecoveryInput = !this.showRecoveryInput;
 
-                    this.code = '';
-                    this.recovery_code = '';
+                this.code = '';
+                this.recovery_code = '';
 
-                    $dispatch('clear-2fa-auth-code');
-            
-                    $nextTick(() => {
-                        this.showRecoveryInput
-                            ? this.$refs.recovery_code?.focus()
-                            : $dispatch('focus-2fa-auth-code');
-                    });
-                },
-            }"
-        >
+                $dispatch('clear-2fa-auth-code');
+        
+                $nextTick(() => {
+                    this.showRecoveryInput
+                        ? this.$refs.recovery_code?.focus()
+                        : $dispatch('focus-2fa-auth-code');
+                });
+            },
+        }"
+    >
+        <div class="text-center space-y-6">
             <div x-show="!showRecoveryInput">
-                <x-auth-header
-                    :title="__('Authentication Code')"
-                    :description="__('Enter the authentication code provided by your authenticator application.')"
-                />
+                <x-heroicon-o-device-phone-mobile class="w-16 h-16 text-primary mx-auto mb-4" />
+                <h2 class="text-2xl font-bold text-foreground mb-2">Authentication Code</h2>
+                <p class="text-muted-foreground">
+                    Enter the authentication code provided by your authenticator application.
+                </p>
             </div>
 
             <div x-show="showRecoveryInput">
-                <x-auth-header
-                    :title="__('Recovery Code')"
-                    :description="__('Please confirm access to your account by entering one of your emergency recovery codes.')"
-                />
+                <x-heroicon-o-key class="w-16 h-16 text-primary mx-auto mb-4" />
+                <h2 class="text-2xl font-bold text-foreground mb-2">Recovery Code</h2>
+                <p class="text-muted-foreground">
+                    Please confirm access to your account by entering one of your emergency recovery codes.
+                </p>
             </div>
 
-            <form method="POST" action="{{ route('two-factor.login.store') }}">
+            <form method="POST" action="{{ route('two-factor.login.store') }}" class="space-y-6">
                 @csrf
 
                 <div class="space-y-5 text-center">
@@ -52,48 +54,51 @@
                         </div>
 
                         @error('code')
-                            <flux:text color="red">
+                            <div class="p-4 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive text-sm">
                                 {{ $message }}
-                            </flux:text>
+                            </div>
                         @enderror
                     </div>
 
                     <div x-show="showRecoveryInput">
                         <div class="my-5">
-                            <flux:input
+                            <label for="recovery_code" class="block text-sm font-medium mb-2">Recovery Code</label>
+                            <input
                                 type="text"
                                 name="recovery_code"
+                                id="recovery_code"
                                 x-ref="recovery_code"
                                 x-bind:required="showRecoveryInput"
                                 autocomplete="one-time-code"
                                 x-model="recovery_code"
+                                class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                                placeholder="Enter recovery code"
                             />
                         </div>
 
                         @error('recovery_code')
-                            <flux:text color="red">
+                            <div class="p-4 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive text-sm">
                                 {{ $message }}
-                            </flux:text>
+                            </div>
                         @enderror
                     </div>
 
-                    <flux:button
-                        variant="primary"
+                    <button
                         type="submit"
-                        class="w-full"
+                        class="w-full bg-primary text-white py-3 px-4 rounded-lg hover:bg-primary/90 transition-colors font-medium"
                     >
-                        {{ __('Continue') }}
-                    </flux:button>
+                        Continue
+                    </button>
                 </div>
 
-                <div class="mt-5 space-x-0.5 text-sm leading-5 text-center">
-                    <span class="opacity-50">{{ __('or you can') }}</span>
-                    <div class="inline font-medium underline cursor-pointer opacity-80">
-                        <span x-show="!showRecoveryInput" @click="toggleInput()">{{ __('login using a recovery code') }}</span>
-                        <span x-show="showRecoveryInput" @click="toggleInput()">{{ __('login using an authentication code') }}</span>
-                    </div>
+                <div class="mt-5 text-center text-sm text-muted-foreground">
+                    <span>or you can </span>
+                    <button type="button" @click="toggleInput()" class="font-medium text-primary hover:text-primary/80 transition-colors underline">
+                        <span x-show="!showRecoveryInput">login using a recovery code</span>
+                        <span x-show="showRecoveryInput">login using an authentication code</span>
+                    </button>
                 </div>
             </form>
         </div>
     </div>
-</x-layouts.auth>
+</x-layouts.auth.harvestglow>

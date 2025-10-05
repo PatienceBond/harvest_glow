@@ -192,7 +192,7 @@
                     excerpt="Our Seed Villages program has helped over 1,000 farmers gain access to certified seeds, increasing crop yields by 40%."
                     date="January 15, 2025"
                     image="{{ asset('images/hero/hero1.webp') }}"
-                    link="#"
+                    link="{{ route('news-details', ['slug' => 'empowering-farmers-seed-multiplication']) }}"
                 />
 
                 <x-ui.news-card
@@ -200,7 +200,7 @@
                     excerpt="Village savings groups have mobilized over $30,000 in community capital, supporting local enterprises and farmer innovations."
                     date="January 10, 2025"
                     image="{{ asset('images/hero/hero1.webp') }}"
-                    link="#"
+                    link="{{ route('news-details', ['slug' => 'women-led-savings-groups']) }}"
                 />
 
                 <x-ui.news-card
@@ -208,7 +208,7 @@
                     excerpt="Young farmers learn conservation agriculture techniques to build resilience against climate change impacts."
                     date="January 5, 2025"
                     image="{{ asset('images/hero/hero1.webp') }}"
-                    link="#"
+                    link="{{ route('news-details', ['slug' => 'climate-smart-training-youth']) }}"
                 />
             </div>
         </x-ui.container>

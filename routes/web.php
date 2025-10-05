@@ -11,6 +11,7 @@ Route::get('/impact', \App\Livewire\Guests\Impact::class)->name('impact');
 Route::get('/team', \App\Livewire\Guests\Team::class)->name('team');
 Route::get('/partners', \App\Livewire\Guests\Partners::class)->name('partners');
 Route::get('/contact', \App\Livewire\Guests\Contact::class)->name('contact');
+Route::get('/news/{slug?}', \App\Livewire\Guests\NewsDetails::class)->name('news-details');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
