@@ -3,32 +3,27 @@
 use Livewire\Volt\Component;
 
 new class extends Component {
-    public $isDark = false;
-
-    public function mount()
+    public function saveTheme($theme)
     {
-        $this->isDark = session('theme', 'light') === 'dark';
-    }
-
-    public function toggle()
-    {
-        $this->isDark = !$this->isDark;
-        session(['theme' => $this->isDark ? 'dark' : 'light']);
-        
-        $this->dispatch('theme-changed', theme: $this->isDark ? 'dark' : 'light');
+        session(['theme' => $theme]);
     }
 }; ?>
 
-<div>
-    <button 
-        wire:click="toggle"
-        class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
-        title="{{ $isDark ? 'Switch to light mode' : 'Switch to dark mode' }}"
+<div x-data="{ isDark: {{ session('theme', 'light') === 'dark' ? 'true' : 'false' }} }">
+    <button
+        @click="
+            isDark = !isDark;
+            document.documentElement.classList.toggle('dark', isDark);
+            $wire.saveTheme(isDark ? 'dark' : 'light');
+        "
+        class="p-2 text-foreground hover:opacity-80 transition-opacity"
+  
     >
-        @if($isDark)
+        <template x-if="isDark">
             <x-heroicon-o-sun class="w-5 h-5" />
-        @else
+        </template>
+        <template x-if="!isDark">
             <x-heroicon-o-moon class="w-5 h-5" />
-        @endif
+        </template>
     </button>
 </div>

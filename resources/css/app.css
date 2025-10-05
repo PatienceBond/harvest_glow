@@ -1,6 +1,7 @@
-@import 'tailwindcss';
-@import '../../vendor/livewire/flux/dist/flux.css';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+@import "tailwindcss";
+@import "../../vendor/livewire/flux/dist/flux.css";
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -10,49 +11,165 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    
-    /* HarvestGlow Color Palette */
-    --color-primary-green: #388E3C;
-    --color-primary-yellow: #FFD700;
-    --color-accent-orange: #FFA000;
-    --color-dark-grey: #333333;
-    --color-light-green: #4CAF50;
-    --color-dark-green: #2E7D32;
+    --font-sans: "Public Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+    --font-weight-default: 400;
 
-    --color-zinc-50: #fafafa;
-    --color-zinc-100: #f5f5f5;
-    --color-zinc-200: #e5e5e5;
-    --color-zinc-300: #d4d4d4;
-    --color-zinc-400: #a3a3a3;
-    --color-zinc-500: #737373;
-    --color-zinc-600: #525252;
-    --color-zinc-700: #404040;
-    --color-zinc-800: #262626;
-    --color-zinc-900: #171717;
-    --color-zinc-950: #0a0a0a;
+    /* Base Color Scale */
+    --color-base-50: oklch(0.984 0.0022 247.84);
+    --color-base-100: oklch(0.9687 0.0051 247.88);
+    --color-base-200: oklch(0.929 0.0095 255.53);
+    --color-base-300: oklch(0.869 0.016 252.91);
+    --color-base-400: oklch(0.704 0.0291 256.81);
+    --color-base-500: oklch(0.554 0.0335 257.44);
+    --color-base-600: oklch(0.446 0.0313 257.3);
+    --color-base-700: oklch(0.372 0.0321 257.31);
+    --color-base-800: oklch(0.279 0.0299 260.05);
+    --color-base-900: oklch(0.208 0.0306 265.77);
+    --color-base-950: oklch(0.129 0.0306 264.71);
+    --color-base-1000: oklch(0.078 0.0306 264.02);
 
-    --color-accent: var(--color-neutral-800);
-    --color-accent-content: var(--color-neutral-800);
-    --color-accent-foreground: var(--color-white);
+    /* Primary Color Scale */
+    --color-primary-50: oklch(0.9797 0.0095 159.88);
+    --color-primary-100: oklch(0.9564 0.0234 159.23);
+    --color-primary-200: oklch(0.9164 0.0434 159.21);
+    --color-primary-300: oklch(0.8603 0.0731 158.6);
+    --color-primary-400: oklch(0.781 0.0975 156.24);
+    --color-primary-500: oklch(0.7122 0.0991 154.66);
+    --color-primary-600: oklch(0.6147 0.0867 154.73);
+    --color-primary-700: oklch(0.5315 0.0694 156.19);
+    --color-primary-800: oklch(0.4416 0.0544 157.47);
+    --color-primary-900: oklch(0.387 0.0436 159);
+    --color-primary-950: oklch(0.2643 0.0295 160.27);
+    --color-primary-1000: oklch(0.1845 0.0202 160.95);
+
+    /* Secondary Color Scale */
+    --color-secondary-50: oklch(0.9755 0.0049 330.01);
+    --color-secondary-100: oklch(0.9512 0.0104 328.92);
+    --color-secondary-200: oklch(0.902 0.0219 329.77);
+    --color-secondary-300: oklch(0.8292 0.0422 332);
+    --color-secondary-400: oklch(0.7308 0.07 333.6);
+    --color-secondary-500: oklch(0.6624 0.0855 334.26);
+    --color-secondary-600: oklch(0.5748 0.0862 336.52);
+    --color-secondary-700: oklch(0.5211 0.0755 338.14);
+    --color-secondary-800: oklch(0.4552 0.0631 338.88);
+    --color-secondary-900: oklch(0.4042 0.0512 339.72);
+    --color-secondary-950: oklch(0.2893 0.0391 340.38);
+    --color-secondary-1000: oklch(0.2146 0.0313 340.82);
+
+    /* Semantic Theme Colors - Light Mode */
+    --color-background: var(--color-base-50);
+    --color-foreground: var(--color-base-800);
+    --color-card: var(--color-white);
+    --color-card-foreground: var(--color-base-800);
+    --color-popover: var(--color-white);
+    --color-popover-foreground: var(--color-base-800);
+    --color-primary: var(--color-primary-700);
+    --color-primary-foreground: var(--color-white);
+    --color-secondary: var(--color-secondary-600);
+    --color-secondary-foreground: var(--color-white);
+    --color-muted: var(--color-base-100);
+    --color-muted-foreground: var(--color-base-600);
+    --color-accent: var(--color-base-200);
+    --color-accent-foreground: var(--color-base-800);
+    --color-destructive: oklch(0.577 0.245 27.325);
+    --color-success: oklch(0.577 0.18 145);
+    --color-border: var(--color-base-200);
+    --color-input: var(--color-base-300);
+    --color-ring: var(--color-primary-700);
+    --color-sidebar: var(--color-white);
+    --color-sidebar-foreground: var(--color-base-800);
+    --color-sidebar-primary: var(--color-primary-700);
+    --color-sidebar-primary-foreground: var(--color-white);
+    --color-sidebar-accent: var(--color-primary);
+    --color-sidebar-accent-foreground: var(--color-white);
+    --color-sidebar-border: var(--color-base-200);
+    --color-sidebar-ring: var(--color-primary-700);
+
+    --radius: 0.5rem;
 }
 
 @layer theme {
     .dark {
-        --color-accent: var(--color-white);
-        --color-accent-content: var(--color-white);
-        --color-accent-foreground: var(--color-neutral-800);
+        /* Semantic Theme Colors - Dark Mode */
+        --color-background: var(--color-base-950);
+        --color-foreground: var(--color-base-200);
+        --color-card: var(--color-base-900);
+        --color-card-foreground: var(--color-base-200);
+        --color-popover: var(--color-base-900);
+        --color-popover-foreground: var(--color-base-200);
+        --color-primary: var(--color-primary-700);
+        --color-primary-foreground: var(--color-white);
+        --color-secondary: var(--color-secondary-600);
+        --color-secondary-foreground: var(--color-white);
+        --color-muted: var(--color-base-800);
+        --color-muted-foreground: var(--color-base-300);
+        --color-accent: var(--color-base-800);
+        --color-accent-foreground: var(--color-base-200);
+        --color-destructive: oklch(0.704 0.191 22.216);
+        --color-success: oklch(0.67 0.19 145);
+        --color-border: var(--color-base-800);
+        --color-input: var(--color-base-700);
+        --color-ring: var(--color-primary-700);
+        --color-sidebar: var(--color-base-900);
+        --color-sidebar-foreground: var(--color-base-200);
+        --color-sidebar-primary: var(--color-primary-700);
+        --color-sidebar-primary-foreground: var(--color-white);
+        --color-sidebar-accent: var(--color-primary);
+        --color-sidebar-accent-foreground: var(--color-base-200);
+        --color-sidebar-border: var(--color-base-800);
+        --color-sidebar-ring: var(--color-primary-700);
     }
 }
 
 @layer base {
-
     *,
     ::after,
     ::before,
     ::backdrop,
     ::file-selector-button {
         border-color: var(--color-gray-200, currentColor);
+    }
+
+    /* Headings - Tighter line height */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply tracking-tighter;
+    }
+
+    h1 {
+        @apply text-4xl lg:text-6xl font-bold  leading-tight;
+    }
+
+    /* Paragraphs - Small text */
+    p {
+        @apply text-base font-normal mb-4 leading-relaxed;
+    }
+
+    /* Clickable elements - Cursor pointer */
+    button,
+    a,
+    [role="button"],
+    [type="button"],
+    [type="submit"],
+    [type="reset"],
+    select,
+    label[for],
+    input[type="checkbox"],
+    input[type="radio"] {
+        cursor: pointer;
+    }
+
+    /* Disabled elements - Default cursor */
+    button:disabled,
+    a:disabled,
+    [disabled] {
+        cursor: not-allowed;
     }
 }
 
@@ -61,7 +178,7 @@
 }
 
 [data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight;
 }
 
 input:focus[data-flux-control],
@@ -73,3 +190,21 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+/* Horizontal scrolling animation */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-scroll {
+    animation: scroll 30s linear infinite;
+}
+
+.animate-scroll:hover {
+    animation-play-state: paused;
+}
