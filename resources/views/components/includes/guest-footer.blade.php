@@ -8,10 +8,10 @@
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <x-ui.button-link href="#invest" variant="card">
+                <x-ui.button-link href="{{ route('contact') }}" variant="card">
                     Invest in Our Work
                 </x-ui.button-link>
-                <x-ui.button-link href="#volunteer" variant="outline-white">
+                <x-ui.button-link href="{{ route('contact') }}" variant="outline-white">
                     Volunteer With Us
                 </x-ui.button-link>
                
@@ -32,32 +32,19 @@
                 <p class="text-sm text-gray-300 mb-6">
                     Empowering farmers, building resilient communities in Malawi.
                 </p>
-                <!-- Social Media Icons -->
-                <div class="flex gap-4">
-                    <a href="#" class="text-gray-300 hover:text-primary transition" title="WhatsApp">
-                        <x-heroicon-o-phone class="w-5 h-5" />
-                    </a>
-                    <a href="#" class="text-gray-300 hover:text-primary transition" title="Facebook">
-                        <x-heroicon-o-user-group class="w-5 h-5" />
-                    </a>
-                    <a href="#" class="text-gray-300 hover:text-primary transition" title="Instagram">
-                        <x-heroicon-o-camera class="w-5 h-5" />
-                    </a>
-                    <a href="#" class="text-gray-300 hover:text-primary transition" title="LinkedIn">
-                        <x-heroicon-o-briefcase class="w-5 h-5" />
-                    </a>
-                </div>
+               
             </div>
 
             <!-- Column 2: Quick Links -->
             <div>
                 <h3 class="text-lg font-bold mb-4">Quick Links</h3>
                 <ul class="space-y-2 text-sm text-gray-300">
-                    <li><a href="#about" class="hover:text-primary transition">About Us</a></li>
-                    <li><a href="#model" class="hover:text-primary transition">Our Model</a></li>
-                    <li><a href="#impact" class="hover:text-primary transition">Impact</a></li>
-                    <li><a href="#team" class="hover:text-primary transition">Our Team</a></li>
-                    <li><a href="#partners" class="hover:text-primary transition">Partners</a></li>
+                    <li><a href="{{ route('about') }}" class="hover:text-primary transition">About Us</a></li>
+                    <li><a href="{{ route('our-model') }}" class="hover:text-primary transition">Our Model</a></li>
+                    <li><a href="{{ route('impact') }}" class="hover:text-primary transition">Impact</a></li>
+                    <li><a href="{{ route('team') }}" class="hover:text-primary transition">Our Team</a></li>
+                    <li><a href="{{ route('partners') }}" class="hover:text-primary transition">Partners</a></li>
+                    <li><a href="{{ route('contact') }}" class="hover:text-primary transition">Contact Us</a></li>
                 </ul>
             </div>
 

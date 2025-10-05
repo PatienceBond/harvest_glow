@@ -31,13 +31,14 @@
                 <a href="{{ route('our-model') }}" class="hover:text-primary transition">Our Model</a>
                 <a href="{{ route('impact') }}" class="hover:text-primary transition">Impact</a>
                 <a href="{{ route('team') }}" class="hover:text-primary transition">Team</a>
-                <a href="#partners" class="hover:text-primary transition">Partners</a>
+                <a href="{{ route('partners') }}" class="hover:text-primary transition">Partners</a>
+                <a href="{{ route('contact') }}" class="hover:text-primary transition">Contact</a>
             </div>
 
             <!-- Auth Buttons (hidden on mobile) -->
             <div class="hidden md:flex items-center space-x-4">
                 <livewire:theme-toggle />
-                <x-ui.button-link href="#contact" variant="primary">
+                <x-ui.button-link href="{{ route('contact') }}" variant="primary">
                    Support Our Mission
                 </x-ui.button-link>
             </div>
@@ -64,7 +65,8 @@
                 <a href="{{ route('our-model') }}" class="block hover:text-primary transition">Our Model</a>
                 <a href="{{ route('impact') }}" class="block hover:text-primary transition">Impact</a>
                 <a href="{{ route('team') }}" class="block hover:text-primary transition">Team</a>
-                <a href="#partners" class="block hover:text-primary transition">Partners</a>
+                <a href="{{ route('partners') }}" class="block hover:text-primary transition">Partners</a>
+                <a href="{{ route('contact') }}" class="block hover:text-primary transition">Contact</a>
             </div>
         </div>
     </x-ui.container>
