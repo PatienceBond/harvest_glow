@@ -178,7 +178,7 @@
                     description="How our integrated approach creates lasting impact for farmers and communities."
                 />
 
-                <div class="flex flex-col lg:flex-row gap-0 lg:gap-6 items-stretch">
+                <div class="flex flex-col lg:flex-row gap-6 items-stretch">
                     <x-ui.theory-stage
                         title="Inputs"
                         :items="[
