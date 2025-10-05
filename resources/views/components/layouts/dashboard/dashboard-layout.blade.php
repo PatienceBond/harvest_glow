@@ -167,6 +167,9 @@
         </div>
     </div>
 
+    <!-- Toast Container -->
+    <x-ui.toast-container />
+
     @livewireScripts
     <script src="//unpkg.com/alpinejs" defer></script>
 </body>

@@ -54,10 +54,16 @@ class Index extends Component
         if ($this->editing) {
             $category = Category::findOrFail($this->categoryId);
             $category->update($data);
-            session()->flash('message', 'Category updated successfully!');
+            $this->dispatch('showToast', [
+                'type' => 'success',
+                'message' => 'Category updated successfully!'
+            ]);
         } else {
             Category::create($data);
-            session()->flash('message', 'Category created successfully!');
+            $this->dispatch('showToast', [
+                'type' => 'success',
+                'message' => 'Category created successfully!'
+            ]);
         }
 
         $this->closeModal();
@@ -68,12 +74,18 @@ class Index extends Component
         $category = Category::findOrFail($id);
         
         if ($category->posts()->count() > 0) {
-            session()->flash('error', 'Cannot delete category with existing posts.');
+            $this->dispatch('showToast', [
+                'type' => 'error',
+                'message' => 'Cannot delete category with existing posts.'
+            ]);
             return;
         }
 
         $category->delete();
-        session()->flash('message', 'Category deleted successfully!');
+        $this->dispatch('showToast', [
+            'type' => 'success',
+            'message' => 'Category deleted successfully!'
+        ]);
     }
 
     public function closeModal()

@@ -7,15 +7,18 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 #[Layout('components.layouts.dashboard.dashboard-layout')]
 class Edit extends Component
 {
+    use WithFileUploads;
+
     public Post $post;
     public $title = '';
     public $excerpt = '';
     public $content = '';
-    public $featured_image = '';
+    public $featured_image;
     public $is_published = false;
     public $published_at = '';
     public $category_id = '';
@@ -24,7 +27,7 @@ class Edit extends Component
         'title' => 'required|string|max:255',
         'excerpt' => 'nullable|string|max:500',
         'content' => 'required|string',
-        'featured_image' => 'nullable|url',
+        'featured_image' => 'nullable|image|max:2048',
         'is_published' => 'boolean',
         'published_at' => 'nullable|date',
         'category_id' => 'nullable|exists:categories,id',
@@ -46,20 +49,34 @@ class Edit extends Component
     {
         $this->validate();
 
+        // Handle file upload
+        $featuredImagePath = $this->post->featured_image; // Keep existing if no new upload
+        if ($this->featured_image) {
+            $featuredImagePath = $this->featured_image->store('posts', 'public');
+        }
+
         $this->post->update([
             'title' => $this->title,
             'slug' => Str::slug($this->title),
             'excerpt' => $this->excerpt,
             'content' => $this->content,
-            'featured_image' => $this->featured_image,
+            'featured_image' => $featuredImagePath,
             'is_published' => $this->is_published,
             'published_at' => $this->is_published ? ($this->published_at ?: now()) : null,
             'category_id' => $this->category_id ?: null,
         ]);
 
-        session()->flash('message', 'Post updated successfully!');
+        $this->dispatch('showToast', [
+            'type' => 'success',
+            'message' => 'Post updated successfully!'
+        ]);
         
         return redirect()->route('dashboard.posts.index');
+    }
+
+    public function removeFile($field)
+    {
+        $this->$field = null;
     }
 
     public function render()

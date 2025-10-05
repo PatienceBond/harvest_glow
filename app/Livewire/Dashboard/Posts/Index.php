@@ -43,7 +43,10 @@ class Index extends Component
         $post = Post::findOrFail($postId);
         $post->delete();
         
-        session()->flash('message', 'Post deleted successfully.');
+        $this->dispatch('showToast', [
+            'type' => 'success',
+            'message' => 'Post deleted successfully.'
+        ]);
     }
 
     public function render()

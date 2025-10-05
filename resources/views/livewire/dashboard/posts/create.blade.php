@@ -112,21 +112,16 @@
 
                 <!-- Featured Image -->
                 <div>
-                    <label for="featured_image" class="block text-sm font-medium mb-2">Featured Image URL</label>
-                    <input type="url" 
-                           id="featured_image"
-                           wire:model="featured_image"
-                           class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent @error('featured_image') border-destructive @enderror"
-                           placeholder="https://example.com/image.jpg">
+                    <label class="block text-sm font-medium mb-2">Featured Image</label>
+                    <x-ui.file-upload 
+                        wireModel="featured_image"
+                        accept="image/*"
+                        maxSize="2048"
+                        placeholder="Upload featured image"
+                    />
                     @error('featured_image')
                         <p class="mt-1 text-sm text-destructive">{{ $message }}</p>
                     @enderror
-                    @if($featured_image)
-                        <div class="mt-3">
-                            <img src="{{ $featured_image }}" alt="Featured image preview" 
-                                 class="w-full h-48 object-cover rounded-lg border border-border">
-                        </div>
-                    @endif
                 </div>
             </div>
 
@@ -174,12 +169,27 @@
                 <div class="bg-card border border-border rounded-lg p-6">
                     <div class="space-y-3">
                         <button type="submit" 
-                                class="w-full bg-primary text-white py-3 px-4 rounded-lg hover:bg-primary/90 transition-colors font-medium">
-                            @if($is_published)
-                                Publish Post
-                            @else
-                                Save Draft
-                            @endif
+                                wire:loading.attr="disabled"
+                                wire:target="save"
+                                class="w-full bg-primary text-white py-3 px-4 rounded-lg hover:bg-primary/90 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed">
+                            <span wire:loading.remove wire:target="save">
+                                @if($is_published)
+                                    Publish Post
+                                @else
+                                    Save Draft
+                                @endif
+                            </span>
+                            <span wire:loading wire:target="save" class="flex items-center justify-center">
+                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                @if($is_published)
+                                    Publishing...
+                                @else
+                                    Saving...
+                                @endif
+                            </span>
                         </button>
                         
                         <a href="{{ route('dashboard.posts.index') }}" 

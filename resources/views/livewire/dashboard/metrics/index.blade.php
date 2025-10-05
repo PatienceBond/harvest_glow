@@ -27,7 +27,11 @@
                             <div class="w-12 h-12 rounded-lg flex items-center justify-center" 
                                  style="background-color: {{ $metric->color }}20;">
                                 @if($metric->icon)
-                                    <span class="text-2xl">{{ $metric->icon }}</span>
+                                    @if(str_starts_with($metric->icon, 'storage/') || str_starts_with($metric->icon, 'metrics/'))
+                                        <img src="{{ asset('storage/' . $metric->icon) }}" alt="Icon" class="w-8 h-8 object-contain">
+                                    @else
+                                        <span class="text-2xl">{{ $metric->icon }}</span>
+                                    @endif
                                 @else
                                     <x-heroicon-o-chart-bar class="w-6 h-6" style="color: {{ $metric->color }};" />
                                 @endif
@@ -93,7 +97,11 @@
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0">
                                                 @if($metric->icon)
-                                                    <span class="text-2xl">{{ $metric->icon }}</span>
+                                                    @if(str_starts_with($metric->icon, 'storage/') || str_starts_with($metric->icon, 'metrics/'))
+                                                        <img src="{{ asset('storage/' . $metric->icon) }}" alt="Icon" class="w-8 h-8 object-contain">
+                                                    @else
+                                                        <span class="text-2xl">{{ $metric->icon }}</span>
+                                                    @endif
                                                 @else
                                                     <div class="w-8 h-8 rounded-lg flex items-center justify-center" 
                                                          style="background-color: {{ $metric->color }}20;">
@@ -234,13 +242,33 @@
 
                     <!-- Icon -->
                     <div>
-                        <label for="icon" class="block text-sm font-medium mb-2">Icon (Emoji)</label>
-                        <input type="text" 
-                               id="icon"
-                               wire:model="icon"
-                               class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent @error('icon') border-destructive @enderror"
-                               placeholder="🌱 (optional)">
-                        @error('icon')
+                        <label class="block text-sm font-medium mb-2">Icon</label>
+                        <div class="space-y-4">
+                            <!-- Emoji Input -->
+                            <div>
+                                <label for="icon_emoji" class="block text-sm font-medium mb-2">Emoji (optional)</label>
+                                <input type="text" 
+                                       id="icon_emoji"
+                                       wire:model="icon_emoji"
+                                       class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                                       placeholder="🌱">
+                            </div>
+                            
+                            <!-- Image Upload -->
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Or Upload Icon Image</label>
+                                <x-ui.file-upload 
+                                    wireModel="icon_image"
+                                    accept="image/*"
+                                    maxSize="512"
+                                    placeholder="Upload icon image"
+                                />
+                            </div>
+                        </div>
+                        @error('icon_emoji')
+                            <p class="mt-1 text-sm text-destructive">{{ $message }}</p>
+                        @enderror
+                        @error('icon_image')
                             <p class="mt-1 text-sm text-destructive">{{ $message }}</p>
                         @enderror
                     </div>
@@ -296,14 +324,18 @@
                         <label class="block text-sm font-medium mb-2">Preview</label>
                         <div class="p-4 border border-border rounded-lg bg-muted/30">
                             <div class="flex items-center justify-between mb-4">
-                                <div class="w-12 h-12 rounded-lg flex items-center justify-center" 
-                                     style="background-color: {{ $color }}20;">
-                                    @if($icon)
-                                        <span class="text-2xl">{{ $icon }}</span>
-                                    @else
-                                        <x-heroicon-o-chart-bar class="w-6 h-6" style="color: {{ $color }};" />
+                            <div class="w-12 h-12 rounded-lg flex items-center justify-center" 
+                                 style="background-color: {{ $color }}20;">
+                                @if($icon_emoji || $icon_image)
+                                    @if($icon_image)
+                                        <img src="{{ $icon_image->temporaryUrl() }}" alt="Icon" class="w-8 h-8 object-contain">
+                                    @elseif($icon_emoji)
+                                        <span class="text-2xl">{{ $icon_emoji }}</span>
                                     @endif
-                                </div>
+                                @else
+                                    <x-heroicon-o-chart-bar class="w-6 h-6" style="color: {{ $color }};" />
+                                @endif
+                            </div>
                                 @if($is_featured)
                                     <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
                                         <x-heroicon-o-star class="w-3 h-3 mr-1" />
@@ -332,8 +364,19 @@
                             Cancel
                         </button>
                         <button type="submit" 
-                                class="px-4 py-2 bg-primary text-white rounded-md text-sm font-medium hover:bg-primary/90 transition-colors">
-                            {{ $editing ? 'Update' : 'Create' }} Metric
+                                wire:loading.attr="disabled"
+                                wire:target="save"
+                                class="px-4 py-2 bg-primary text-white rounded-md text-sm font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                            <span wire:loading.remove wire:target="save">
+                                {{ $editing ? 'Update' : 'Create' }} Metric
+                            </span>
+                            <span wire:loading wire:target="save" class="flex items-center">
+                                <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                {{ $editing ? 'Updating...' : 'Creating...' }}
+                            </span>
                         </button>
                     </div>
                 </form>
