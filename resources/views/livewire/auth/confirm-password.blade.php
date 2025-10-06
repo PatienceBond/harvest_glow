@@ -1,4 +1,4 @@
-<x-layouts.auth.harvestglow>
+<x-layouts.auth.harvestglow title="Confirm Password">
     <div class="text-center space-y-6">
         <div>
             <x-heroicon-o-lock-closed class="w-16 h-16 text-primary mx-auto mb-4" />

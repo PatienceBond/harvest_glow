@@ -1,4 +1,4 @@
-<x-layouts.auth.harvestglow>
+<x-layouts.auth.harvestglow title="Two-Factor Authentication">
     <div
         class="relative w-full h-auto"
         x-cloak

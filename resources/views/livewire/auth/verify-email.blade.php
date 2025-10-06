@@ -8,6 +8,12 @@ use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
 new #[Layout('components.layouts.auth.harvestglow')] class extends Component {
+    public function with()
+    {
+        return [
+            'title' => 'Verify Email'
+        ];
+    }
     /**
      * Send an email verification notification to the user.
      */

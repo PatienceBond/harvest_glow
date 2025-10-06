@@ -7,6 +7,13 @@ use Livewire\Volt\Component;
 new #[Layout('components.layouts.auth.harvestglow')] class extends Component {
     public string $email = '';
 
+    public function with()
+    {
+        return [
+            'title' => 'Reset Password'
+        ];
+    }
+
     /**
      * Send a password reset link to the provided email address.
      */

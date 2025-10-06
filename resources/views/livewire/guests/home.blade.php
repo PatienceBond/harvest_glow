@@ -224,11 +224,18 @@
 
             <!-- Partners Logos -->
             <div class="flex flex-wrap justify-center items-center gap-12 mb-8">
-                <div class="text-2xl font-bold text-foreground">Mastercard</div>
-                <div class="text-2xl font-bold text-foreground">AWARD</div>
-                <div class="text-2xl font-bold text-foreground">Anzisha Prize</div>
-                <div class="text-2xl font-bold text-foreground">ALA</div>
-                <div class="text-2xl font-bold text-foreground">Talloires Network</div>
+                <div class="flex items-center justify-center h-16 w-auto">
+                    <img src="{{ asset('images/partners/mastercard.png') }}" alt="Mastercard Foundation" class="h-full w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
+                </div>
+                <div class="flex items-center justify-center h-16 w-auto">
+                    <img src="{{ asset('images/partners/Woman research award.png') }}" alt="AWARD - African Women in Agricultural Research and Development" class="h-full w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
+                </div>
+                <div class="flex items-center justify-center h-16 w-auto">
+                    <img src="{{ asset('images/partners/anzisha prize.png') }}" alt="Anzisha Prize" class="h-full w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
+                </div>
+                <div class="flex items-center justify-center h-16 w-auto">
+                    <img src="{{ asset('images/partners/ala.png') }}" alt="African Leadership Academy" class="h-full w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
+                </div>
             </div>
 
         

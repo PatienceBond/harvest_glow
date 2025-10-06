@@ -22,6 +22,13 @@ new #[Layout('components.layouts.auth.harvestglow')] class extends Component {
 
     public bool $remember = false;
 
+    public function with()
+    {
+        return [
+            'title' => 'Sign In'
+        ];
+    }
+
     /**
      * Handle an incoming authentication request.
      */

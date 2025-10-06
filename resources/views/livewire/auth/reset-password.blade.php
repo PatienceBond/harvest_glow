@@ -17,6 +17,13 @@ new #[Layout('components.layouts.auth.harvestglow')] class extends Component {
     public string $password = '';
     public string $password_confirmation = '';
 
+    public function with()
+    {
+        return [
+            'title' => 'Set New Password'
+        ];
+    }
+
     /**
      * Mount the component.
      */
