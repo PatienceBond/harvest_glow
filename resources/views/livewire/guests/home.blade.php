@@ -3,8 +3,8 @@
     <!-- Hero Section -->
     <x-ui.hero
         image="{{ asset('images/hero/hero1.webp') }}"
-        heading="Building Resilient Communities"
-        subheading="Empowering Farmers,"
+        heading=" Empowering Farmers, Building Futures"
+       
         height="600px"
         class="text-white"
     />
@@ -223,18 +223,21 @@
             />
 
             <!-- Partners Logos -->
-            <div class="flex flex-wrap justify-center items-center gap-12 mb-8">
-                <div class="flex items-center justify-center h-16 w-auto">
+            <div class="flex flex-wrap justify-center items-center gap-4 mb-8">
+                <div class="flex items-center justify-center h-24 w-48 bg-card rounded-lg shadow-sm border border-border p-4 hover:shadow-md transition-all duration-300">
                     <img src="{{ asset('images/partners/mastercard.png') }}" alt="Mastercard Foundation" class="h-full w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
                 </div>
-                <div class="flex items-center justify-center h-16 w-auto">
+                <div class="flex items-center justify-center h-24 w-48 bg-card rounded-lg shadow-sm border border-border p-4 hover:shadow-md transition-all duration-300">
                     <img src="{{ asset('images/partners/Woman research award.png') }}" alt="AWARD - African Women in Agricultural Research and Development" class="h-full w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
                 </div>
-                <div class="flex items-center justify-center h-16 w-auto">
+                <div class="flex items-center justify-center h-24 w-48 bg-card rounded-lg shadow-sm border border-border p-4 hover:shadow-md transition-all duration-300">
                     <img src="{{ asset('images/partners/anzisha prize.png') }}" alt="Anzisha Prize" class="h-full w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
                 </div>
-                <div class="flex items-center justify-center h-16 w-auto">
+                <div class="flex items-center justify-center h-24 w-48 bg-card rounded-lg shadow-sm border border-border p-4 hover:shadow-md transition-all duration-300">
                     <img src="{{ asset('images/partners/ala.png') }}" alt="African Leadership Academy" class="h-full w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
+                </div>
+                <div class="flex items-center justify-center h-24 w-48 bg-card rounded-lg shadow-sm border border-border p-4 hover:shadow-md transition-all duration-300">
+                    <img src="{{ asset('images/partners/university_of_pretoria.png') }}" alt="University of Pretoria" class="h-full w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
                 </div>
             </div>
 
