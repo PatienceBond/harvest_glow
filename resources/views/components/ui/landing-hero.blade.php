@@ -59,14 +59,8 @@
             </div>
         </template>
 
-        <!-- Gradient Overlay - enhanced for better text readability -->
-        <div class="absolute inset-0 bg-gradient-to-r from-base-950/100 via-base-950/95 to-base-950/80"></div>
-
-        <!-- Additional overlay for content area -->
-        <div class="absolute inset-0 bg-base-950/50"></div>
-
         <!-- Navigation Arrows -->
-        <div class="absolute inset-0 flex items-center justify-between px-4 sm:px-8 pointer-events-none">
+        <div class="absolute inset-0 flex items-center justify-between px-4 sm:px-8 pointer-events-none z-30">
             <button
                 @click="prevSlide()"
                 class="pointer-events-auto w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
@@ -84,7 +78,7 @@
         </div>
 
         <!-- Slide Indicators -->
-        <div class="absolute bottom-8 left-0 right-0 flex justify-center gap-2 z-10">
+        <div class="absolute bottom-8 left-0 right-0 flex justify-center gap-2 z-30">
             <template x-for="(slide, index) in slides" :key="index">
                 <button
                     @click="goToSlide(index)"
@@ -96,32 +90,33 @@
         </div>
     </div>
 
+    <!-- Strong Dark Overlay - OUTSIDE Alpine container -->
+    <div class="absolute inset-0 bg-black/75 z-10 pointer-events-none"></div>
+
+    <!-- Gradient Overlay - darker on left where text is -->
+    <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent z-10 pointer-events-none"></div>
+
     <!-- Content -->
-    <div class="relative z-10 py-24 sm:py-32 text-left w-full">
+    <div class="relative z-20 py-24 sm:py-32 text-left w-full">
         <x-ui.container>
             <div class="max-w-4xl">
                 <!-- Main Heading with animated gradient -->
-                <h1 class="text-white text-5xl sm:text-6xl lg:text-8xl font-bold leading-tight mb-8 animate-fade-in">
+                <h1 class="text-white text-5xl sm:text-6xl lg:text-8xl font-bold leading-tight mb-8 animate-fade-in drop-shadow-2xl">
                     {{ $heading }}
                 </h1>
 
                 @if($slot->isNotEmpty())
-                    <div class="mt-8 animate-fade-in-delay">
+                    <div class="mt-8 animate-fade-in-delay text-white/90 text-xl drop-shadow-lg">
                         {{ $slot }}
                     </div>
                 @endif
 
-                <!-- Optional CTA Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 mt-10 animate-fade-in-delay-2">
+                <!-- Optional CTA Button -->
+                <div class="mt-12 animate-fade-in-delay-2">
                     <a href="{{ route('about') }}"
-                       class="inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-lg bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-base-950">
+                       class="inline-flex items-center justify-center gap-3 px-8 py-4 sm:px-10 sm:py-5 text-base sm:text-lg font-semibold rounded-lg bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-base-950 shadow-xl whitespace-nowrap">
                         Learn Our Story
-                        <x-heroicon-o-arrow-right class="ml-2 w-5 h-5" />
-                    </a>
-                    <a href="{{ route('contact') }}"
-                       class="inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-base-950">
-                        Support Our Mission
-                        <x-heroicon-o-heart class="ml-2 w-5 h-5" />
+                        <x-heroicon-o-arrow-right class="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
                     </a>
                 </div>
             </div>
