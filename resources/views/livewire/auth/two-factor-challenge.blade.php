@@ -1,4 +1,4 @@
-<x-layouts.auth.harvestglow title="Two-Factor Authentication">
+<x-layouts.auth.harvestglow title="Two-Factor Authentication" description="Please verify your identity using your authenticator app or recovery code.">
     <div
         class="relative w-full h-auto"
         x-cloak
@@ -83,12 +83,9 @@
                         @enderror
                     </div>
 
-                    <button
-                        type="submit"
-                        class="w-full bg-primary text-white py-3 px-4 rounded-lg hover:bg-primary/90 transition-colors font-medium"
-                    >
+                    <x-ui.loading-button type="submit" class="w-full" loadingText="Verifying...">
                         Continue
-                    </button>
+                    </x-ui.loading-button>
                 </div>
 
                 <div class="mt-5 text-center text-sm text-muted-foreground">

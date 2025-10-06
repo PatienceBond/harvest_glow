@@ -7,9 +7,6 @@
     @livewireStyles
 </head>
 <body class="h-full antialiased bg-background text-foreground" x-data="{ sidebarOpen: false }">
-    <!-- Top Loader -->
-    <x-ui.top-loader color="#059669" />
-    
     <div class="flex h-full">
         <!-- Sidebar -->
         <div class="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
@@ -17,8 +14,8 @@
                 <!-- Logo -->
                 <div class="flex items-center h-16 px-4 bg-primary/5 border-b border-border">
                     <a href="{{ route('dashboard') }}" class="flex items-center">
-                        <img src="{{ asset('logo/logo.png') }}" alt="HarvestGlow" class="h-8 w-auto">
-                        <span class="ml-2 text-lg font-bold text-foreground">Dashboard</span>
+                        <img src="{{ asset('logo/logo_vertical.png') }}" alt="HarvestGlow" class="h-8 w-auto">
+                        
                     </a>
                 </div>
                 

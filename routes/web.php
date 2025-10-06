@@ -12,20 +12,19 @@ Route::get('/team', \App\Livewire\Guests\Team::class)->name('team');
 Route::get('/partners', \App\Livewire\Guests\Partners::class)->name('partners');
 Route::get('/contact', \App\Livewire\Guests\Contact::class)->name('contact');
 Route::get('/news/{slug?}', \App\Livewire\Guests\NewsDetails::class)->name('news-details');
-Route::get('/loader-demo', \App\Livewire\Guests\LoaderDemo::class)->name('loader-demo');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // Dashboard routes
     Route::get('/dashboard', \App\Livewire\Dashboard\Dashboard::class)->name('dashboard');
-    
+
     // Posts routes
     Route::get('/dashboard/posts', \App\Livewire\Dashboard\Posts\Index::class)->name('dashboard.posts.index');
     Route::get('/dashboard/posts/create', \App\Livewire\Dashboard\Posts\Create::class)->name('dashboard.posts.create');
     Route::get('/dashboard/posts/{post}/edit', \App\Livewire\Dashboard\Posts\Edit::class)->name('dashboard.posts.edit');
-    
+
     // Categories routes
     Route::get('/dashboard/categories', \App\Livewire\Dashboard\Categories\Index::class)->name('dashboard.categories.index');
-    
+
     // Impact Metrics routes
     Route::get('/dashboard/metrics', \App\Livewire\Dashboard\Metrics\Index::class)->name('dashboard.metrics.index');
 });

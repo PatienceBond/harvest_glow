@@ -18,7 +18,8 @@ new #[Layout('components.layouts.auth.harvestglow')] class extends Component {
     public function with()
     {
         return [
-            'title' => 'Create Account'
+            'title' => 'Create Account',
+            'description' => 'Join HarvestGlow to start making an impact in sustainable agriculture.'
         ];
     }
 
@@ -130,9 +131,9 @@ new #[Layout('components.layouts.auth.harvestglow')] class extends Component {
 
     <!-- Submit Button -->
     <div>
-        <button type="submit" class="w-full bg-primary text-white py-3 px-4 rounded-lg hover:bg-primary/90 transition-colors font-medium">
+        <x-ui.loading-button type="submit" class="w-full" wire:submit="register" loadingText="Creating account...">
             Create Account
-        </button>
+        </x-ui.loading-button>
     </div>
     </form>
 

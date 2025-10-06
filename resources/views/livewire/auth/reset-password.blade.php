@@ -20,7 +20,8 @@ new #[Layout('components.layouts.auth.harvestglow')] class extends Component {
     public function with()
     {
         return [
-            'title' => 'Set New Password'
+            'title' => 'Set New Password',
+            'description' => 'Please enter your new password below.'
         ];
     }
 
@@ -140,9 +141,9 @@ new #[Layout('components.layouts.auth.harvestglow')] class extends Component {
 
     <!-- Submit Button -->
     <div>
-        <button type="submit" class="w-full bg-primary text-white py-3 px-4 rounded-lg hover:bg-primary/90 transition-colors font-medium">
+        <x-ui.loading-button type="submit" class="w-full" wire:submit="resetPassword" loadingText="Resetting...">
             Reset Password
-        </button>
+        </x-ui.loading-button>
     </div>
     </form>
 

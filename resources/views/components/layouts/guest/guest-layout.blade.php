@@ -7,9 +7,6 @@
     @livewireStyles
 </head>
 <body class="h-full antialiased bg-background text-foreground" x-data="{ mobileMenuOpen: false }">
-    <!-- Top Loader -->
-    <x-ui.top-loader color="#059669" />
-    
     <!-- Navigation Header -->
 <!-- Navigation Header -->
 <header class="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border opacity-95">

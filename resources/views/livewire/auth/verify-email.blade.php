@@ -11,7 +11,8 @@ new #[Layout('components.layouts.auth.harvestglow')] class extends Component {
     public function with()
     {
         return [
-            'title' => 'Verify Email'
+            'title' => 'Verify Email',
+            'description' => 'Please verify your email address to continue.'
         ];
     }
     /**
@@ -63,9 +64,9 @@ new #[Layout('components.layouts.auth.harvestglow')] class extends Component {
     @endif
 
     <div class="space-y-4">
-        <button wire:click="sendVerification" class="w-full bg-primary text-white py-3 px-4 rounded-lg hover:bg-primary/90 transition-colors font-medium">
+        <x-ui.loading-button wire:click="sendVerification" class="w-full" loadingText="Sending...">
             Resend Verification Email
-        </button>
+        </x-ui.loading-button>
 
         <button wire:click="logout" class="w-full text-muted-foreground hover:text-foreground transition-colors text-sm">
             Log out

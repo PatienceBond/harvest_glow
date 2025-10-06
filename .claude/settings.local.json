@@ -3,9 +3,14 @@
     "allow": [
       "Bash(php artisan make:livewire:*)",
       "Bash(mkdir:*)",
-      "Read(//c/Users/LATITUDE 5491/Documents/Patience/Findlink/Harvest Glow Assets/**)"
+      "Read(//c/Users/LATITUDE 5491/Documents/Patience/Findlink/Harvest Glow Assets/**)",
+      "Bash(vendor/bin/pint:*)"
     ],
     "deny": [],
     "ask": []
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "laravel-boost"
+  ]
 }

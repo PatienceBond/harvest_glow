@@ -25,7 +25,8 @@ new #[Layout('components.layouts.auth.harvestglow')] class extends Component {
     public function with()
     {
         return [
-            'title' => 'Sign In'
+            'title' => 'Sign In',
+            'description' => 'Welcome back! Please enter your credentials to access your account.'
         ];
     }
 
@@ -174,9 +175,9 @@ new #[Layout('components.layouts.auth.harvestglow')] class extends Component {
 
     <!-- Submit Button -->
     <div>
-        <button type="submit" class="w-full bg-primary text-white py-3 px-4 rounded-lg hover:bg-primary/90 transition-colors font-medium">
+        <x-ui.loading-button type="submit" class="w-full" wire:submit="login" loadingText="Logging in...">
             Log In
-        </button>
+        </x-ui.loading-button>
     </div>
     </form>
 </div>

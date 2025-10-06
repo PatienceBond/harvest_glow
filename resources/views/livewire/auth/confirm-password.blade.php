@@ -1,12 +1,5 @@
-<x-layouts.auth.harvestglow title="Confirm Password">
-    <div class="text-center space-y-6">
-        <div>
-            <x-heroicon-o-lock-closed class="w-16 h-16 text-primary mx-auto mb-4" />
-            <h2 class="text-2xl font-bold text-foreground mb-2">Confirm Password</h2>
-            <p class="text-muted-foreground">
-                This is a secure area of the application. Please confirm your password before continuing.
-            </p>
-        </div>
+<x-layouts.auth.harvestglow title="Confirm Password" description="This is a secure area of the application. Please confirm your password before continuing.">
+    <div class="space-y-6">
 
         @if (session('status'))
             <div class="p-4 bg-success/10 border border-success/20 rounded-lg text-success text-sm">
@@ -31,9 +24,9 @@
             </div>
 
             <div>
-                <button type="submit" class="w-full bg-primary text-white py-3 px-4 rounded-lg hover:bg-primary/90 transition-colors font-medium">
+                <x-ui.loading-button type="submit" class="w-full" loadingText="Confirming...">
                     Confirm
-                </button>
+                </x-ui.loading-button>
             </div>
         </form>
     </div>

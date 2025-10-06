@@ -45,6 +45,7 @@
                     <li><a href="{{ route('team') }}" class="hover:text-primary transition">Our Team</a></li>
                     <li><a href="{{ route('partners') }}" class="hover:text-primary transition">Partners</a></li>
                     <li><a href="{{ route('contact') }}" class="hover:text-primary transition">Contact Us</a></li>
+                    <li><a href="{{ route('login') }}" class="hover:text-primary transition">Login</a></li>
                 </ul>
             </div>
 

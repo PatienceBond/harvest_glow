@@ -1,12 +1,9 @@
 <div>
     
     <!-- Hero Section -->
-    <x-ui.hero
-        image="{{ asset('images/hero/hero1.webp') }}"
-        heading=" Empowering Farmers, Building Futures"
-       
-        height="600px"
-        class="text-white"
+    <x-ui.landing-hero
+        heading="Empowering Farmers, Building Futures"
+        height="700px"
     />
 
 
