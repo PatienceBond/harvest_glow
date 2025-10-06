@@ -92,10 +92,10 @@
     </div>
 
     <!-- Strong Dark Overlay - OUTSIDE Alpine container -->
-    <div class="absolute inset-0 bg-black/70 z-10 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-black/60 z-10 pointer-events-none"></div>
 
     <!-- Gradient Overlay - darker on left where text is -->
-    <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/20 to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/10 to-transparent z-10 pointer-events-none"></div>
 
     <!-- Content -->
     <div class="relative z-20 py-24 sm:py-32 text-left w-full">
