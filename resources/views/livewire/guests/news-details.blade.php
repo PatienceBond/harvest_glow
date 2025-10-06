@@ -1,8 +1,9 @@
+@if($post)
 <div>
     <!-- Hero Section -->
     <x-ui.hero
-        image="{{ asset('images/hero/hero1.webp') }}"
-        heading="{{ $newsItem['title'] ?? 'Latest News' }}"
+        image="{{ $post->featured_image ? asset($post->featured_image) : asset('images/hero/hero1.webp') }}"
+        heading="{{ $post->title }}"
         subheading="Stay informed about our latest activities and impact in communities across Malawi."
         height="400px"
         class="text-white"
@@ -16,66 +17,37 @@
                     <!-- Article Meta -->
                     <div class="mb-8">
                         <div class="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-                            <span>{{ $newsItem['date'] ?? 'January 15, 2025' }}</span>
+                            <span>{{ $post->published_at ? $post->published_at->format('F j, Y') : $post->created_at->format('F j, Y') }}</span>
+                            @if($post->category)
                             <span>•</span>
-                            <span>{{ $newsItem['category'] ?? 'Impact' }}</span>
+                            <span>{{ $post->category->name }}</span>
+                            @endif
                             <span>•</span>
-                            <span>5 min read</span>
+                            <span>{{ ceil(str_word_count(strip_tags($post->content)) / 200) }} min read</span>
                         </div>
                         
                         <!-- Article Image -->
+                        @if($post->featured_image)
                         <div class="mb-8">
                             <img 
-                                src="{{ $newsItem['image'] ?? asset('images/hero/hero1.webp') }}" 
-                                alt="{{ $newsItem['title'] ?? 'News Article' }}"
+                                src="{{ asset($post->featured_image) }}" 
+                                alt="{{ $post->title }}"
                                 class="w-full h-96 object-cover rounded-lg"
                             >
                         </div>
+                        @endif
                     </div>
 
                     <!-- Article Content -->
                     <div class="prose prose-lg max-w-none">
+                        @if($post->excerpt)
                         <div class="text-xl text-muted-foreground mb-8 leading-relaxed">
-                            {{ $newsItem['excerpt'] ?? 'This is a sample news article excerpt that provides a brief overview of the content and encourages readers to continue reading the full article.' }}
+                            {{ $post->excerpt }}
                         </div>
+                        @endif
 
                         <div class="space-y-6 text-lg leading-relaxed">
-                            <p>
-                                HarvestGlow continues to make significant strides in transforming agricultural practices across Malawi. Our integrated approach combines seed access, village savings groups, value-added processing, and climate-smart training to create sustainable change in rural communities.
-                            </p>
-
-                            <p>
-                                Through our Seed Villages program, we've successfully established farmer-led multiplication initiatives that have increased crop yields by an average of 40% among participating farmers. This program not only improves food security but also creates new economic opportunities for rural households.
-                            </p>
-
-                            <h2 class="text-2xl font-bold mt-8 mb-4">Key Achievements</h2>
-                            
-                            <ul class="list-disc pl-6 space-y-2">
-                                <li>Over 1,000 farmers gained access to certified seeds</li>
-                                <li>40% increase in average crop yields</li>
-                                <li>15 new processing units established</li>
-                                <li>500+ youth trained in climate-smart techniques</li>
-                                <li>$30,000 mobilized in community savings</li>
-                            </ul>
-
-                            <p>
-                                Our Village Savings and Loans (VSL) groups have been particularly successful in building financial resilience among rural communities. These groups have not only provided access to credit but have also fostered a culture of savings and collective investment in agricultural improvements.
-                            </p>
-
-                            <blockquote class="border-l-4 border-primary pl-6 italic text-xl my-8">
-                                "The support from HarvestGlow has transformed our community. We now have access to better seeds, processing equipment, and the knowledge to grow more food for our families and generate income."
-                                <footer class="text-base font-medium mt-2">— Mary Banda, Farmer from Kasungu</footer>
-                            </blockquote>
-
-                            <h2 class="text-2xl font-bold mt-8 mb-4">Looking Ahead</h2>
-                            
-                            <p>
-                                As we move forward, HarvestGlow remains committed to expanding our reach and deepening our impact. Our 2028 goals include reaching 10,000 farmers, achieving 50% certified seed adoption, and increasing average household incomes by 40%.
-                            </p>
-
-                            <p>
-                                We're also excited about new partnerships and initiatives that will further strengthen our ability to support rural communities in Malawi. These include expanded training programs, new processing technologies, and enhanced market linkages.
-                            </p>
+                            {!! $post->content !!}
                         </div>
                     </div>
 
@@ -115,31 +87,50 @@
                 />
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <x-ui.news-card
-                        title="Women-Led Savings Groups Transform Communities"
-                        excerpt="Village savings groups have mobilized over $30,000 in community capital, supporting local enterprises and farmer innovations."
-                        date="January 10, 2025"
-                        image="{{ asset('images/hero/hero1.webp') }}"
-                        link="{{ route('news-details', ['slug' => 'women-led-savings-groups']) }}"
-                    />
-
-                    <x-ui.news-card
-                        title="Climate-Smart Training Reaches 500 Youth"
-                        excerpt="Young farmers learn conservation agriculture techniques to build resilience against climate change impacts."
-                        date="January 5, 2025"
-                        image="{{ asset('images/hero/hero1.webp') }}"
-                        link="{{ route('news-details', ['slug' => 'climate-smart-training-youth']) }}"
-                    />
-
-                    <x-ui.news-card
-                        title="New Processing Units Boost Local Economy"
-                        excerpt="Community processing units have created jobs and increased local income by $8,000 in the first year."
-                        date="December 28, 2024"
-                        image="{{ asset('images/hero/hero1.webp') }}"
-                        link="{{ route('news-details', ['slug' => 'processing-units-boost-economy']) }}"
-                    />
+                    @php
+                        $relatedPosts = \App\Models\Post::where('is_published', true)
+                            ->where('id', '!=', $post->id)
+                            ->with('category')
+                            ->orderBy('published_at', 'desc')
+                            ->take(3)
+                            ->get();
+                    @endphp
+                    
+                    @forelse($relatedPosts as $relatedPost)
+                        <x-ui.news-card
+                            :title="$relatedPost->title"
+                            :excerpt="$relatedPost->excerpt"
+                            :date="$relatedPost->published_at ? $relatedPost->published_at->format('F j, Y') : $relatedPost->created_at->format('F j, Y')"
+                            :image="$relatedPost->featured_image ? asset($relatedPost->featured_image) : asset('images/hero/hero1.webp')"
+                            :link="route('news-details', ['slug' => $relatedPost->slug])"
+                        />
+                    @empty
+                        <div class="col-span-full text-center py-8">
+                            <p class="text-muted-foreground">No related posts available.</p>
+                        </div>
+                    @endforelse
                 </div>
             </x-ui.container>
         </section>
     </x-ui.vstack>
 </div>
+@else
+<div>
+    <x-ui.container>
+        <div class="text-center py-12">
+            <x-heroicon-o-document-text class="mx-auto h-12 w-12 text-muted-foreground" />
+            <h3 class="mt-2 text-sm font-medium text-foreground">Post not found</h3>
+            <p class="mt-1 text-sm text-muted-foreground">
+                The post you're looking for doesn't exist or has been removed.
+            </p>
+            <div class="mt-6">
+                <a href="{{ route('home') }}" 
+                   class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                    <x-heroicon-o-arrow-left class="w-4 h-4 mr-2" />
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </x-ui.container>
+</div>
+@endif

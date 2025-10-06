@@ -156,29 +156,23 @@
 
             <!-- News Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <x-ui.news-card
-                    title="Empowering Farmers Through Seed Multiplication"
-                    excerpt="Our Seed Villages program has helped over 1,000 farmers gain access to certified seeds, increasing crop yields by 40%."
-                    date="January 15, 2025"
-                    image="{{ asset('images/hero/hero1.webp') }}"
-                    link="{{ route('news-details', ['slug' => 'empowering-farmers-seed-multiplication']) }}"
-                />
-
-                <x-ui.news-card
-                    title="Women-Led Savings Groups Transform Communities"
-                    excerpt="Village savings groups have mobilized over $30,000 in community capital, supporting local enterprises and farmer innovations."
-                    date="January 10, 2025"
-                    image="{{ asset('images/hero/hero1.webp') }}"
-                    link="{{ route('news-details', ['slug' => 'women-led-savings-groups']) }}"
-                />
-
-                <x-ui.news-card
-                    title="Climate-Smart Training Reaches 500 Youth"
-                    excerpt="Young farmers learn conservation agriculture techniques to build resilience against climate change impacts."
-                    date="January 5, 2025"
-                    image="{{ asset('images/hero/hero1.webp') }}"
-                    link="{{ route('news-details', ['slug' => 'climate-smart-training-youth']) }}"
-                />
+                @forelse($latestPosts as $post)
+                    <x-ui.news-card
+                        :title="$post->title"
+                        :excerpt="$post->excerpt"
+                        :date="$post->published_at ? $post->published_at->format('F j, Y') : $post->created_at->format('F j, Y')"
+                        :image="$post->featured_image ? asset($post->featured_image) : asset('images/hero/hero1.webp')"
+                        :link="route('news-details', ['slug' => $post->slug])"
+                    />
+                @empty
+                    <div class="col-span-full text-center py-12">
+                        <x-heroicon-o-document-text class="mx-auto h-12 w-12 text-muted-foreground" />
+                        <h3 class="mt-2 text-sm font-medium text-foreground">No posts available</h3>
+                        <p class="mt-1 text-sm text-muted-foreground">
+                            Check back later for the latest news and updates.
+                        </p>
+                    </div>
+                @endforelse
             </div>
         </x-ui.container>
     </section>

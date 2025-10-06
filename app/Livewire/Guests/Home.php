@@ -2,11 +2,15 @@
 
 namespace App\Livewire\Guests;
 
+use App\Models\Post;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
+#[Layout('components.layouts.guest.guest-layout')]
 class Home extends Component
 {
     public $heroImages = [];
+    public $latestPosts;
 
     public function mount()
     {
@@ -21,11 +25,19 @@ class Home extends Component
 
         // Randomly select 4 images
         $this->heroImages = collect($allImages)->shuffle()->take(4)->values()->toArray();
+
+        // Fetch latest published posts
+        $this->latestPosts = Post::where('is_published', true)
+            ->with('category')
+            ->orderBy('published_at', 'desc')
+            ->take(3)
+            ->get();
     }
 
     public function render()
     {
-        return view('livewire.guests.home')
-            ->layout('components.layouts.guest.guest-layout');
+        return view('livewire.guests.home', [
+            'latestPosts' => $this->latestPosts,
+        ]);
     }
 }
