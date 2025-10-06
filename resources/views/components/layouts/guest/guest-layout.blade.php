@@ -52,16 +52,56 @@
             </div>
         </div>
 
-        <!-- Mobile Navigation -->
-        <div class="md:hidden" x-show="mobileMenuOpen" x-transition>
-            <div class="mt-2 space-y-2 bg-background border border-border rounded-lg shadow-lg p-4 text-foreground">
-                <a href="{{ route('home') }}" class="block hover:text-primary transition">Home</a>
-                <a href="{{ route('about') }}" class="block hover:text-primary transition">About</a>
-                <a href="{{ route('our-model') }}" class="block hover:text-primary transition">Our Model</a>
-                <a href="{{ route('impact') }}" class="block hover:text-primary transition">Impact</a>
-                <a href="{{ route('team') }}" class="block hover:text-primary transition">Team</a>
-                <a href="{{ route('partners') }}" class="block hover:text-primary transition">Partners</a>
-                <a href="{{ route('contact') }}" class="block hover:text-primary transition">Contact</a>
+        <!-- Mobile Navigation Menu -->
+        <div
+            class="md:hidden"
+            x-show="mobileMenuOpen"
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 -translate-y-2"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 -translate-y-2"
+            @click.away="mobileMenuOpen = false"
+            x-cloak
+        >
+            <div class="py-3 space-y-1 bg-card border border-border rounded-lg shadow-xl mx-4 mb-4">
+                <a href="{{ route('home') }}"
+                   class="block px-4 py-3 text-base font-medium text-foreground hover:bg-primary hover:text-white transition-colors rounded-md mx-2 {{ request()->routeIs('home') ? 'bg-primary/10 text-primary' : '' }}">
+                    Home
+                </a>
+                <a href="{{ route('about') }}"
+                   class="block px-4 py-3 text-base font-medium text-foreground hover:bg-primary hover:text-white transition-colors rounded-md mx-2 {{ request()->routeIs('about') ? 'bg-primary/10 text-primary' : '' }}">
+                    About
+                </a>
+                <a href="{{ route('our-model') }}"
+                   class="block px-4 py-3 text-base font-medium text-foreground hover:bg-primary hover:text-white transition-colors rounded-md mx-2 {{ request()->routeIs('our-model') ? 'bg-primary/10 text-primary' : '' }}">
+                    Our Model
+                </a>
+                <a href="{{ route('impact') }}"
+                   class="block px-4 py-3 text-base font-medium text-foreground hover:bg-primary hover:text-white transition-colors rounded-md mx-2 {{ request()->routeIs('impact') ? 'bg-primary/10 text-primary' : '' }}">
+                    Impact
+                </a>
+                <a href="{{ route('team') }}"
+                   class="block px-4 py-3 text-base font-medium text-foreground hover:bg-primary hover:text-white transition-colors rounded-md mx-2 {{ request()->routeIs('team') ? 'bg-primary/10 text-primary' : '' }}">
+                    Team
+                </a>
+                <a href="{{ route('partners') }}"
+                   class="block px-4 py-3 text-base font-medium text-foreground hover:bg-primary hover:text-white transition-colors rounded-md mx-2 {{ request()->routeIs('partners') ? 'bg-primary/10 text-primary' : '' }}">
+                    Partners
+                </a>
+                <a href="{{ route('contact') }}"
+                   class="block px-4 py-3 text-base font-medium text-foreground hover:bg-primary hover:text-white transition-colors rounded-md mx-2 {{ request()->routeIs('contact') ? 'bg-primary/10 text-primary' : '' }}">
+                    Contact
+                </a>
+
+                <!-- CTA Button in Mobile Menu -->
+                <div class="px-4 pt-4 pb-2 border-t border-border mt-2">
+                    <a href="{{ route('contact') }}"
+                       class="block w-full text-center px-4 py-3 text-base font-semibold rounded-lg bg-primary text-white hover:bg-primary/90 transition-all shadow-md">
+                        Support Our Mission
+                    </a>
+                </div>
             </div>
         </div>
     </x-ui.container>

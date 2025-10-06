@@ -60,7 +60,7 @@
         </template>
 
         <!-- Navigation Arrows -->
-        <div class="absolute inset-0 flex items-center justify-between px-4 sm:px-8 pointer-events-none z-30">
+        <!-- <div class="absolute inset-0 flex items-center justify-between px-4 sm:px-8 pointer-events-none z-30">
             <button
                 @click="prevSlide()"
                 class="pointer-events-auto w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
@@ -75,7 +75,7 @@
             >
                 <x-heroicon-o-chevron-right class="w-6 h-6" />
             </button>
-        </div>
+        </div> -->
 
         <!-- Slide Indicators -->
         <div class="absolute bottom-8 left-0 right-0 flex justify-center gap-2 z-30">
