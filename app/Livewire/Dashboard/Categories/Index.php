@@ -2,104 +2,75 @@
 
 namespace App\Livewire\Dashboard\Categories;
 
-use App\Models\Category;
-use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 #[Layout('components.layouts.dashboard.dashboard-layout')]
 class Index extends Component
 {
-    public $showModal = false;
-    public $editing = false;
-    public $name = '';
-    public $description = '';
-    public $color = '#388E3C';
-    public $categoryId = null;
+    public $search = '';
 
-    protected $rules = [
-        'name' => 'required|string|max:255',
-        'description' => 'nullable|string|max:500',
-        'color' => 'required|string|max:7',
-    ];
+    public bool $showCreateEdit = false;
 
-    public function create()
+    public bool $showView = false;
+
+    public ?int $editingCategoryId = null;
+
+    public ?int $viewingCategoryId = null;
+
+    public function openCreate(): void
     {
-        $this->reset(['name', 'description', 'color', 'categoryId', 'editing']);
-        $this->showModal = true;
+        $this->reset(['editingCategoryId']);
+        $this->showCreateEdit = true;
+        $this->showView = false;
     }
 
-    public function edit($id)
+    #[On('openCreate')]
+    public function openCreateFromEvent(): void
     {
-        $category = Category::findOrFail($id);
-        $this->categoryId = $category->id;
-        $this->name = $category->name;
-        $this->description = $category->description;
-        $this->color = $category->color;
-        $this->editing = true;
-        $this->showModal = true;
+        $this->openCreate();
     }
 
-    public function save()
+    #[On('edit-category')]
+    public function openEdit($categoryId): void
     {
-        $this->validate();
+        $this->editingCategoryId = $categoryId;
+        $this->showCreateEdit = true;
+        $this->showView = false;
+    }
 
-        $data = [
-            'name' => $this->name,
-            'slug' => Str::slug($this->name),
-            'description' => $this->description,
-            'color' => $this->color,
-        ];
+    #[On('view-category')]
+    public function openView($categoryId): void
+    {
+        $this->viewingCategoryId = $categoryId;
+        $this->showView = true;
+        $this->showCreateEdit = false;
+    }
 
-        if ($this->editing) {
-            $category = Category::findOrFail($this->categoryId);
-            $category->update($data);
-            $this->dispatch('showToast', [
-                'type' => 'success',
-                'message' => 'Category updated successfully!'
-            ]);
-        } else {
-            Category::create($data);
-            $this->dispatch('showToast', [
-                'type' => 'success',
-                'message' => 'Category created successfully!'
-            ]);
-        }
+    #[On('close-modal')]
+    public function closeModal(): void
+    {
+        $this->reset(['showCreateEdit', 'showView', 'editingCategoryId', 'viewingCategoryId']);
+    }
 
+    #[On('category-saved')]
+    public function categorySaved(): void
+    {
         $this->closeModal();
+        $this->dispatch('$refresh');
     }
 
-    public function delete($id)
+    public function updated($property): void
     {
-        $category = Category::findOrFail($id);
-        
-        if ($category->posts()->count() > 0) {
-            $this->dispatch('showToast', [
-                'type' => 'error',
-                'message' => 'Cannot delete category with existing posts.'
-            ]);
-            return;
+        // Force re-render when properties change
+        if (in_array($property, ['showCreateEdit', 'showView'])) {
+            $this->dispatch('$refresh');
         }
-
-        $category->delete();
-        $this->dispatch('showToast', [
-            'type' => 'success',
-            'message' => 'Category deleted successfully!'
-        ]);
-    }
-
-    public function closeModal()
-    {
-        $this->showModal = false;
-        $this->reset(['name', 'description', 'color', 'categoryId', 'editing']);
     }
 
     public function render()
     {
-        $categories = Category::withCount('posts')->orderBy('name')->get();
-
-        return view('livewire.dashboard.categories.index', [
-            'categories' => $categories,
-        ]);
+        return view('livewire.dashboard.categories.index');
     }
 }

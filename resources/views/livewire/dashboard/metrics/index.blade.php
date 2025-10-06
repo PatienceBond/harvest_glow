@@ -25,7 +25,7 @@
                     <div class="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
                         <div class="flex items-center justify-between mb-4">
                             <div class="w-12 h-12 rounded-lg flex items-center justify-center" 
-                                 style="background-color: {{ $metric->color }}20;">
+                                 style="background-color: {{ $metric->color }}20">
                                 @if($metric->icon)
                                     @if(str_starts_with($metric->icon, 'storage/') || str_starts_with($metric->icon, 'metrics/'))
                                         <img src="{{ asset('storage/' . $metric->icon) }}" alt="Icon" class="w-8 h-8 object-contain">
@@ -104,7 +104,7 @@
                                                     @endif
                                                 @else
                                                     <div class="w-8 h-8 rounded-lg flex items-center justify-center" 
-                                                         style="background-color: {{ $metric->color }}20;">
+                                                         style="background-color: {{ $metric->color }}20">
                                                         <x-heroicon-o-chart-bar class="w-4 h-4" style="color: {{ $metric->color }};" />
                                                     </div>
                                                 @endif
@@ -325,7 +325,7 @@
                         <div class="p-4 border border-border rounded-lg bg-muted/30">
                             <div class="flex items-center justify-between mb-4">
                             <div class="w-12 h-12 rounded-lg flex items-center justify-center" 
-                                 style="background-color: {{ $color }}20;">
+                                 style="background-color: {{ $color }}20">
                                 @if($icon_emoji || $icon_image)
                                     @if($icon_image)
                                         <img src="{{ $icon_image->temporaryUrl() }}" alt="Icon" class="w-8 h-8 object-contain">

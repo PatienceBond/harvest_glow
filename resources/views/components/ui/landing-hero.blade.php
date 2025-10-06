@@ -8,6 +8,7 @@
     <div class="absolute inset-0" x-data="{
         currentSlide: 0,
         slides: [
+            '{{ asset('images/landing hero/staff.webp') }}',
             '{{ asset('images/landing hero/field farm1.webp') }}',
             '{{ asset('images/landing hero/field farm2.webp') }}',
             '{{ asset('images/landing hero/field farm3.webp') }}',

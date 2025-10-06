@@ -70,7 +70,7 @@
                     </li>
                     <li class="flex items-start gap-2">
                         <x-heroicon-o-envelope class="w-5 h-5 flex-shrink-0 mt-0.5" />
-                        <a href="mailto:harvestglow@gmail.com" class="hover:text-primary transition">harvestglow@gmail.com</a>
+                        <a href="mailto:harvestglow@gmail.com" class="hover:text-primary transition">info@harvestglow.org</a>
                     </li>
                     <li class="flex items-start gap-2">
                         <x-heroicon-o-phone class="w-5 h-5 flex-shrink-0 mt-0.5" />

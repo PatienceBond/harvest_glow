@@ -9,42 +9,14 @@
 
     <x-ui.vstack>
     <!-- Impact Section -->
-    <section class="overflow-hidden bg-muted/30 py-12">
+    <section class="bg-muted/30 py-12">
         <x-ui.container>
             <x-ui.section-header
                 title="Our Impact (2025)"
             />
-        </x-ui.container>
 
-        <!-- Scrolling Impact Cards -->
-        <div class="relative">
-            <div class="flex gap-6 animate-scroll">
-                <x-ui.impact-card
-                    value="4,000+ people reached"
-                    description="through sustainable agriculture, nutrition, and livelihoods programs"
-                />
-                <x-ui.impact-card
-                    value="2000+ youths and children engaged"
-                    description="in school feeding, agri-nutrition clubs, and awareness campaigns"
-                />
-                <x-ui.impact-card
-                    value="1500+ young people trained"
-                    description="in digital skills, agribusiness, and climate-smart farming practices"
-                />
-                <x-ui.impact-card
-                    value="150+ entrepreneurs engaged"
-                    description="in capacity-building, market linkages, and value chain development"
-                />
-                <x-ui.impact-card
-                    value="200 hectares of basic seed produced"
-                    description="to strengthen food security and boost farmer productivity"
-                />
-                <x-ui.impact-card
-                    value="$30,000 mobilized in seed capital"
-                    description="to support trainings, community enterprises, and farmer-led innovations"
-                />
-
-                <!-- Duplicate for seamless loop -->
+            <!-- Impact Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                 <x-ui.impact-card
                     value="4,000+ people reached"
                     description="through sustainable agriculture, nutrition, and livelihoods programs"
@@ -70,7 +42,7 @@
                     description="to support trainings, community enterprises, and farmer-led innovations"
                 />
             </div>
-        </div>
+        </x-ui.container>
     </section>
 
     <x-ui.feature-section

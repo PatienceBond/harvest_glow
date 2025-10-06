@@ -50,7 +50,7 @@ new class extends Component {
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 @foreach($impactMetrics as $metric)
                     <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center border border-gray-200 dark:border-gray-700">
-                        <div class="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style="background-color: {{ $metric->color }}20;">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style="background-color: {{ $metric->color }}20">
                             @if($metric->icon === 'users')
                                 <x-heroicon-o-users class="w-8 h-8" style="color: {{ $metric->color }}" />
                             @elseif($metric->icon === 'trending-up')
