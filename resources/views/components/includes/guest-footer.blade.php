@@ -27,7 +27,7 @@
             <!-- Column 1: Brand -->
             <div>
                 <div class="flex items-center gap-2 mb-4">
-                    <img src="{{ asset('logo/logo.png') }}" alt="HarvestGlow" class="h-8 w-auto">
+                    <img src="{{ asset('logo/logo_icon.png') }}" alt="HarvestGlow" class="h-24 w-auto">
                 </div>
                 <p class="text-sm text-gray-300 mb-6">
                     Empowering farmers, building resilient communities in Malawi.

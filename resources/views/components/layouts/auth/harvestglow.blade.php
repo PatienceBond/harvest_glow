@@ -2,13 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" 
       class="h-full {{ session('theme', 'light') === 'dark' ? 'dark' : '' }}">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @include('partials.head')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ $title ?? 'Login' }} - {{ config('app.name', 'HarvestGlow') }}</title>
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
 <body class="h-full antialiased bg-background text-foreground">
@@ -20,10 +15,10 @@
             <!-- Logo Section -->
             <div class="text-center">
                 <a href="{{ route('home') }}" class="flex justify-center">
-                    <img src="{{ asset('logo/logo.png') }}" alt="HarvestGlow" class="h-16 w-auto">
+                    <img src="{{ asset('logo/logo_vertical.png') }}" alt="HarvestGlow" class="h-16 w-auto">
                 </a>
-                <h2 class="mt-6 text-3xl font-bold text-foreground">
-                    {{ $title ?? 'Welcome Back' }}
+                <h2 class="mt-2 text-3xl font-bold text-foreground">
+                    {{ $title ?? 'Welcome' }}
                 </h2>
                 @if(isset($description))
                     <p class="mt-2 text-sm text-muted-foreground">

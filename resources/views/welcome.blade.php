@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="{{ session('theme', 'light') === 'dark' ? 'dark' : '' }}">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>HarvestGlow - Empowering farmers, Growing futures</title>
-    <meta name="description" content="Transforming agriculture through sustainable practices, innovative technology, and community-driven solutions.">
-    
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('partials.head')
     @livewireStyles
 </head>
 <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-sans">

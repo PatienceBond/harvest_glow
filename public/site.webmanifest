@@ -1,0 +1,36 @@
+{
+    "name": "HarvestGlow - Empowering farmers, Growing futures",
+    "short_name": "HarvestGlow",
+    "description": "Transforming agriculture through sustainable practices, innovative technology, and community-driven solutions that empower farmers and strengthen food security.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#059669",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/web-app-manifest-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/web-app-manifest-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        }
+    ],
+    "categories": ["agriculture", "farming", "sustainability", "community"],
+    "lang": "en",
+    "dir": "ltr"
+}
