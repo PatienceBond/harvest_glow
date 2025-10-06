@@ -59,8 +59,11 @@
             </div>
         </template>
 
-        <!-- Gradient Overlay - darker on left for better text readability -->
-        <div class="absolute inset-0 bg-gradient-to-r from-base-950/95 via-base-950/70 to-base-950/40"></div>
+        <!-- Gradient Overlay - enhanced for better text readability -->
+        <div class="absolute inset-0 bg-gradient-to-r from-base-950/100 via-base-950/95 to-base-950/80"></div>
+
+        <!-- Additional overlay for content area -->
+        <div class="absolute inset-0 bg-base-950/50"></div>
 
         <!-- Navigation Arrows -->
         <div class="absolute inset-0 flex items-center justify-between px-4 sm:px-8 pointer-events-none">
@@ -96,9 +99,9 @@
     <!-- Content -->
     <div class="relative z-10 py-24 sm:py-32 text-left w-full">
         <x-ui.container>
-            <div class="max-w-3xl">
+            <div class="max-w-4xl">
                 <!-- Main Heading with animated gradient -->
-                <h1 class="text-white text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight mb-6 animate-fade-in">
+                <h1 class="text-white text-5xl sm:text-6xl lg:text-8xl font-bold leading-tight mb-8 animate-fade-in">
                     {{ $heading }}
                 </h1>
 

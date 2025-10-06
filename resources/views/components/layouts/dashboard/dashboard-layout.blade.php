@@ -13,9 +13,9 @@
             <div class="flex-1 flex flex-col min-h-0 bg-card border-r border-border">
                 <!-- Logo -->
                 <div class="flex items-center h-16 px-4 bg-primary/5 border-b border-border">
-                    <a href="{{ route('dashboard') }}" class="flex items-center">
-                        <img src="{{ asset('logo/logo_vertical.png') }}" alt="HarvestGlow" class="h-8 w-auto">
-                        
+                    <a href="{{ route('dashboard') }}" class="flex items-center space-x-2">
+                        <img src="{{ asset('logo/logo_icon.png') }}" alt="HarvestGlow" class="h-8 w-auto">
+                        <span class="text-lg font-bold text-foreground">HarvestGlow</span>
                     </a>
                 </div>
                 
@@ -45,24 +45,6 @@
                         Impact Metrics
                     </a>
                 </nav>
-                
-                <!-- User Menu -->
-                <div class="flex-shrink-0 flex border-t border-border p-4">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <div class="h-8 w-8 bg-primary/10 rounded-full flex items-center justify-center">
-                                <x-heroicon-o-user class="h-5 w-5 text-primary" />
-                            </div>
-                        </div>
-                        <div class="ml-3 flex-1">
-                            <p class="text-sm font-medium text-foreground">{{ auth()->user()->name }}</p>
-                            <p class="text-xs text-muted-foreground">{{ auth()->user()->email }}</p>
-                        </div>
-                        <div class="ml-2">
-                            <livewire:theme-toggle />
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -87,8 +69,8 @@
                 
                 <!-- Mobile Logo -->
                 <div class="flex items-center h-16 px-4 bg-primary/5 border-b border-border">
-                    <img src="{{ asset('logo/logo.png') }}" alt="HarvestGlow" class="h-8 w-auto">
-                    <span class="ml-2 text-lg font-bold text-foreground">Dashboard</span>
+                    <img src="{{ asset('logo/logo_icon.png') }}" alt="HarvestGlow" class="h-8 w-auto">
+                    <span class="ml-2 text-lg font-bold text-foreground">HarvestGlow</span>
                 </div>
                 
                 <!-- Mobile Navigation -->
@@ -120,36 +102,20 @@
                     </nav>
                 </div>
                 
-                <!-- Mobile User Menu -->
-                <div class="flex-shrink-0 flex border-t border-border p-4">
-                    <div class="flex items-center w-full">
-                        <div class="flex-shrink-0">
-                            <div class="h-8 w-8 bg-primary/10 rounded-full flex items-center justify-center">
-                                <x-heroicon-o-user class="h-5 w-5 text-primary" />
-                            </div>
-                        </div>
-                        <div class="ml-3 flex-1">
-                            <p class="text-sm font-medium text-foreground">{{ auth()->user()->name }}</p>
-                            <p class="text-xs text-muted-foreground">{{ auth()->user()->email }}</p>
-                        </div>
-                        <livewire:theme-toggle />
-                    </div>
-                </div>
             </div>
         </div>
 
         <!-- Main content -->
         <div class="md:pl-64 flex flex-col flex-1">
-            <!-- Top bar -->
-            <div class="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-background border-b border-border">
-                <button @click="sidebarOpen = true" 
-                        class="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-muted-foreground hover:text-foreground hover:bg-muted focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
-                    <x-heroicon-o-bars-3 class="h-6 w-6" />
-                </button>
-            </div>
+            <!-- Fixed Header -->
+            <x-layouts.dashboard.header>
+                @if(isset($title))
+                    <h1 class="text-2xl font-bold text-foreground">{{ $title }}</h1>
+                @endif
+            </x-layouts.dashboard.header>
 
             <!-- Page content -->
-            <main class="flex-1">
+            <main class="flex-1 overflow-y-auto">
                 <div class="py-6">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                         {{ $slot }}

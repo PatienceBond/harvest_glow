@@ -113,11 +113,24 @@
                 <!-- Featured Image -->
                 <div>
                     <label class="block text-sm font-medium mb-2">Featured Image</label>
-                    <x-ui.file-upload 
+
+                    <!-- Show existing image if available -->
+                    @if($existing_featured_image)
+                        <div class="mb-4">
+                            <p class="text-sm text-muted-foreground mb-2">Current Image:</p>
+                            <div class="relative inline-block">
+                                <img src="{{ asset('storage/' . $existing_featured_image) }}"
+                                     alt="Current featured image"
+                                     class="h-32 w-auto rounded-lg border border-border">
+                            </div>
+                        </div>
+                    @endif
+
+                    <x-ui.file-upload
                         wireModel="featured_image"
                         accept="image/*"
                         maxSize="2048"
-                        placeholder="Upload featured image"
+                        placeholder="Upload new featured image"
                     />
                     @error('featured_image')
                         <p class="mt-1 text-sm text-destructive">{{ $message }}</p>
