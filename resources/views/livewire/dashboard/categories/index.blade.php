@@ -21,18 +21,18 @@
 
     <!-- Create/Edit Modal -->
     @if($showCreateEdit)
-        <div class="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <div class="bg-card border border-border rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
-                <livewire:dashboard.categories.create-edit :categoryId="$editingCategoryId" :key="'create-edit-'.$editingCategoryId" />
+                <livewire:dashboard.categories.create-edit :categoryId="$editingCategoryId" />
             </div>
         </div>
     @endif
 
     <!-- View Modal -->
     @if($showView)
-        <div class="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <div class="bg-card border border-border rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
-                <livewire:dashboard.categories.view :categoryId="$viewingCategoryId" :key="'view-'.$viewingCategoryId" />
+                <livewire:dashboard.categories.view :categoryId="$viewingCategoryId" />
             </div>
         </div>
     @endif

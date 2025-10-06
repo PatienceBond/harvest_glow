@@ -61,13 +61,7 @@ class Index extends Component
         $this->dispatch('$refresh');
     }
 
-    public function updated($property): void
-    {
-        // Force re-render when properties change
-        if (in_array($property, ['showCreateEdit', 'showView'])) {
-            $this->dispatch('$refresh');
-        }
-    }
+    // Removed unnecessary refresh dispatching for better performance
 
     public function render()
     {
