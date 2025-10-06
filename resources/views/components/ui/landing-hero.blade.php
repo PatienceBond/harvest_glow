@@ -92,17 +92,17 @@
     </div>
 
     <!-- Strong Dark Overlay - OUTSIDE Alpine container -->
-    <div class="absolute inset-0 bg-black/75 z-10 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-black/70 z-10 pointer-events-none"></div>
 
     <!-- Gradient Overlay - darker on left where text is -->
-    <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/20 to-transparent z-10 pointer-events-none"></div>
 
     <!-- Content -->
     <div class="relative z-20 py-24 sm:py-32 text-left w-full">
         <x-ui.container>
             <div class="max-w-4xl">
                 <!-- Main Heading with animated gradient -->
-                <h1 class="text-white text-5xl sm:text-6xl lg:text-8xl font-bold leading-tight mb-8 animate-fade-in drop-shadow-2xl">
+                <h1 class="text-white text-5xl sm:text-6xl  font-bold leading-tight mb-8 animate-fade-in drop-shadow-2xl">
                     {{ $heading }}
                 </h1>
 

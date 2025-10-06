@@ -16,7 +16,7 @@
             />
 
             <!-- Impact Cards Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+            <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-2 mt-8">
                 <x-ui.impact-card
                     value="4,000+ people reached"
                     description="through sustainable agriculture, nutrition, and livelihoods programs"
