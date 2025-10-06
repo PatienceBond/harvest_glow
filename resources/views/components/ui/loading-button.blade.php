@@ -21,9 +21,9 @@
 
     $sizeClasses = match($size) {
         'sm' => 'px-3 py-2 text-sm',
-        'default' => 'px-4 py-3 text-base',
+        'default' => 'px-4 py-2 text-sm',
         'lg' => 'px-6 py-4 text-lg',
-        default => 'px-4 py-3 text-base'
+        <!-- default => 'px-4 py-3 text-base' -->
     };
 
     $classes = $baseClasses . ' ' . $variantClasses . ' ' . $sizeClasses;

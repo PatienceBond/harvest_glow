@@ -96,8 +96,10 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     @if($post->category)
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium" 
-                                              style="background-color: {{ $post->category->color }}20; color: {{ $post->category->color }}">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium " 
+                                              style="background-color: {{ $post->category->color }}; color: {{ $post->category->color }}"
+                                              
+                                              >
                                             {{ $post->category->name }}
                                         </span>
                                     @else

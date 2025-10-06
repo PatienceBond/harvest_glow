@@ -70,9 +70,14 @@
                     class="px-4 py-2 border border-border rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors">
                 Cancel
             </button>
-            <x-ui.loading-button type="submit" wire:target="save" loadingText="{{ $categoryId ? 'Updating...' : 'Creating...' }}">
-                {{ $categoryId ? 'Update' : 'Create' }} Category
-            </x-ui.loading-button>
+            <button type="submit"
+                    wire:click="save"
+                    wire:loading.attr="disabled"
+                    wire:target="save"
+                    class="px-4 py-2 bg-primary text-white rounded-md text-sm font-medium hover:bg-primary/90 disabled:opacity-50 transition-colors">
+                <span wire:loading.remove wire:target="save">{{ $categoryId ? 'Update' : 'Create' }} Category</span>
+                <span wire:loading wire:target="save">{{ $categoryId ? 'Updating...' : 'Creating...' }}</span>
+            </button>
         </div>
     </form>
 </div>

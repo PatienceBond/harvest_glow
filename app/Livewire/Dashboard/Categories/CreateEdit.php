@@ -16,11 +16,21 @@ class CreateEdit extends Component
 
     public $color = '#388E3C';
 
-    protected $rules = [
-        'name' => 'required|string|max:255',
-        'description' => 'nullable|string|max:500',
-        'color' => 'required|string|max:7',
-    ];
+    protected function rules(): array
+    {
+        $rules = [
+            'name' => 'required|string|max:255|unique:categories,name',
+            'description' => 'nullable|string|max:500',
+            'color' => 'required|string|max:7',
+        ];
+
+        // If editing, exclude current category from unique check
+        if ($this->categoryId) {
+            $rules['name'] .= ',' . $this->categoryId;
+        }
+
+        return $rules;
+    }
 
     public function mount($categoryId = null): void
     {
@@ -37,9 +47,30 @@ class CreateEdit extends Component
     {
         $this->validate();
 
+        // Generate unique slug
+        $baseSlug = Str::slug($this->name);
+        $slug = $baseSlug;
+        $counter = 1;
+
+        // Check if slug already exists (excluding current category if editing)
+        $query = Category::where('slug', $slug);
+        if ($this->categoryId) {
+            $query->where('id', '!=', $this->categoryId);
+        }
+
+        while ($query->exists()) {
+            $slug = $baseSlug . '-' . $counter;
+            $counter++;
+            
+            $query = Category::where('slug', $slug);
+            if ($this->categoryId) {
+                $query->where('id', '!=', $this->categoryId);
+            }
+        }
+
         $data = [
             'name' => $this->name,
-            'slug' => Str::slug($this->name),
+            'slug' => $slug,
             'description' => $this->description,
             'color' => $this->color,
         ];
