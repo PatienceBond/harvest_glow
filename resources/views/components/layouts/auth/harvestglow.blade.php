@@ -14,9 +14,11 @@
                 <a href="{{ route('home') }}" class="flex justify-center">
                     <img src="{{ asset('logo/logo_vertical.png') }}" alt="HarvestGlow" class="h-16 w-auto">
                 </a>
+                @if(isset($title))
                 <h2 class="mt-2 text-3xl font-bold text-foreground">
-                    {{ $title ?? 'Welcome' }}
+                    {{ $title }}
                 </h2>
+                @endif
                 @if(isset($description))
                     <p class="mt-2 text-sm text-muted-foreground">
                         {{ $description }}
