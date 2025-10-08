@@ -64,17 +64,14 @@
 
         <!-- Actions -->
         <div class="flex items-center justify-end space-x-3 pt-4 border-t border-border">
-            <button wire:click="close"
-                    class="px-4 py-2 border border-border rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors">
-                Close
-            </button>
-            <button wire:click="edit"
-                    class="px-4 py-2 bg-primary text-white rounded-md text-sm font-medium hover:bg-primary/90 transition-colors">
-                <span class="flex items-center">
-                    <x-heroicon-o-pencil class="w-4 h-4 mr-2" />
+            <flux:modal.close>
+                <flux:button variant="ghost">Close</flux:button>
+            </flux:modal.close>
+            <flux:modal.trigger name="create-category">
+                <flux:button variant="primary" wire:click="edit" icon="pencil">
                     Edit Category
-                </span>
-            </button>
+                </flux:button>
+            </flux:modal.trigger>
         </div>
     </div>
 </div>

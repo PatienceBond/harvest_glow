@@ -28,16 +28,20 @@
                                     {{ $category->posts_count }} {{ Str::plural('post', $category->posts_count) }}
                                 </span>
                                 <div class="flex items-center space-x-2">
-                                    <button wire:click="$dispatch('view-category', { categoryId: {{ $category->id }} })"
-                                            class="text-foreground hover:text-primary transition-colors"
-                                            title="View">
-                                        <x-heroicon-o-eye class="w-4 h-4" />
-                                    </button>
-                                    <button wire:click="$dispatch('edit-category', { categoryId: {{ $category->id }} })"
-                                            class="text-primary hover:text-primary/80 transition-colors"
-                                            title="Edit">
-                                        <x-heroicon-o-pencil class="w-4 h-4" />
-                                    </button>
+                                    <flux:modal.trigger name="view-category">
+                                        <button wire:click="$dispatch('view-category', { categoryId: {{ $category->id }} })"
+                                                class="text-foreground hover:text-primary transition-colors"
+                                                title="View">
+                                            <x-heroicon-o-eye class="w-4 h-4" />
+                                        </button>
+                                    </flux:modal.trigger>
+                                    <flux:modal.trigger name="create-category">
+                                        <button wire:click="$dispatch('edit-category', { categoryId: {{ $category->id }} })"
+                                                class="text-primary hover:text-primary/80 transition-colors"
+                                                title="Edit">
+                                            <x-heroicon-o-pencil class="w-4 h-4" />
+                                        </button>
+                                    </flux:modal.trigger>
                                     <button wire:click="delete({{ $category->id }})"
                                             wire:confirm="Are you sure you want to delete this category?"
                                             class="text-destructive hover:text-destructive/80 transition-colors"

@@ -36,9 +36,11 @@ class CreateEdit extends Component
     {
         if ($categoryId) {
             $this->categoryId = $categoryId;
-            $category = Category::findOrFail($categoryId);
+            // Use select to only fetch needed columns for faster query
+            $category = Category::select('id', 'name', 'description', 'color')
+                ->findOrFail($categoryId);
             $this->name = $category->name;
-            $this->description = $category->description;
+            $this->description = $category->description ?? '';
             $this->color = $category->color;
         }
     }

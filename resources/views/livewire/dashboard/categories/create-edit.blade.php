@@ -68,18 +68,13 @@
 
         <!-- Actions -->
         <div class="flex items-center justify-end space-x-3 pt-4">
-            <button type="button"
-                    wire:click="cancel"
-                    class="px-4 py-2 border border-border rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors">
-                Cancel
-            </button>
-            <button type="submit"
-                    wire:loading.attr="disabled"
-                    wire:target="save"
-                    class="px-4 py-2 bg-primary text-white rounded-md text-sm font-medium hover:bg-primary/90 disabled:opacity-50 transition-colors">
+            <flux:modal.close>
+                <flux:button variant="ghost">Cancel</flux:button>
+            </flux:modal.close>
+            <flux:button type="submit" variant="primary" wire:click="save" wire:loading.attr="disabled" wire:target="save">
                 <span wire:loading.remove wire:target="save">{{ $categoryId ? 'Update' : 'Create' }} Category</span>
                 <span wire:loading wire:target="save">{{ $categoryId ? 'Updating...' : 'Creating...' }}</span>
-            </button>
+            </flux:button>
         </div>
     </form>
 </div>

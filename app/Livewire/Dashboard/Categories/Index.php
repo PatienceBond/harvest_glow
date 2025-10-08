@@ -21,7 +21,7 @@ class Index extends Component
 
     public function openCreate(): void
     {
-        $this->reset(['editingCategoryId']);
+        $this->editingCategoryId = null;
         $this->showCreateEdit = true;
         $this->showView = false;
     }
@@ -51,7 +51,10 @@ class Index extends Component
     #[On('close-modal')]
     public function closeModal(): void
     {
-        $this->reset(['showCreateEdit', 'showView', 'editingCategoryId', 'viewingCategoryId']);
+        $this->showCreateEdit = false;
+        $this->showView = false;
+        $this->editingCategoryId = null;
+        $this->viewingCategoryId = null;
     }
 
     #[On('category-saved')]
