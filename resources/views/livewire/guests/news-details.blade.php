@@ -87,15 +87,6 @@
                 />
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @php
-                        $relatedPosts = \App\Models\Post::where('is_published', true)
-                            ->where('id', '!=', $post->id)
-                            ->with('category')
-                            ->orderBy('published_at', 'desc')
-                            ->take(3)
-                            ->get();
-                    @endphp
-                    
                     @forelse($relatedPosts as $relatedPost)
                         <x-ui.news-card
                             :title="$relatedPost->title"

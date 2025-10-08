@@ -26,12 +26,14 @@ class Home extends Component
         // Randomly select 4 images
         $this->heroImages = collect($allImages)->shuffle()->take(4)->values()->toArray();
 
-        // Fetch latest published posts
-        $this->latestPosts = Post::where('is_published', true)
-            ->with('category')
-            ->orderBy('published_at', 'desc')
-            ->take(3)
-            ->get();
+        // Fetch latest published posts with caching (1 hour)
+        $this->latestPosts = cache()->remember('home.latest_posts', 3600, function () {
+            return Post::where('is_published', true)
+                ->with('category')
+                ->orderBy('published_at', 'desc')
+                ->take(3)
+                ->get();
+        });
     }
 
     public function render()

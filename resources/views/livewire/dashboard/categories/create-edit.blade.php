@@ -38,11 +38,11 @@
             <div class="flex items-center space-x-4">
                 <input type="color"
                        id="color"
-                       wire:model.live="color"
+                       wire:model.live.debounce.300ms="color"
                        class="w-12 h-12 border border-border rounded-lg cursor-pointer @error('color') border-destructive @enderror">
                 <div class="flex-1">
                     <input type="text"
-                           wire:model.live="color"
+                           wire:model.blur="color"
                            class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                            placeholder="#388E3C">
                 </div>

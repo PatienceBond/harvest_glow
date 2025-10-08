@@ -9,14 +9,8 @@
         currentSlide: 0,
         slides: [
             '{{ asset('images/landing hero/staff.webp') }}',
-            '{{ asset('images/landing hero/field farm1.webp') }}',
             '{{ asset('images/landing hero/field farm2.webp') }}',
-            '{{ asset('images/landing hero/field farm3.webp') }}',
-            '{{ asset('images/landing hero/field farm4.webp') }}',
-            '{{ asset('images/landing hero/field farm5.webp') }}',
-            '{{ asset('images/landing hero/field farm6.webp') }}',
             '{{ asset('images/landing hero/landing-farm.webp') }}',
-            '{{ asset('images/landing hero/landing-farm2.webp') }}',
             '{{ asset('images/landing hero/harvest farm.webp') }}'
         ],
         autoplay: null,

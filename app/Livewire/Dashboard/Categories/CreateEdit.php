@@ -47,25 +47,27 @@ class CreateEdit extends Component
     {
         $this->validate();
 
-        // Generate unique slug
+        // Generate unique slug efficiently - fetch all similar slugs at once
         $baseSlug = Str::slug($this->name);
         $slug = $baseSlug;
-        $counter = 1;
-
-        // Check if slug already exists (excluding current category if editing)
-        $query = Category::where('slug', $slug);
+        
+        // Get all existing slugs that start with the base slug (one query instead of many)
+        $query = Category::where('slug', 'like', $baseSlug . '%')
+            ->select('slug');
+        
         if ($this->categoryId) {
             $query->where('id', '!=', $this->categoryId);
         }
-
-        while ($query->exists()) {
-            $slug = $baseSlug . '-' . $counter;
-            $counter++;
-            
-            $query = Category::where('slug', $slug);
-            if ($this->categoryId) {
-                $query->where('id', '!=', $this->categoryId);
-            }
+        
+        $existingSlugs = $query->pluck('slug')->toArray();
+        
+        // If base slug is taken, find the next available number
+        if (in_array($slug, $existingSlugs)) {
+            $counter = 1;
+            do {
+                $slug = $baseSlug . '-' . $counter;
+                $counter++;
+            } while (in_array($slug, $existingSlugs));
         }
 
         $data = [

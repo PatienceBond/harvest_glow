@@ -41,12 +41,16 @@ class CategoryList extends Component
 
     public function render()
     {
-        $categories = Category::withCount('posts')
+        $categories = Category::query()
+            ->withCount('posts')
             ->when($this->search, function ($query) {
-                $query->where('name', 'like', '%'.$this->search.'%')
-                    ->orWhere('description', 'like', '%'.$this->search.'%');
+                $query->where(function ($q) {
+                    $q->where('name', 'like', '%'.$this->search.'%')
+                      ->orWhere('description', 'like', '%'.$this->search.'%');
+                });
             })
             ->orderBy('name')
+            ->limit(50) // Limit to prevent loading too many categories at once
             ->get();
 
         return view('livewire.dashboard.categories.category-list', [

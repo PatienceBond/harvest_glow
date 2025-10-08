@@ -17,13 +17,13 @@
     </div>
 
     <!-- Categories List Component -->
-    <livewire:dashboard.categories.category-list :search="$search" />
+    <livewire:dashboard.categories.category-list :search="$search" :key="'category-list'" />
 
     <!-- Create/Edit Modal -->
     @if($showCreateEdit)
         <div class="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <div class="bg-card border border-border rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
-                <livewire:dashboard.categories.create-edit :categoryId="$editingCategoryId" />
+                <livewire:dashboard.categories.create-edit :categoryId="$editingCategoryId" :key="'create-edit-'.$editingCategoryId" wire:key="create-edit-{{ $editingCategoryId ?? 'new' }}" />
             </div>
         </div>
     @endif
@@ -32,7 +32,7 @@
     @if($showView)
         <div class="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <div class="bg-card border border-border rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
-                <livewire:dashboard.categories.view :categoryId="$viewingCategoryId" />
+                <livewire:dashboard.categories.view :categoryId="$viewingCategoryId" :key="'view-'.$viewingCategoryId" wire:key="view-{{ $viewingCategoryId }}" />
             </div>
         </div>
     @endif
