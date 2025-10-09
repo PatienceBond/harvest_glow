@@ -19,48 +19,22 @@ class Index extends Component
 
     public ?int $viewingCategoryId = null;
 
-    public function openCreate(): void
-    {
-        $this->editingCategoryId = null;
-        $this->showCreateEdit = true;
-        $this->showView = false;
-    }
-
-    #[On('openCreate')]
-    public function openCreateFromEvent(): void
-    {
-        $this->openCreate();
-    }
-
     #[On('edit-category')]
     public function openEdit($categoryId): void
     {
         $this->editingCategoryId = $categoryId;
-        $this->showCreateEdit = true;
-        $this->showView = false;
     }
 
     #[On('view-category')]
     public function openView($categoryId): void
     {
         $this->viewingCategoryId = $categoryId;
-        $this->showView = true;
-        $this->showCreateEdit = false;
-    }
-
-    #[On('close-modal')]
-    public function closeModal(): void
-    {
-        $this->showCreateEdit = false;
-        $this->showView = false;
-        $this->editingCategoryId = null;
-        $this->viewingCategoryId = null;
     }
 
     #[On('category-saved')]
     public function categorySaved(): void
     {
-        $this->closeModal();
+        $this->editingCategoryId = null;
         $this->dispatch('$refresh');
     }
 
@@ -68,6 +42,7 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.categories.index');
+        // return view('livewire.dashboard.categories.index');
+        return "<h1>hello</h1>";
     }
 }

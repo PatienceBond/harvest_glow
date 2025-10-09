@@ -1,10 +1,19 @@
 <div>
     <!-- Search Bar -->
-    <div class="mb-6">
-        <input type="text"
-               wire:model.live.debounce.300ms="search"
-               placeholder="Search categories..."
-               class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+    <div class="sm:flex sm:items-center sm:justify-between mb-8">
+        <div class="mb-6">
+            <flux:input 
+                wire:model.live.debounce.300ms="search"
+                placeholder="Search categories..."
+                icon="magnifying-glass"
+            />
+        </div>
+      
+        <div class="mt-4 sm:mt-0">
+            <flux:modal.trigger name="create-category">
+                <flux:button variant="primary" icon="plus">New Category</flux:button>
+            </flux:modal.trigger>
+        </div>
     </div>
 
     <!-- Categories Grid -->
@@ -20,34 +29,37 @@
                             </div>
 
                             @if($category->description)
-                                <p class="text-sm text-muted-foreground mb-4">{{ $category->description }}</p>
+                                <flux:text class="mb-4">{{ $category->description }}</flux:text>
                             @endif
 
                             <div class="flex items-center justify-between">
-                                <span class="text-sm text-muted-foreground">
+                                <flux:badge size="sm" color="zinc">
                                     {{ $category->posts_count }} {{ Str::plural('post', $category->posts_count) }}
-                                </span>
+                                </flux:badge>
                                 <div class="flex items-center space-x-2">
                                     <flux:modal.trigger name="view-category">
-                                        <button wire:click="$dispatch('view-category', { categoryId: {{ $category->id }} })"
-                                                class="text-foreground hover:text-primary transition-colors"
-                                                title="View">
-                                            <x-heroicon-o-eye class="w-4 h-4" />
-                                        </button>
+                                        <flux:button 
+                                            wire:click="$dispatch('view-category', { categoryId: {{ $category->id }} })"
+                                            variant="ghost"
+                                            size="sm"
+                                            icon="eye"
+                                        />
                                     </flux:modal.trigger>
                                     <flux:modal.trigger name="create-category">
-                                        <button wire:click="$dispatch('edit-category', { categoryId: {{ $category->id }} })"
-                                                class="text-primary hover:text-primary/80 transition-colors"
-                                                title="Edit">
-                                            <x-heroicon-o-pencil class="w-4 h-4" />
-                                        </button>
+                                        <flux:button 
+                                            wire:click="$dispatch('edit-category', { categoryId: {{ $category->id }} })"
+                                            variant="ghost"
+                                            size="sm"
+                                            icon="pencil"
+                                        />
                                     </flux:modal.trigger>
-                                    <button wire:click="delete({{ $category->id }})"
-                                            wire:confirm="Are you sure you want to delete this category?"
-                                            class="text-destructive hover:text-destructive/80 transition-colors"
-                                            title="Delete">
-                                        <x-heroicon-o-trash class="w-4 h-4" />
-                                    </button>
+                                    <flux:button 
+                                        wire:click="delete({{ $category->id }})"
+                                        wire:confirm="Are you sure you want to delete this category?"
+                                        variant="danger"
+                                        size="sm"
+                                        icon="trash"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -63,18 +75,14 @@
                 @if($search)
                     Try adjusting your search criteria.
                 @else
-                    Get started by creating your first category.
+                    Get started by creating your first category using the button above.
                 @endif
             </p>
-            @if(!$search)
-                <div class="mt-6">
-                    <button wire:click="$dispatch('openCreate', {}, 'dashboard.categories.index')"
-                            class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                        <x-heroicon-o-plus class="w-4 h-4 mr-2" />
-                        New Category
-                    </button>
-                </div>
-            @endif
         </div>
     @endif
+
+     <!-- Create/Edit Modal - Using Flux Native Modal -->
+    <flux:modal name="create-category" class="md:w-96">
+        <livewire:dashboard.categories.create-edit  :key="'new'" />
+    </flux:modal>
 </div>
