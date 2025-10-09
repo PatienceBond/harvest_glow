@@ -13,11 +13,12 @@ class CategoryList extends Component
     #[On('$refresh')]
     public function refresh(): void
     {
-        // Force refresh of component
+        $this->reset();
     }
 
     public function delete($categoryId): void
     {
+
         $category = Category::findOrFail($categoryId);
 
         if ($category->posts()->count() > 0) {
@@ -39,19 +40,28 @@ class CategoryList extends Component
         $this->dispatch('$refresh');
     }
 
+    // public function updatedSearch()
+    // {
+    //     $this->reset();
+    // }
+
+
+
     public function render()
     {
-        $categories = Category::query()
-            ->withCount('posts')
-            ->when($this->search, function ($query) {
-                $query->where(function ($q) {
-                    $q->where('name', 'like', '%'.$this->search.'%')
-                      ->orWhere('description', 'like', '%'.$this->search.'%');
-                });
-            })
-            ->orderBy('name')
-            ->limit(50) // Limit to prevent loading too many categories at once
-            ->get();
+        if ($this->search) {
+            $categories = Category::withCount('posts')->where('name', 'like', '%' . $this->search . '%')
+                ->orWhere('description', 'like', '%' . $this->search . '%')
+                ->orderBy('name')
+                ->limit(50)
+                ->get();
+        } else {
+            $categories = Category::withCount('posts')
+                ->orderBy('name')
+                ->limit(50)
+                ->get();
+        }
+
 
         return view('livewire.dashboard.categories.category-list', [
             'categories' => $categories,
