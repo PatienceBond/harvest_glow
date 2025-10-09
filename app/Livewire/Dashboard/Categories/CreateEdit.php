@@ -3,7 +3,7 @@
 namespace App\Livewire\Dashboard\Categories;
 
 use App\Models\Category;
-use Illuminate\Support\Str;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class CreateEdit extends Component
@@ -16,15 +16,21 @@ class CreateEdit extends Component
 
     public $color = '#388E3C';
 
-
-
-    public function mount($category = null): void
+    #[On('edit-category')]
+    public function boot($categoryId = null): void
     {
-        if ($category) {
-            $this->categoryId = $category->id;
-            $this->name = $category->name;
-            $this->description = $category->description ?? '';
-            $this->color = $category->color;
+        // Clear old data and show loading state
+        $this->reset();
+        if ($categoryId) {
+
+            $category = Category::find($categoryId);
+            if ($category) {
+
+                $this->categoryId = $category->id;
+                $this->name = $category->name;
+                $this->description = $category->description ?? '';
+                $this->color = $category->color;
+            }
         }
     }
 
@@ -32,7 +38,7 @@ class CreateEdit extends Component
     {
         $this->validate([
 
-            'name' => 'required|string|max:255|unique:categories,name' . ($this->categoryId ? ',' . $this->categoryId : ''),
+            'name' => 'required|string|max:255|unique:categories,name'.($this->categoryId ? ','.$this->categoryId : ''),
             'description' => 'nullable|string|max:500',
             'color' => 'required|string|max:7',
         ]);
@@ -46,31 +52,22 @@ class CreateEdit extends Component
             ];
 
             if ($this->categoryId) {
-
-                $this->category->update($data);
+                $category = Category::findOrFail($this->categoryId);
+                $category->update($data);
                 $message = 'Category updated successfully!';
             } else {
                 Category::create($data);
                 $message = 'Category created successfully!';
             }
 
-
             $this->reset();
-            $this->dispatch('showToast', [
-                'type' => 'success',
-                'message' => $message,
-            ]);
+            $this->dispatch('showToast', message: $message, type: 'success');
 
             $this->dispatch('category-saved');
         } catch (\Exception $e) {
-            $this->dispatch('showToast', [
-                'type' => 'error',
-                'message' => $e->getMessage(),
-            ]);
+            $this->dispatch('showToast', message: $e->getMessage(), type: 'error');
         }
     }
-
-
 
     public function render()
     {

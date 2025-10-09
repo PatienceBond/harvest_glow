@@ -2,10 +2,10 @@
     <!-- Search Bar -->
     <div class="sm:flex sm:items-center sm:justify-between mb-8">
         <div class="mb-6">
-            <flux:input 
-                wire:model.live.debounce.300ms="search"
+            <input 
+                wire:model.live.debounce.300ms="term"
                 placeholder="Search categories..."
-                icon="magnifying-glass"
+              class="w-full border border-foreground rounded-lg p-2"
             />
         </div>
       
@@ -18,7 +18,7 @@
 
     <!-- Categories Grid -->
     @if($categories->count() > 0)
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             @foreach($categories as $category)
                 <div class="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow">
                     <div class="flex items-start justify-between">
@@ -37,17 +37,17 @@
                                     {{ $category->posts_count }} {{ Str::plural('post', $category->posts_count) }}
                                 </flux:badge>
                                 <div class="flex items-center space-x-2">
-                                    <flux:modal.trigger name="view-category{{ $category->id }}">
+                                    <flux:modal.trigger wire:click="view({{ $category->id }})" name="view-category">
                                         <flux:button 
-                                            wire:click="$dispatch('view-category', { categoryId: {{ $category->id }} })"
+                                         
                                             variant="ghost"
                                             size="sm"
                                             icon="eye"
                                         />
                                     </flux:modal.trigger>
-                                    <flux:modal.trigger name="edit-category{{ $category->id }}">
+                                    <flux:modal.trigger wire:click="edit({{ $category->id }})" name="create-category">
                                         <flux:button 
-                                            wire:click="$dispatch('edit-category', { categoryId: {{ $category->id }} })"
+                                         
                                             variant="ghost"
                                             size="sm"
                                             icon="pencil"
@@ -64,15 +64,9 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Edit Modal -->
-                    <flux:modal name="edit-category{{ $category->id }}" class="md:w-96">
-                    <livewire:dashboard.categories.create-edit  :key="'edit-category-{{ $category->id }}'" :category="$category" />
-                    </flux:modal>
-                    <!-- End Edit Modal -->
-                     <!-- View Modal -->
-                       <flux:modal name="view-category{{ $category->id }}" class="md:w-96">
-        <livewire:dashboard.categories.view :category="$category" :key="'view-'.$category->id" />
-    </flux:modal>
+                   
+                  
+                   
                 </div>
 
             @endforeach
@@ -82,7 +76,7 @@
             <x-heroicon-o-tag class="mx-auto h-12 w-12 text-muted-foreground" />
             <h3 class="mt-2 text-sm font-medium text-foreground">No categories found</h3>
             <p class="mt-1 text-sm text-muted-foreground">
-                @if($search)
+                @if($term)
                     Try adjusting your search criteria.
                 @else
                     Get started by creating your first category using the button above.
@@ -93,6 +87,11 @@
 
      <!-- Create/Edit Modal - Using Flux Native Modal -->
     <flux:modal name="create-category" class="md:w-96">
-        <livewire:dashboard.categories.create-edit  :key="'new'" />
+        <livewire:dashboard.categories.create-edit :key="'category-form'" />
     </flux:modal>
+
+      <!-- View Modal -->
+      <flux:modal name="view-category" class="md:w-96">
+        <livewire:dashboard.categories.view :key="'category-view'" />
+      </flux:modal>
 </div>

@@ -3,20 +3,18 @@
 namespace App\Livewire\Dashboard\Categories;
 
 use App\Models\Category;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class View extends Component
 {
-    public $category;
+    public $category = null;
 
-    public function mount($category): void
+    #[On('view-category')]
+    public function loadCategory(int $categoryId): void
     {
-        $this->category = $category;
+        $this->category = Category::find($categoryId);
     }
-
- 
-
-  
 
     public function render()
     {

@@ -5,7 +5,8 @@
         </h3>
     </div>
 
-    <form wire:submit="save" class="space-y-6">
+ 
+        <form wire:submit="save" class="space-y-6">
         <!-- Name -->
         <flux:input 
             x-model="localName"
@@ -71,4 +72,5 @@
             </flux:button>
         </div>
     </form>
+   
 </div>

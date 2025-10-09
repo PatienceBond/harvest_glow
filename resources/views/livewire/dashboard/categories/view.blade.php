@@ -4,6 +4,12 @@
         <h3 class="text-lg font-semibold text-foreground">Category Details</h3>
     </div>
 
+    @if(!$category)
+        <div class="py-8 text-center">
+            <p class="text-muted-foreground">Loading category...</p>
+        </div>
+    @else   
+
     <div class=" space-y-6">
         <!-- Name & Color -->
         <div class="flex items-center space-x-4">
@@ -45,4 +51,5 @@
             </flux:modal.trigger>
         </div>
     </div>
+    @endif
 </div>

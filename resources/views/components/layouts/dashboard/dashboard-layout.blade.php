@@ -106,8 +106,8 @@
                         {{ $slot }}
     </flux:main>
 
-    <!-- Toast Container -->
-    <x-ui.toast-container />
+    <!-- Toast Notifications -->
+    <livewire:components.toast />
 
     @livewireScripts
     @fluxScripts

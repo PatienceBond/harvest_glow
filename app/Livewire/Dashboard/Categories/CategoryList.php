@@ -8,60 +8,69 @@ use Livewire\Component;
 
 class CategoryList extends Component
 {
-    public $search = '';
+    public $term = '';
+
+    public $categoryId = null;
 
     #[On('$refresh')]
     public function refresh(): void
     {
-        $this->reset();
+        // No logic needed; this just forces re-render
+    }
+
+    public function updatedTerm($value)
+    {
+        $this->term = trim($value);
+
+        logger()->info('Updated search term:', ['term' => $this->term]);
+
+        if ($this->term === '') {
+            $this->dispatch('$refresh');
+        }
+    }
+
+    public function edit(int $categoryId): void
+    {
+
+        $this->dispatch('edit-category', categoryId: $categoryId);
+    }
+
+    public function view(int $categoryId): void
+    {
+
+        $this->dispatch('view-category', categoryId: $categoryId);
     }
 
     public function delete($categoryId): void
     {
-
         $category = Category::findOrFail($categoryId);
 
         if ($category->posts()->count() > 0) {
-            $this->dispatch('showToast', [
-                'type' => 'error',
-                'message' => 'Cannot delete category with existing posts.',
-            ]);
+            $this->dispatch('showToast', message: 'Cannot delete category with existing posts.', type: 'error');
 
             return;
         }
 
         $category->delete();
 
-        $this->dispatch('showToast', [
-            'type' => 'success',
-            'message' => 'Category deleted successfully!',
-        ]);
+        $this->dispatch('showToast', message: 'Category deleted successfully!', type: 'success');
 
-        $this->dispatch('$refresh');
+        $this->term = ''; // Ensures full list again
     }
-
-    // public function updatedSearch()
-    // {
-    //     $this->reset();
-    // }
-
-
 
     public function render()
     {
-        if ($this->search) {
-            $categories = Category::withCount('posts')->where('name', 'like', '%' . $this->search . '%')
-                ->orWhere('description', 'like', '%' . $this->search . '%')
-                ->orderBy('name')
-                ->limit(50)
-                ->get();
-        } else {
-            $categories = Category::withCount('posts')
-                ->orderBy('name')
-                ->limit(50)
-                ->get();
-        }
-
+        $categories = Category::query()
+            ->withCount('posts')
+            ->when($this->term, function ($query) {
+                $query->where(function ($q) {
+                    $q->where('name', 'like', '%'.$this->term.'%')
+                        ->orWhere('description', 'like', '%'.$this->term.'%');
+                });
+            })
+            ->orderBy('name')
+            ->limit(50)
+            ->get();
 
         return view('livewire.dashboard.categories.category-list', [
             'categories' => $categories,
