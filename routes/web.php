@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Dashboard\Categories\CategoryPage;
+use App\Livewire\Dashboard\Posts\PostPage;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
@@ -19,9 +20,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', \App\Livewire\Dashboard\Dashboard::class)->name('dashboard');
 
     // Posts routes
-    Route::get('/dashboard/posts', \App\Livewire\Dashboard\Posts\Index::class)->name('dashboard.posts.index');
-    Route::get('/dashboard/posts/create', \App\Livewire\Dashboard\Posts\Create::class)->name('dashboard.posts.create');
-    Route::get('/dashboard/posts/{post}/edit', \App\Livewire\Dashboard\Posts\Edit::class)->name('dashboard.posts.edit');
+    Route::get('/dashboard/posts', PostPage::class)->name('dashboard.posts.index');
 
     // Categories routes
     Route::get('/dashboard/categories', CategoryPage::class)->name('dashboard.categories.index');
