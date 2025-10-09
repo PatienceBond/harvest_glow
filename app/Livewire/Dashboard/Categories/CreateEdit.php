@@ -17,20 +17,21 @@ class CreateEdit extends Component
     public $color = '#388E3C';
 
     #[On('edit-category')]
-    public function boot($categoryId = null): void
+    public function loadCategory(int $categoryId): void
     {
-        // Clear old data and show loading state
-        $this->reset();
-        if ($categoryId) {
+        // Clear old data first
+        $this->categoryId = null;
+        $this->name = '';
+        $this->description = '';
+        $this->color = '#388E3C';
 
-            $category = Category::find($categoryId);
-            if ($category) {
-
-                $this->categoryId = $category->id;
-                $this->name = $category->name;
-                $this->description = $category->description ?? '';
-                $this->color = $category->color;
-            }
+        // Load the category
+        $category = Category::find($categoryId);
+        if ($category) {
+            $this->categoryId = $category->id;
+            $this->name = $category->name;
+            $this->description = $category->description ?? '';
+            $this->color = $category->color;
         }
     }
 
