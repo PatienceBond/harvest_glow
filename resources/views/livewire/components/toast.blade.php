@@ -21,13 +21,7 @@
             x-transition:leave="transform transition ease-in duration-300"
             x-transition:leave-start="translate-x-0 opacity-100"
             x-transition:leave-end="translate-x-full opacity-0"
-            class="flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg border max-w-sm"
-            :class="{
-                'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800': toast.type === 'success',
-                'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800': toast.type === 'error',
-                'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800': toast.type === 'warning',
-                'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800': toast.type === 'info'
-            }"
+            class="flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg border max-w-sm bg-white dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
             role="alert"
         >
             <!-- Icon -->
@@ -55,26 +49,14 @@
             </div>
 
             <!-- Message -->
-            <div class="flex-1 text-sm font-medium"
-                :class="{
-                    'text-green-800 dark:text-green-200': toast.type === 'success',
-                    'text-red-800 dark:text-red-200': toast.type === 'error',
-                    'text-yellow-800 dark:text-yellow-200': toast.type === 'warning',
-                    'text-blue-800 dark:text-blue-200': toast.type === 'info'
-                }"
+            <div class="flex-1 text-sm font-medium text-zinc-900 dark:text-zinc-100"
                 x-text="toast.message">
             </div>
 
             <!-- Close Button -->
             <button
                 @click="show = false; setTimeout(() => $wire.call('removeToast', toast.id), 300)"
-                class="flex-shrink-0 rounded-lg p-1 hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
-                :class="{
-                    'text-green-600 dark:text-green-400': toast.type === 'success',
-                    'text-red-600 dark:text-red-400': toast.type === 'error',
-                    'text-yellow-600 dark:text-yellow-400': toast.type === 'warning',
-                    'text-blue-600 dark:text-blue-400': toast.type === 'info'
-                }"
+                class="flex-shrink-0 rounded-lg p-1 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors text-zinc-500 dark:text-zinc-400"
             >
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
