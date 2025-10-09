@@ -60,8 +60,7 @@
             </flux:modal.close>
             <flux:button 
                 type="submit" 
-                variant="primary" 
-                wire:click="save"
+                variant="primary"     
             >
                 <span wire:loading.remove wire:target="save">
                     {{ $categoryId ? 'Update' : 'Create' }} Category

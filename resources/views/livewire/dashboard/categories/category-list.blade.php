@@ -37,7 +37,7 @@
                                     {{ $category->posts_count }} {{ Str::plural('post', $category->posts_count) }}
                                 </flux:badge>
                                 <div class="flex items-center space-x-2">
-                                    <flux:modal.trigger name="view-category">
+                                    <flux:modal.trigger name="view-category{{ $category->id }}">
                                         <flux:button 
                                             wire:click="$dispatch('view-category', { categoryId: {{ $category->id }} })"
                                             variant="ghost"
@@ -45,7 +45,7 @@
                                             icon="eye"
                                         />
                                     </flux:modal.trigger>
-                                    <flux:modal.trigger name="create-category">
+                                    <flux:modal.trigger name="edit-category{{ $category->id }}">
                                         <flux:button 
                                             wire:click="$dispatch('edit-category', { categoryId: {{ $category->id }} })"
                                             variant="ghost"
@@ -64,7 +64,17 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Edit Modal -->
+                    <flux:modal name="edit-category{{ $category->id }}" class="md:w-96">
+                    <livewire:dashboard.categories.create-edit  :key="'edit-category-{{ $category->id }}'" :category="$category" />
+                    </flux:modal>
+                    <!-- End Edit Modal -->
+                     <!-- View Modal -->
+                       <flux:modal name="view-category{{ $category->id }}" class="md:w-96">
+        <livewire:dashboard.categories.view :category="$category" :key="'view-'.$category->id" />
+    </flux:modal>
                 </div>
+
             @endforeach
         </div>
     @else

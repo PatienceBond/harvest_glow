@@ -31,7 +31,7 @@ class CreateEdit extends Component
     public function save(): void
     {
         $this->validate([
-            
+
             'name' => 'required|string|max:255|unique:categories,name' . ($this->categoryId ? ',' . $this->categoryId : ''),
             'description' => 'nullable|string|max:500',
             'color' => 'required|string|max:7',
@@ -54,6 +54,8 @@ class CreateEdit extends Component
                 $message = 'Category created successfully!';
             }
 
+
+            $this->reset();
             $this->dispatch('showToast', [
                 'type' => 'success',
                 'message' => $message,
