@@ -79,7 +79,7 @@
         <x-ui.container>
             <x-ui.section-header
                 title="Our Products"
-                description="Through our value-added processing initiatives, we help farmers transform raw crops into high-quality products."
+                description="Through our value-added processing initiatives, we help farmers transform raw crops into high-quality products. View more on our model page."
             />
 
             <!-- Products Grid -->
@@ -101,6 +101,18 @@
                     description="Pure, cold-pressed cooking oil produced from locally grown oilseeds, providing a healthy cooking option."
                     image="{{ asset('images/products/cooking-oil.jpg') }}"
                 />
+
+                <x-ui.product-card
+                    title="Soy Cake"
+                    description="Protein-rich animal feed byproduct from soy processing, enhancing livestock nutrition."
+                    image="{{ asset('images/products/soy-milk.jpg') }}"
+                />
+
+                <x-ui.product-card
+                    title="Plant-Based Juices"
+                    description="Traditional and nutritious juices made from local plants, promoting health and wellness."
+                    image="{{ asset('images/products/cooking-oil.jpg') }}"
+                />
             </div>
         </x-ui.container>
     </section>
@@ -110,16 +122,16 @@
         <x-ui.container>
             <x-ui.section-header
                 title="Progress Toward Our 2028 Goals"
-                description="We're working to reach 10,000 farmers, achieve 50% certified seed adoption, and increase average household incomes by 40%."
+                description="We're working to reach 600,000 farmers, achieve 50% certified seed adoption, and increase average household incomes by 40%."
             />
 
             <!-- Progress Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <x-ui.progress-card
                     title="Farmers Reached"
-                    :progress="10"
-                    current="1,000"
-                    goal="10,000"
+                    :progress="17"
+                    current="100,000"
+                    goal="600,000"
                 />
 
                 <x-ui.progress-card
@@ -161,7 +173,7 @@
                         :title="$post->title"
                         :excerpt="$post->excerpt"
                         :date="$post->published_at ? $post->published_at->format('F j, Y') : $post->created_at->format('F j, Y')"
-                        :image="$post->featured_image ? asset($post->featured_image) : asset('images/hero/hero1.webp')"
+                        :image="$post->featured_image ? Storage::url($post->featured_image) : asset('images/hero/hero1.webp')"
                         :link="route('news-details', ['slug' => $post->slug])"
                     />
                 @empty

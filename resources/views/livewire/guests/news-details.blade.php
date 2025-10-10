@@ -2,7 +2,7 @@
 <div>
     <!-- Hero Section -->
     <x-ui.hero
-        image="{{ $post->featured_image ? asset($post->featured_image) : asset('images/hero/hero1.webp') }}"
+        image="{{ $post->featured_image ? Storage::url($post->featured_image) : asset('images/hero/hero1.webp') }}"
         heading="{{ $post->title }}"
         subheading="Stay informed about our latest activities and impact in communities across Malawi."
         height="400px"
@@ -30,13 +30,16 @@
                         @if($post->featured_image)
                         <div class="mb-8">
                             <img 
-                                src="{{ asset($post->featured_image) }}" 
+                                src="{{ Storage::url($post->featured_image) }}" 
                                 alt="{{ $post->title }}"
                                 class="w-full h-96 object-cover rounded-lg"
                             >
                         </div>
                         @endif
                     </div>
+
+                    <!-- Article Title -->
+                    <h1 class="text-4xl font-bold text-foreground mb-6">{{ $post->title }}</h1>
 
                     <!-- Article Content -->
                     <div class="prose prose-lg max-w-none">
@@ -92,7 +95,7 @@
                             :title="$relatedPost->title"
                             :excerpt="$relatedPost->excerpt"
                             :date="$relatedPost->published_at ? $relatedPost->published_at->format('F j, Y') : $relatedPost->created_at->format('F j, Y')"
-                            :image="$relatedPost->featured_image ? asset($relatedPost->featured_image) : asset('images/hero/hero1.webp')"
+                            :image="$relatedPost->featured_image ? Storage::url($relatedPost->featured_image) : asset('images/hero/hero1.webp')"
                             :link="route('news-details', ['slug' => $relatedPost->slug])"
                         />
                     @empty

@@ -57,7 +57,7 @@
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                                 <div>
                                     <p class="text-lg mb-6">
-                                        HarvestGlow sources basic certified seed for farmer-led multiplication in Seed Villages, creating locally controlled supply chains. Farmers receive training on improved agronomic practices and post-harvest handling.
+                                        HarvestGlow sources certified seed for farmer-led multiplication in Seed Villages, creating locally controlled supply chains. Farmers receive training on improved agronomic practices and post-harvest handling.
                                     </p>
                                     <p class="text-lg mb-6">
                                         The model increases productivity, reduces dependency on recycled seed, and positions communities as regional seed suppliers.

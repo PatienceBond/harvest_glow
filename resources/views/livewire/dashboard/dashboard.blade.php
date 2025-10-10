@@ -130,10 +130,10 @@
                         <h3 class="mt-2 text-sm font-medium text-foreground">No posts yet</h3>
                         <p class="mt-1 text-sm text-muted-foreground">Get started by creating your first post.</p>
                         <div class="mt-6">
-                            <a href="{{ route('dashboard.posts.create') }}" 
+                            <a href="{{ route('dashboard.posts.index') }}" 
                                class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
                                 <x-heroicon-o-plus class="w-4 h-4 mr-2" />
-                                New Post
+                                Go to Posts
                             </a>
                         </div>
                     </div>
@@ -148,14 +148,14 @@
             </div>
             <div class="p-6">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <!-- Create Post -->
-                    <a href="{{ route('dashboard.posts.create') }}" 
+                    <!-- Manage Posts -->
+                    <a href="{{ route('dashboard.posts.index') }}" 
                        class="group relative bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-4 text-white hover:from-blue-600 hover:to-blue-700 transition-all">
                         <div class="flex items-center">
                             <x-heroicon-o-document-text class="w-8 h-8" />
                             <div class="ml-3">
-                                <p class="text-sm font-medium">Create Post</p>
-                                <p class="text-xs opacity-90">Write new content</p>
+                                <p class="text-sm font-medium">Manage Posts</p>
+                                <p class="text-xs opacity-90">View & create posts</p>
                             </div>
                         </div>
                     </a>

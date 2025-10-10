@@ -35,7 +35,7 @@
             
             @if($existing_featured_image && !$featured_image)
                 <div class="mb-3">
-                    <img src="{{ asset('storage/' . $existing_featured_image) }}" alt="Current image" class="w-48 h-32 object-cover rounded-lg border border-border">
+                    <img src="{{ Storage::url($existing_featured_image) }}" alt="Current image" class="w-48 h-32 object-cover rounded-lg border border-border">
                     <flux:button 
                         wire:click="removeExistingImage"
                         variant="ghost"

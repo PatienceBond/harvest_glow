@@ -24,7 +24,7 @@
                         description="The Mastercard Foundation works with visionary organizations to enable young people in Africa and in Indigenous communities in Canada to access dignified and fulfilling work."
                         website="https://mastercardfdn.org"
                         category="Strategic Partner"
-                        logo="{{ asset('images/logos/mastercard.png') }}"
+                        logo="{{ asset('images/partners/mastercard.png') }}"
                     />
 
                     <x-ui.partner-card
@@ -32,7 +32,7 @@
                         description="African Women in Agricultural Research and Development (AWARD) works toward inclusive, agriculture-driven prosperity for Africa by strengthening the production and dissemination of more gender-responsive agricultural research and innovation."
                         website="https://awardfellowships.org"
                         category="Strategic Partner"
-                        logo="{{ asset('images/logos/mastercard.png') }}"
+                        logo="{{ asset('images/partners/Woman research award.png') }}"
                     />
 
                     <x-ui.partner-card
@@ -40,7 +40,7 @@
                         description="The Anzisha Prize is Africa's biggest award for young entrepreneurs aged 15-22 and is a partnership between African Leadership Academy and Mastercard Foundation."
                         website="https://anzishaprize.org"
                         category="Strategic Partner"
-                        logo="{{ asset('images/logos/mastercard.png') }}"
+                        logo="{{ asset('images/partners/anzisha prize.png') }}"
                     />
 
                     <x-ui.partner-card
@@ -48,7 +48,7 @@
                         description="African Leadership Academy seeks to transform Africa by developing a powerful network of young leaders who will work together to address Africa's greatest challenges."
                         website="https://africanleadershipacademy.org"
                         category="Strategic Partner"
-                        logo="{{ asset('images/logos/mastercard.png') }}"
+                        logo="{{ asset('images/partners/ala.png') }}"
                     />
 
                     <x-ui.partner-card
@@ -64,7 +64,7 @@
                         description="The University of Pretoria is one of Africa's top universities and the largest contact university in South Africa, with a focus on research and agricultural innovation."
                         website="https://www.up.ac.za"
                         category="Strategic Partner"
-                        logo="{{ asset('images/logos/mastercard.png') }}"
+                        logo="{{ asset('images/partners/university_of_pretoria.png') }}"
                     />
                 </div>
             </x-ui.container>
@@ -81,27 +81,11 @@
                 <!-- Research Partners Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <x-ui.partner-card
-                        name="ICRISAT"
-                        description="The International Crops Research Institute for the Semi-Arid Tropics (ICRISAT) is an international organization that conducts agricultural research for rural development."
-                        website="https://www.icrisat.org"
-                        category="Research Partner"
-                        logo="{{ asset('images/logos/mastercard.png') }}"
-                    />
-
-                    <x-ui.partner-card
                         name="Department of Agricultural Research"
                         description="Malawi's Department of Agricultural Research conducts research on crops, livestock, and natural resources to improve agricultural productivity and sustainability."
                         website="https://www.malawi.gov.mw"
                         category="Research Partner"
-                        logo="{{ asset('images/logos/mastercard.png') }}"
-                    />
-
-                    <x-ui.partner-card
-                        name="CARE International"
-                        description="CARE is a global leader within a worldwide movement dedicated to ending poverty and achieving social justice."
-                        website="https://www.care.org"
-                        category="Research Partner"
-                        logo="{{ asset('images/logos/mastercard.png') }}"
+                        logo="{{ asset('images/partners/mastercard.png') }}"
                     />
                 </div>
             </x-ui.container>
@@ -118,19 +102,11 @@
                 <!-- Implementation Partners Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <x-ui.partner-card
-                        name="Self Help Africa"
-                        description="Self Help Africa is an international development organization that works through agriculture to end hunger and poverty in rural Africa."
-                        website="https://selfhelpafrica.org"
-                        category="Implementation Partner"
-                        logo="{{ asset('images/logos/mastercard.png') }}"
-                    />
-
-                    <x-ui.partner-card
                         name="Local Government Authorities"
                         description="We work closely with district councils and local government authorities to ensure our programs align with local development priorities."
                         website="#"
                         category="Implementation Partner"
-                        logo="{{ asset('images/logos/mastercard.png') }}"
+                        logo="{{ asset('images/partners/mastercard.png') }}"
                     />
 
                     <x-ui.partner-card
@@ -138,7 +114,7 @@
                         description="We partner with local farmer cooperatives to implement our programs and ensure community ownership and sustainability."
                         website="#"
                         category="Implementation Partner"
-                        logo="{{ asset('images/logos/mastercard.png') }}"
+                        logo="{{ asset('images/partners/mastercard.png') }}"
                     />
                 </div>
             </x-ui.container>

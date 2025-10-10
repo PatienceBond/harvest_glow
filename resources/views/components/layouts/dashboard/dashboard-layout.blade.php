@@ -23,6 +23,7 @@
             <flux:sidebar.item icon="home" href="{{ route('dashboard') }}" :current="request()->routeIs('dashboard')">Dashboard</flux:sidebar.item>
             <flux:sidebar.item icon="document-text" href="{{ route('dashboard.posts.index') }}" :current="request()->routeIs('dashboard.posts.*')">Posts</flux:sidebar.item>
             <flux:sidebar.item icon="tag" href="{{ route('dashboard.categories.index') }}" :current="request()->routeIs('dashboard.categories.*')">Categories</flux:sidebar.item>
+            <flux:sidebar.item icon="user-group" href="{{ route('dashboard.team.index') }}" :current="request()->routeIs('dashboard.team.*')">Team</flux:sidebar.item>
             <flux:sidebar.item icon="chart-bar" href="{{ route('dashboard.metrics.index') }}" :current="request()->routeIs('dashboard.metrics.*')">Impact Metrics</flux:sidebar.item>
         </flux:sidebar.nav>
 

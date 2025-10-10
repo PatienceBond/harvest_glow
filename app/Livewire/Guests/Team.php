@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Guests;
 
+use App\Models\TeamMember;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -10,6 +11,25 @@ class Team extends Component
 {
     public function render()
     {
-        return view('livewire.guests.team');
+        $leadershipTeam = TeamMember::active()
+            ->leadership()
+            ->ordered()
+            ->get();
+
+        $ourTeam = TeamMember::active()
+            ->team()
+            ->ordered()
+            ->get();
+
+        $boardMembers = TeamMember::active()
+            ->board()
+            ->ordered()
+            ->get();
+
+        return view('livewire.guests.team', [
+            'leadershipTeam' => $leadershipTeam,
+            'ourTeam' => $ourTeam,
+            'boardMembers' => $boardMembers,
+        ]);
     }
 }

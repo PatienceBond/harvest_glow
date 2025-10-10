@@ -9,8 +9,31 @@
     />
 
     <x-ui.vstack>
-        <!-- Vision & Mission Section -->
+        <!-- Background Section -->
         <section>
+            <x-ui.container>
+                <x-ui.section-header
+                    title="Background of HarvestGlow"
+                />
+                
+                <div class="max-w-4xl mx-auto">
+                    <p class="text-lg text-muted-foreground mb-6">
+                        HarvestGlow is a social enterprise established in 2022 by Agronomists passionate about transforming smallholder agriculture in Malawi. The initiative was born out of a shared vision to empower rural farmers through access to affordable, high-quality agricultural inputs and practical agronomic support.
+                    </p>
+                    
+                    <p class="text-lg text-muted-foreground mb-6">
+                        From its inception, HarvestGlow has focused on addressing key barriers faced by smallholder farmers such as limited access to certified seed, fertilizers, and technical knowledge by offering sustainable, inclusive, and locally driven solutions. The enterprise operates with a strong social mission to improve productivity, food security, and rural livelihoods while promoting climate-smart and youth-inclusive agricultural practices.
+                    </p>
+                    
+                    <p class="text-lg text-muted-foreground">
+                        Over time, HarvestGlow has evolved from a small farmer-support initiative into a growing agri-social enterprise that integrates innovation, capacity building, and market linkages to drive impact across farming communities in Malawi.
+                    </p>
+                </div>
+            </x-ui.container>
+        </section>
+
+        <!-- Vision & Mission Section -->
+        <section class="bg-muted/30">
             <x-ui.container>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                     <!-- Vision -->
@@ -81,7 +104,7 @@
         </section>
 
         <!-- Context and Problem Section -->
-        <section class="bg-muted/30">
+        <section>
             <x-ui.container>
                 <x-ui.section-header
                     title="Context and the Problem"
@@ -244,7 +267,7 @@
                             phase="1"
                             title="Year 1"
                             :items="[
-                                'Pilot with 500 farmers',
+                                'Engage with 100,000 farmers',
                                 'Establish 20 VSL groups',
                                 'Set up 5 processing units',
                                 'Develop training curriculum',
@@ -256,7 +279,7 @@
                             phase="2-3"
                             title="Years 2-3"
                             :items="[
-                                'Scale to 5,000 farmers',
+                                'Scale to 250,000 farmers',
                                 'Establish regional seed cooperatives',
                                 'Expand processing capacity',
                                 'Develop market linkages',
@@ -268,7 +291,7 @@
                             phase="4-5"
                             title="Years 4-5"
                             :items="[
-                                'Expand to 10,000+ farmers',
+                                'Expand to 600,000+ farmers',
                                 'Develop sustainable farmer-owned cooperatives',
                                 'Achieve 70% self-financed operations',
                                 'Establish regional distribution networks',

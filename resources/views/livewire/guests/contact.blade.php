@@ -29,7 +29,7 @@
                         <x-ui.contact-info-card
                             icon="heroicon-o-envelope"
                             title="Email"
-                            content="harvestglow@gmail.com"
+                            content="info@harvestglow.org"
                         />
 
                         <x-ui.contact-info-card
@@ -115,7 +115,7 @@
                             <div x-data="{ open: activeFaq === 0 }">
                                 <x-ui.faq-item 
                                     question="How can I donate to HarvestGlow?"
-                                    answer="You can make a donation through our website, by bank transfer, or by check. For details, please contact us at harvestglow@gmail.com or visit our Get Involved page."
+                                    answer="You can make a donation through our website, by bank transfer, or by check. For details, please contact us at info@harvestglow.org or visit our Get Involved page."
                                 />
                             </div>
 

@@ -55,16 +55,16 @@
             <x-ui.container>
                 <x-ui.section-header
                     title="Progress Toward Our 2028 Goals"
-                    description="We're tracking our progress against ambitious targets to create lasting change."
+                    description="We're working to reach 600,000 farmers, achieve 50% certified seed adoption, and increase average household incomes by 40%."
                 />
 
                 <!-- Progress Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <x-ui.progress-card
                         title="Farmers Reached"
-                        :progress="10"
-                        current="1,000"
-                        goal="10,000"
+                        :progress="17"
+                        current="100,000"
+                        goal="600,000"
                     />
 
                     <x-ui.progress-card

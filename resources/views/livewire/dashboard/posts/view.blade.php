@@ -9,7 +9,7 @@
             <!-- Featured Image -->
             @if($post->featured_image)
                 <div class="rounded-lg overflow-hidden border border-border">
-                    <img src="{{ asset('storage/' . $post->featured_image) }}" alt="{{ $post->title }}" class="w-full h-64 object-cover">
+                    <img src="{{ Storage::url($post->featured_image) }}" alt="{{ $post->title }}" class="w-full h-64 object-cover">
                 </div>
             @endif
 

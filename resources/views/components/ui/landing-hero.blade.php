@@ -3,7 +3,7 @@
     'height' => '600px'
 ])
 
-<section {{ $attributes->merge(['class' => 'relative bg-base-950 flex items-center overflow-hidden']) }} style="min-height: {{ $height }}">
+<section {{ $attributes->merge(['class' => 'relative bg-base-950 flex items-end overflow-hidden']) }} style="min-height: {{ $height }}">
     <!-- Image Slider Background -->
     <div class="absolute inset-0" x-data="{
         currentSlide: 0,
@@ -92,7 +92,7 @@
     <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/10 to-transparent z-10 pointer-events-none"></div>
 
     <!-- Content -->
-    <div class="relative z-20 py-24 sm:py-32 text-left w-full">
+    <div class="relative z-20 pb-24 sm:pb-32 pt-12 text-left w-full">
         <x-ui.container>
             <div class="max-w-4xl">
                 <!-- Main Heading with animated gradient -->

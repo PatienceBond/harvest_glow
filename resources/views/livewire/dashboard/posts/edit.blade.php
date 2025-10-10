@@ -83,7 +83,7 @@
                         <div class="mb-4">
                             <flux:subheading>Current Image:</flux:subheading>
                             <div class="relative inline-block">
-                                <img src="{{ asset('storage/' . $existing_featured_image) }}"
+                                <img src="{{ Storage::url($existing_featured_image) }}"
                                      alt="Current featured image"
                                      class="h-32 w-auto rounded-lg border border-border">
                             </div>

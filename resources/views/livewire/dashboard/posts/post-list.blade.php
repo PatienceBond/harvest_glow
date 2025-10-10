@@ -41,7 +41,7 @@
             @foreach($posts as $post)
                 <div class="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
                     @if($post->featured_image)
-                        <img src="{{ asset('storage/' . $post->featured_image) }}" alt="{{ $post->title }}" class="w-full h-48 object-cover">
+                        <img src="{{ Storage::url($post->featured_image) }}" alt="{{ $post->title }}" class="w-full h-48 object-cover">
                     @else
                         <div class="w-full h-48 bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center">
                             <x-heroicon-o-photo class="w-16 h-16 text-zinc-400" />

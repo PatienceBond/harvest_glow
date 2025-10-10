@@ -6,9 +6,9 @@
             <p class="mt-2 text-muted-foreground">Manage your blog posts and content.</p>
         </div>
         <div class="mt-4 sm:mt-0">
-            <flux:button href="{{ route('dashboard.posts.create') }}" variant="primary" icon="plus">
-                New Post
-            </flux:button>
+            <flux:modal.trigger name="create-post">
+                <flux:button variant="primary" icon="plus">New Post</flux:button>
+            </flux:modal.trigger>
         </div>
     </div>
 
@@ -143,9 +143,11 @@
                 </p>
                 @if(!$search && !$statusFilter && !$categoryFilter)
                     <div class="mt-6">
-                        <flux:button href="{{ route('dashboard.posts.create') }}" variant="primary" icon="plus">
-                            New Post
-                        </flux:button>
+                        <flux:modal.trigger name="create-post">
+                            <flux:button variant="primary" icon="plus">
+                                New Post
+                            </flux:button>
+                        </flux:modal.trigger>
                     </div>
                 @endif
             </div>
