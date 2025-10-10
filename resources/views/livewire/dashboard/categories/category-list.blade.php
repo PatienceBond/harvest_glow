@@ -1,11 +1,11 @@
 <div>
     <!-- Search Bar -->
-    <div class="sm:flex sm:items-center sm:justify-between mb-8">
-        <div class="mb-6">
-            <input 
+    <div class="sm:flex sm:items-center sm:justify-between mb-8 gap-4">
+        <div class="flex flex-1 mb-4 sm:mb-0 min-w-0">
+            <flux:input 
                 wire:model.live.debounce.300ms="term"
                 placeholder="Search categories..."
-              class="w-full border border-foreground rounded-lg p-2"
+                class="flex-1 min-w-[200px]"
             />
         </div>
       

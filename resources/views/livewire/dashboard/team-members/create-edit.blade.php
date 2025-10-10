@@ -39,51 +39,12 @@
         </flux:select>
 
         <!-- Photo -->
-        <flux:field>
-            <flux:label>Photo (Optional)</flux:label>
-            
-            @if($existing_photo && !$photo)
-                <div class="mb-3">
-                    <img src="{{ asset('storage/' . $existing_photo) }}" alt="Current photo" class="w-32 h-32 object-cover rounded-lg border border-border">
-                    <flux:button 
-                        wire:click="removeExistingPhoto"
-                        variant="ghost"
-                        size="sm"
-                        type="button"
-                        class="mt-2"
-                    >
-                        Remove existing photo
-                    </flux:button>
-                </div>
-            @endif
-
-            <input 
-                type="file" 
-                wire:model="photo"
-                accept="image/*"
-                class="w-full border border-border rounded-lg p-2"
-            />
-            
-            @if($photo)
-                <div class="mt-3 flex items-center gap-2">
-                    <span class="text-sm text-muted-foreground">New photo selected</span>
-                    <flux:button 
-                        wire:click="removeFile"
-                        variant="ghost"
-                        size="sm"
-                        type="button"
-                    >
-                        Remove
-                    </flux:button>
-                </div>
-            @endif
-
-            <flux:error name="photo" />
-            
-            <div wire:loading wire:target="photo" class="mt-2 text-sm text-muted-foreground">
-                Uploading...
-            </div>
-        </flux:field>
+        <x-ui.avatar-image-upload 
+            wire-model="photo"
+            :existing-image="$existing_photo"
+            label="Profile Photo (Optional)"
+            help-text="Upload a profile photo (Max 1MB, JPG, PNG)"
+        />
 
         <!-- Order & Active Status -->
         <div class="grid grid-cols-2 gap-4">

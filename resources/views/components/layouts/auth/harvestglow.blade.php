@@ -32,13 +32,7 @@
             </div>
 
             <!-- Footer Links -->
-            <div class="text-center space-y-2">
-                <p class="text-sm text-muted-foreground">
-                    Don't have an account? 
-                    <a href="{{ route('register') }}" class="font-medium text-primary hover:text-primary/80 transition-colors">
-                        Sign up here
-                    </a>
-                </p>
+            <div class="text-center">
                 <p class="text-sm text-muted-foreground">
                     <a href="{{ route('home') }}" class="font-medium text-primary hover:text-primary/80 transition-colors">
                         ← Back to Home

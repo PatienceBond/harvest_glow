@@ -3,6 +3,7 @@
 use App\Livewire\Dashboard\Categories\CategoryPage;
 use App\Livewire\Dashboard\Posts\PostPage;
 use App\Livewire\Dashboard\TeamMembers\TeamMemberPage;
+use App\Livewire\Dashboard\Users\UserPage;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
@@ -28,6 +29,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Team Members routes
     Route::get('/dashboard/team-members', TeamMemberPage::class)->name('dashboard.team.index');
+
+    // Users routes
+    Route::get('/dashboard/users', UserPage::class)->name('dashboard.users.index');
 
     // Impact Metrics routes
     Route::get('/dashboard/metrics', \App\Livewire\Dashboard\Metrics\Index::class)->name('dashboard.metrics.index');

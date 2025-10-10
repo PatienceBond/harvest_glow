@@ -47,25 +47,24 @@ new #[Layout('components.layouts.auth.harvestglow')] class extends Component {
 
     <form method="POST" wire:submit="sendPasswordResetLink" class="space-y-6">
         <!-- Email Address -->
-        <div>
-            <label for="email" class="block text-sm font-medium mb-2">Email Address</label>
-            <input 
-                wire:model="email"
-                id="email" 
-                type="email" 
-                required 
-                autofocus
-                class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent @error('email') border-destructive @enderror"
-                placeholder="Enter your email address"
-            >
-        </div>
+        <flux:input 
+            wire:model="email"
+            type="email"
+            label="Email Address"
+            placeholder="Enter your email address"
+            required
+            autofocus
+        />
 
         <!-- Submit Button -->
-        <div>
-            <x-ui.loading-button type="submit" class="w-full" wire:submit="sendPasswordResetLink" loadingText="Sending...">
-                Send Password Reset Link
-            </x-ui.loading-button>
-        </div>
+        <flux:button 
+            type="submit" 
+            variant="primary" 
+            class="w-full"
+        >
+            <span wire:loading.remove wire:target="sendPasswordResetLink">Send Password Reset Link</span>
+            <span wire:loading wire:target="sendPasswordResetLink">Sending...</span>
+        </flux:button>
     </form>
 
     <div class="text-center text-sm text-muted-foreground">

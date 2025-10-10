@@ -24,6 +24,7 @@
             <flux:sidebar.item icon="document-text" href="{{ route('dashboard.posts.index') }}" :current="request()->routeIs('dashboard.posts.*')">Posts</flux:sidebar.item>
             <flux:sidebar.item icon="tag" href="{{ route('dashboard.categories.index') }}" :current="request()->routeIs('dashboard.categories.*')">Categories</flux:sidebar.item>
             <flux:sidebar.item icon="user-group" href="{{ route('dashboard.team.index') }}" :current="request()->routeIs('dashboard.team.*')">Team</flux:sidebar.item>
+            <flux:sidebar.item icon="users" href="{{ route('dashboard.users.index') }}" :current="request()->routeIs('dashboard.users.*')">Users</flux:sidebar.item>
             <flux:sidebar.item icon="chart-bar" href="{{ route('dashboard.metrics.index') }}" :current="request()->routeIs('dashboard.metrics.*')">Impact Metrics</flux:sidebar.item>
         </flux:sidebar.nav>
 
@@ -35,7 +36,16 @@
         </flux:sidebar.nav>
 
         <flux:dropdown position="top" align="start" class="max-lg:hidden">
-            <flux:sidebar.profile name="{{ auth()->user()->initials() }}" />
+            @if(auth()->user()->avatar)
+                <button class="flex items-center gap-2 w-full">
+                    <img src="{{ Storage::url(auth()->user()->avatar) }}" alt="{{ auth()->user()->name }}" class="w-8 h-8 rounded-full object-cover border-2 border-border">
+                    <div class="text-left flex-1 min-w-0">
+                        <div class="text-sm font-medium truncate">{{ auth()->user()->name }}</div>
+                    </div>
+                </button>
+            @else
+                <flux:sidebar.profile name="{{ auth()->user()->initials() }}" />
+            @endif
 
             <flux:menu>
                 <flux:menu.item disabled>
@@ -78,7 +88,13 @@
 
             <!-- User Avatar Dropdown -->
             <flux:dropdown position="top" align="start">
-                <flux:profile name="{{ auth()->user()->initials() }}" />
+                @if(auth()->user()->avatar)
+                    <button class="flex items-center gap-2">
+                        <img src="{{ Storage::url(auth()->user()->avatar) }}" alt="{{ auth()->user()->name }}" class="w-8 h-8 rounded-full object-cover border-2 border-border">
+                    </button>
+                @else
+                    <flux:profile name="{{ auth()->user()->initials() }}" />
+                @endif
 
                 <flux:menu>
                     <flux:menu.item disabled>

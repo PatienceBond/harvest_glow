@@ -171,7 +171,7 @@
                 <h2 class="text-lg font-semibold text-foreground">Quick Actions</h2>
             </div>
             <div class="p-6">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <!-- Manage Posts -->
                     <a href="{{ route('dashboard.posts.index') }}" 
                        class="group relative bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-4 text-white hover:from-blue-600 hover:to-blue-700 transition-all">
@@ -192,6 +192,30 @@
                             <div class="ml-3">
                                 <p class="text-sm font-medium">Categories</p>
                                 <p class="text-xs opacity-90">Organize content</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Team Members -->
+                    <a href="{{ route('dashboard.team.index') }}" 
+                       class="group relative bg-gradient-to-r from-teal-500 to-teal-600 rounded-lg p-4 text-white hover:from-teal-600 hover:to-teal-700 transition-all">
+                        <div class="flex items-center">
+                            <x-heroicon-o-user-group class="w-8 h-8" />
+                            <div class="ml-3">
+                                <p class="text-sm font-medium">Team</p>
+                                <p class="text-xs opacity-90">Manage team</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Users -->
+                    <a href="{{ route('dashboard.users.index') }}" 
+                       class="group relative bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-lg p-4 text-white hover:from-indigo-600 hover:to-indigo-700 transition-all">
+                        <div class="flex items-center">
+                            <x-heroicon-o-users class="w-8 h-8" />
+                            <div class="ml-3">
+                                <p class="text-sm font-medium">Users</p>
+                                <p class="text-xs opacity-90">System users</p>
                             </div>
                         </div>
                     </a>

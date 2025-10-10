@@ -15,33 +15,45 @@
                 title="Our Impact (2025)"
             />
 
-            <!-- Impact Cards Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-2 mt-8">
-                <x-ui.impact-card
-                    value="4,000+ people reached"
-                    description="through sustainable agriculture, nutrition, and livelihoods programs"
-                />
-                <x-ui.impact-card
-                    value="2000+ youths and children engaged"
-                    description="in school feeding, agri-nutrition clubs, and awareness campaigns"
-                />
-                <x-ui.impact-card
-                    value="1500+ young people trained"
-                    description="in digital skills, agribusiness, and climate-smart farming practices"
-                />
-                <x-ui.impact-card
-                    value="150+ entrepreneurs engaged"
-                    description="in capacity-building, market linkages, and value chain development"
-                />
-                <x-ui.impact-card
-                    value="200 hectares of basic seed produced"
-                    description="to strengthen food security and boost farmer productivity"
-                />
-                <x-ui.impact-card
-                    value="$30,000 mobilized in seed capital"
-                    description="to support trainings, community enterprises, and farmer-led innovations"
-                />
-            </div>
+            <!-- Impact Cards Grid - Dynamic from Database -->
+            @if($featuredMetrics && $featuredMetrics->count() > 0)
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
+                    @foreach($featuredMetrics as $metric)
+                        <x-ui.impact-card
+                            value="{{ $metric->value }}{{ $metric->unit ? ' ' . $metric->unit : '' }}"
+                            description="{{ $metric->description ?? $metric->title }}"
+                        />
+                    @endforeach
+                </div>
+            @else
+                <!-- Fallback if no metrics in database -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-2 mt-8">
+                    <x-ui.impact-card
+                        value="4,000+ people reached"
+                        description="through sustainable agriculture, nutrition, and livelihoods programs"
+                    />
+                    <x-ui.impact-card
+                        value="2000+ youths and children engaged"
+                        description="in school feeding, agri-nutrition clubs, and awareness campaigns"
+                    />
+                    <x-ui.impact-card
+                        value="1500+ young people trained"
+                        description="in digital skills, agribusiness, and climate-smart farming practices"
+                    />
+                    <x-ui.impact-card
+                        value="150+ entrepreneurs engaged"
+                        description="in capacity-building, market linkages, and value chain development"
+                    />
+                    <x-ui.impact-card
+                        value="200 hectares of basic seed produced"
+                        description="to strengthen food security and boost farmer productivity"
+                    />
+                    <x-ui.impact-card
+                        value="$30,000 mobilized in seed capital"
+                        description="to support trainings, community enterprises, and farmer-led innovations"
+                    />
+                </div>
+            @endif
         </x-ui.container>
     </section>
 

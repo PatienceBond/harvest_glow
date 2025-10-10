@@ -124,60 +124,50 @@ new #[Layout('components.layouts.auth.harvestglow')] class extends Component {
     @enderror
 
     <form method="POST" wire:submit="login" class="space-y-6">
-    <!-- Email Address -->
-    <div>
-        <label for="email" class="block text-sm font-medium mb-2">Email Address</label>
-        <input 
+        <!-- Email Address -->
+        <flux:input 
             wire:model="email"
-            id="email" 
-            type="email" 
-            required 
-            autofocus 
-            autocomplete="email"
-            class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent @error('email') border-destructive @enderror"
+            type="email"
+            label="Email Address"
             placeholder="Enter your email address"
-        >
-    </div>
+            required
+            autofocus
+            autocomplete="email"
+        />
 
-    <!-- Password -->
-    <div>
-        <div class="flex justify-between items-center mb-2">
-            <label for="password" class="block text-sm font-medium">Password</label>
-            @if (Route::has('password.request'))
-                <a href="{{ route('password.request') }}" class="text-sm text-primary hover:text-primary/80 transition-colors">
-                    Forgot your password?
-                </a>
-            @endif
+        <!-- Password -->
+        <div>
+            <div class="flex justify-between items-center mb-2">
+                <flux:label>Password</flux:label>
+                @if (Route::has('password.request'))
+                    <a href="{{ route('password.request') }}" class="text-sm text-primary hover:text-primary/80 transition-colors">
+                        Forgot password?
+                    </a>
+                @endif
+            </div>
+            <flux:input 
+                wire:model="password"
+                type="password" 
+                placeholder="Enter your password"
+                required 
+                autocomplete="current-password"
+            />
         </div>
-        <input 
-            wire:model="password"
-            id="password" 
-            type="password" 
-            required 
-            autocomplete="current-password"
-            class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent @error('password') border-destructive @enderror"
-            placeholder="Enter your password"
-        >
-    </div>
 
-    <!-- Remember Me -->
-    <div class="flex items-center">
-        <input 
+        <!-- Remember Me -->
+        <flux:checkbox 
             wire:model="remember"
-            id="remember" 
-            type="checkbox" 
-            class="h-4 w-4 text-primary focus:ring-primary border-border rounded"
-        >
-        <label for="remember" class="ml-2 block text-sm text-muted-foreground">
-            Remember me
-        </label>
-    </div>
+            label="Remember me"
+        />
 
-    <!-- Submit Button -->
-    <div>
-        <x-ui.loading-button type="submit" class="w-full" wire:submit="login" loadingText="Logging in...">
-            Log In
-        </x-ui.loading-button>
-    </div>
+        <!-- Submit Button -->
+        <flux:button 
+            type="submit" 
+            variant="primary" 
+            class="w-full"
+        >
+            <span wire:loading.remove wire:target="login">Log In</span>
+            <span wire:loading wire:target="login">Logging in...</span>
+        </flux:button>
     </form>
 </div>

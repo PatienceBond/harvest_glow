@@ -97,54 +97,45 @@ new #[Layout('components.layouts.auth.harvestglow')] class extends Component {
     @enderror
 
     <form method="POST" wire:submit="resetPassword" class="space-y-6">
-    <!-- Email Address -->
-    <div>
-        <label for="email" class="block text-sm font-medium mb-2">Email Address</label>
-        <input 
+        <!-- Email Address -->
+        <flux:input 
             wire:model="email"
-            id="email" 
-            type="email" 
-            required 
-            autocomplete="email"
-            class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent @error('email') border-destructive @enderror"
+            type="email"
+            label="Email Address"
             placeholder="Enter your email address"
-        >
-    </div>
+            required
+            autocomplete="email"
+        />
 
-    <!-- Password -->
-    <div>
-        <label for="password" class="block text-sm font-medium mb-2">New Password</label>
-        <input 
+        <!-- Password -->
+        <flux:input 
             wire:model="password"
-            id="password" 
-            type="password" 
-            required 
-            autocomplete="new-password"
-            class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent @error('password') border-destructive @enderror"
+            type="password"
+            label="New Password"
             placeholder="Enter your new password"
-        >
-    </div>
-
-    <!-- Confirm Password -->
-    <div>
-        <label for="password_confirmation" class="block text-sm font-medium mb-2">Confirm New Password</label>
-        <input 
-            wire:model="password_confirmation"
-            id="password_confirmation" 
-            type="password" 
-            required 
+            required
             autocomplete="new-password"
-            class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-            placeholder="Confirm your new password"
-        >
-    </div>
+        />
 
-    <!-- Submit Button -->
-    <div>
-        <x-ui.loading-button type="submit" class="w-full" wire:submit="resetPassword" loadingText="Resetting...">
-            Reset Password
-        </x-ui.loading-button>
-    </div>
+        <!-- Confirm Password -->
+        <flux:input 
+            wire:model="password_confirmation"
+            type="password"
+            label="Confirm New Password"
+            placeholder="Confirm your new password"
+            required
+            autocomplete="new-password"
+        />
+
+        <!-- Submit Button -->
+        <flux:button 
+            type="submit" 
+            variant="primary" 
+            class="w-full"
+        >
+            <span wire:loading.remove wire:target="resetPassword">Reset Password</span>
+            <span wire:loading wire:target="resetPassword">Resetting...</span>
+        </flux:button>
     </form>
 
     <div class="text-center text-sm text-muted-foreground">

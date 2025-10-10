@@ -17,36 +17,50 @@
                     description="Our work is creating measurable change in communities across Malawi."
                 />
 
-                <!-- Impact Metrics Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                    <x-ui.impact-metric-card
-                        value="100,000+"
-                        title="Farmers Engaged"
-                        description="Smallholder farmers provided with access to certified seeds, training, and credit facilities."
-                        icon="heroicon-o-users"
-                    />
+                <!-- Impact Metrics Grid - Dynamic from Database -->
+                @if($featuredMetrics && $featuredMetrics->count() > 0)
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                        @foreach($featuredMetrics as $metric)
+                            <x-ui.impact-metric-card
+                                value="{{ $metric->value }}{{ $metric->unit ? $metric->unit : '' }}"
+                                title="{{ $metric->title }}"
+                                description="{{ $metric->description }}"
+                                icon="heroicon-o-{{ $metric->icon ?? 'chart-bar' }}"
+                            />
+                        @endforeach
+                    </div>
+                @else
+                    <!-- Fallback if no metrics -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                        <x-ui.impact-metric-card
+                            value="100,000+"
+                            title="Farmers Engaged"
+                            description="Smallholder farmers provided with access to certified seeds, training, and credit facilities."
+                            icon="heroicon-o-users"
+                        />
 
-                    <x-ui.impact-metric-card
-                        value="500+"
-                        title="Communities Served"
-                        description="Rural communities receiving agricultural support and annual medical outreach services."
-                        icon="heroicon-o-building-office-2"
-                    />
+                        <x-ui.impact-metric-card
+                            value="500+"
+                            title="Communities Served"
+                            description="Rural communities receiving agricultural support and annual medical outreach services."
+                            icon="heroicon-o-building-office-2"
+                        />
 
-                    <x-ui.impact-metric-card
-                        value="10,855+"
-                        title="Metric Tons Produced"
-                        description="Increased crop production through certified seed access and improved farming techniques."
-                        icon="heroicon-o-scale"
-                    />
+                        <x-ui.impact-metric-card
+                            value="10,855+"
+                            title="Metric Tons Produced"
+                            description="Increased crop production through certified seed access and improved farming techniques."
+                            icon="heroicon-o-scale"
+                        />
 
-                    <x-ui.impact-metric-card
-                        value="40%"
-                        title="Income Increase"
-                        description="Average household income growth for participating farmers through improved yields and value addition."
-                        icon="heroicon-o-arrow-trending-up"
-                    />
-                </div>
+                        <x-ui.impact-metric-card
+                            value="40%"
+                            title="Income Increase"
+                            description="Average household income growth for participating farmers through improved yields and value addition."
+                            icon="heroicon-o-arrow-trending-up"
+                        />
+                    </div>
+                @endif
             </x-ui.container>
         </section>
 

@@ -5,12 +5,13 @@ use Laravel\Fortify\Actions\DisableTwoFactorAuthentication;
 use Laravel\Fortify\Actions\EnableTwoFactorAuthentication;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 use Symfony\Component\HttpFoundation\Response;
 
-new class extends Component {
+new #[Layout('components.layouts.dashboard.dashboard-layout')] class extends Component {
     #[Locked]
     public bool $twoFactorEnabled;
 
@@ -177,13 +178,17 @@ new class extends Component {
     }
 } ?>
 
-<section class="w-full">
-    @include('partials.settings-heading')
+<div class="py-8 px-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-foreground">Settings</h1>
+            <p class="text-muted-foreground mt-2">Manage your profile and account settings</p>
+        </div>
 
-    <x-settings.layout
-        :heading="__('Two Factor Authentication')"
-        :subheading="__('Manage your two-factor authentication settings')"
-    >
+        <x-settings.layout
+            :heading="__('Two Factor Authentication')"
+            :subheading="__('Manage your two-factor authentication settings')"
+        >
         <div class="flex flex-col w-full mx-auto space-y-6 text-sm" wire:cloak>
             @if ($twoFactorEnabled)
                 <div class="space-y-4">
@@ -382,4 +387,5 @@ new class extends Component {
             @endif
         </div>
     </flux:modal>
-</section>
+    </div>
+</div>

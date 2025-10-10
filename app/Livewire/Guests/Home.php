@@ -3,6 +3,7 @@
 namespace App\Livewire\Guests;
 
 use App\Models\Post;
+use App\Models\ImpactMetric;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -11,6 +12,7 @@ class Home extends Component
 {
     public $heroImages = [];
     public $latestPosts;
+    public $featuredMetrics;
 
     public function mount()
     {
@@ -34,12 +36,18 @@ class Home extends Component
                 ->take(3)
                 ->get();
         });
+
+        // Fetch featured impact metrics
+        $this->featuredMetrics = cache()->remember('home.featured_metrics', 3600, function () {
+            return ImpactMetric::featured()->ordered()->get();
+        });
     }
 
     public function render()
     {
         return view('livewire.guests.home', [
             'latestPosts' => $this->latestPosts,
+            'featuredMetrics' => $this->featuredMetrics,
         ]);
     }
 }
