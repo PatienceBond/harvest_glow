@@ -30,51 +30,12 @@
         />
 
         <!-- Featured Image -->
-        <flux:field>
-            <flux:label>Featured Image</flux:label>
-            
-            @if($existing_featured_image && !$featured_image)
-                <div class="mb-3">
-                    <img src="{{ Storage::url($existing_featured_image) }}" alt="Current image" class="w-48 h-32 object-cover rounded-lg border border-border">
-                    <flux:button 
-                        wire:click="removeExistingImage"
-                        variant="ghost"
-                        size="sm"
-                        type="button"
-                        class="mt-2"
-                    >
-                        Remove existing image
-                    </flux:button>
-                </div>
-            @endif
-
-            <input 
-                type="file" 
-                wire:model="featured_image"
-                accept="image/*"
-                class="w-full border border-border rounded-lg p-2"
-            />
-            
-            @if($featured_image)
-                <div class="mt-3 flex items-center gap-2">
-                    <span class="text-sm text-muted-foreground">New image selected</span>
-                    <flux:button 
-                        wire:click="removeFile"
-                        variant="ghost"
-                        size="sm"
-                        type="button"
-                    >
-                        Remove
-                    </flux:button>
-                </div>
-            @endif
-
-            <flux:error name="featured_image" />
-            
-            <div wire:loading wire:target="featured_image" class="mt-2 text-sm text-muted-foreground">
-                Uploading...
-            </div>
-        </flux:field>
+        <x-ui.post-image-upload 
+            wire-model="featured_image"
+            :existing-image="$existing_featured_image"
+            label="Featured Image"
+            help-text="Upload a featured image for your post (Max 2MB, JPG, PNG, WEBP)"
+        />
 
         <!-- Category -->
         <flux:select 
