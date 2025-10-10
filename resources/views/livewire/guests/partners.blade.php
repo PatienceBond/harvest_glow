@@ -56,7 +56,7 @@
                         description="The Talloires Network is an international association of institutions committed to strengthening the civic roles and social responsibilities of higher education."
                         website="https://talloiresnetwork.tufts.edu"
                         category="Strategic Partner"
-                        logo="{{ asset('images/logos/mastercard.png') }}"
+                        logo="{{ asset('images/partners/Talloires_Network_Logo.png') }}"
                     />
 
                     <x-ui.partner-card
@@ -85,7 +85,7 @@
                         description="Malawi's Department of Agricultural Research conducts research on crops, livestock, and natural resources to improve agricultural productivity and sustainability."
                         website="https://www.malawi.gov.mw"
                         category="Research Partner"
-                        logo="{{ asset('images/partners/mastercard.png') }}"
+                       
                     />
                 </div>
             </x-ui.container>
@@ -106,7 +106,7 @@
                         description="We work closely with district councils and local government authorities to ensure our programs align with local development priorities."
                         website="#"
                         category="Implementation Partner"
-                        logo="{{ asset('images/partners/mastercard.png') }}"
+                        
                     />
 
                     <x-ui.partner-card
@@ -114,7 +114,7 @@
                         description="We partner with local farmer cooperatives to implement our programs and ensure community ownership and sustainability."
                         website="#"
                         category="Implementation Partner"
-                        logo="{{ asset('images/partners/mastercard.png') }}"
+                       
                     />
                 </div>
             </x-ui.container>

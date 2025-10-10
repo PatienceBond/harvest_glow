@@ -10,61 +10,85 @@
     <!-- Stats Overview -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <!-- Posts Count -->
-        <div class="bg-card border border-border rounded-lg p-6">
-            <div class="flex items-center">
-                <div class="flex-shrink-0">
-                    <div class="w-8 h-8 bg-blue-500/10 rounded-lg flex items-center justify-center">
-                        <x-heroicon-o-document-text class="w-5 h-5 text-blue-600" />
+        <div class="group relative bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+            <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full -ml-12 -mb-12"></div>
+            <div class="relative">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                        <x-heroicon-o-document-text class="w-6 h-6 text-white" />
+                    </div>
+                    <div class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full">
+                        <span class="text-xs font-medium text-white">Total</span>
                     </div>
                 </div>
-                <div class="ml-4">
-                    <p class="text-sm font-medium text-muted-foreground">Total Posts</p>
-                    <p class="text-2xl font-bold text-foreground">{{ $totalPosts }}</p>
+                <div>
+                    <p class="text-sm font-medium text-blue-100 mb-1">Total Posts</p>
+                    <p class="text-4xl font-bold text-white">{{ $totalPosts }}</p>
+                    <p class="text-xs text-blue-100 mt-2">All content items</p>
                 </div>
             </div>
         </div>
 
         <!-- Published Posts -->
-        <div class="bg-card border border-border rounded-lg p-6">
-            <div class="flex items-center">
-                <div class="flex-shrink-0">
-                    <div class="w-8 h-8 bg-green-500/10 rounded-lg flex items-center justify-center">
-                        <x-heroicon-o-check-circle class="w-5 h-5 text-green-600" />
+        <div class="group relative bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+            <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full -ml-12 -mb-12"></div>
+            <div class="relative">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                        <x-heroicon-o-check-circle class="w-6 h-6 text-white" />
+                    </div>
+                    <div class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full">
+                        <span class="text-xs font-medium text-white">Live</span>
                     </div>
                 </div>
-                <div class="ml-4">
-                    <p class="text-sm font-medium text-muted-foreground">Published</p>
-                    <p class="text-2xl font-bold text-foreground">{{ $publishedPosts }}</p>
+                <div>
+                    <p class="text-sm font-medium text-green-100 mb-1">Published</p>
+                    <p class="text-4xl font-bold text-white">{{ $publishedPosts }}</p>
+                    <p class="text-xs text-green-100 mt-2">{{ $totalPosts > 0 ? round(($publishedPosts / $totalPosts) * 100) : 0 }}% of total posts</p>
                 </div>
             </div>
         </div>
 
         <!-- Categories -->
-        <div class="bg-card border border-border rounded-lg p-6">
-            <div class="flex items-center">
-                <div class="flex-shrink-0">
-                    <div class="w-8 h-8 bg-purple-500/10 rounded-lg flex items-center justify-center">
-                        <x-heroicon-o-tag class="w-5 h-5 text-purple-600" />
+        <div class="group relative bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+            <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full -ml-12 -mb-12"></div>
+            <div class="relative">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                        <x-heroicon-o-tag class="w-6 h-6 text-white" />
+                    </div>
+                    <div class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full">
+                        <span class="text-xs font-medium text-white">Active</span>
                     </div>
                 </div>
-                <div class="ml-4">
-                    <p class="text-sm font-medium text-muted-foreground">Categories</p>
-                    <p class="text-2xl font-bold text-foreground">{{ $totalCategories }}</p>
+                <div>
+                    <p class="text-sm font-medium text-purple-100 mb-1">Categories</p>
+                    <p class="text-4xl font-bold text-white">{{ $totalCategories }}</p>
+                    <p class="text-xs text-purple-100 mt-2">Content classification</p>
                 </div>
             </div>
         </div>
 
         <!-- Impact Metrics -->
-        <div class="bg-card border border-border rounded-lg p-6">
-            <div class="flex items-center">
-                <div class="flex-shrink-0">
-                    <div class="w-8 h-8 bg-orange-500/10 rounded-lg flex items-center justify-center">
-                        <x-heroicon-o-chart-bar class="w-5 h-5 text-orange-600" />
+        <div class="group relative bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+            <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full -ml-12 -mb-12"></div>
+            <div class="relative">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                        <x-heroicon-o-chart-bar class="w-6 h-6 text-white" />
+                    </div>
+                    <div class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full">
+                        <span class="text-xs font-medium text-white">Impact</span>
                     </div>
                 </div>
-                <div class="ml-4">
-                    <p class="text-sm font-medium text-muted-foreground">Metrics</p>
-                    <p class="text-2xl font-bold text-foreground">{{ $totalMetrics }}</p>
+                <div>
+                    <p class="text-sm font-medium text-orange-100 mb-1">Metrics</p>
+                    <p class="text-4xl font-bold text-white">{{ $totalMetrics }}</p>
+                    <p class="text-xs text-orange-100 mt-2">Tracked indicators</p>
                 </div>
             </div>
         </div>

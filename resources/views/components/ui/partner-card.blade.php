@@ -13,9 +13,9 @@
             @if($logo)
                 <img src="{{ $logo }}" alt="{{ $name }}" class="h-16 w-auto object-contain">
             @else
-                <div class="h-16 w-32 bg-primary/10 rounded flex items-center justify-center">
+                <!-- <div class="h-16 w-32 bg-primary/10 rounded flex items-center justify-center">
                     <span class="text-primary font-bold text-lg">{{ $name }}</span>
-                </div>
+                </div> -->
             @endif
         </div>
 

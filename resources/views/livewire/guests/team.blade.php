@@ -18,7 +18,7 @@
                 />
 
                 <!-- Leadership Team Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     @forelse($leadershipTeam as $member)
                         <x-ui.team-member-card
                             :name="$member->name"
@@ -43,7 +43,7 @@
                 />
 
                 <!-- Team Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     @forelse($ourTeam as $member)
                         <x-ui.team-member-card
                             :name="$member->name"
