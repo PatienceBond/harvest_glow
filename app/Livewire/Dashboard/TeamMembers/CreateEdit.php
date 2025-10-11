@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\TeamMembers;
 
 use App\Models\TeamMember;
+use App\Services\ImageService;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -80,8 +81,9 @@ class CreateEdit extends Component
                     Storage::disk('public')->delete($this->existing_photo);
                 }
 
-                // Store new photo
-                $photoPath = $this->photo->store('team', 'public');
+                // Optimize and store new photo (400x400px square, WebP)
+                $imageService = new ImageService();
+                $photoPath = $imageService->optimizeTeamPhoto($this->photo, 400);
             }
 
             $data = [

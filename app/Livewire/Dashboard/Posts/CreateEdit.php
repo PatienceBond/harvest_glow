@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Posts;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Services\ImageService;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Livewire\Attributes\On;
@@ -82,8 +83,11 @@ class CreateEdit extends Component
                     Storage::disk('public')->delete($this->existing_featured_image);
                 }
 
-                // Store new image
-                $featuredImagePath = $this->featured_image->store('posts', 'public');
+                // Optimize and store new image (1200px width, WebP, with thumbnail)
+                $imageService = new ImageService();
+                $result = $imageService->optimizePostImage($this->featured_image);
+                $featuredImagePath = $result['path']; // Main optimized image
+                // Note: thumbnail is at $result['thumbnail'] if needed later
             }
 
             $data = [

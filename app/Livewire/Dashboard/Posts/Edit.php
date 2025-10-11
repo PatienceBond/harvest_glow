@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Posts;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Services\ImageService;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -67,8 +68,10 @@ class Edit extends Component
                 \Storage::disk('public')->delete($this->existing_featured_image);
             }
 
-            // Store new image
-            $featuredImagePath = $this->featured_image->store('posts', 'public');
+            // Optimize and store new image
+            $imageService = new ImageService();
+            $result = $imageService->optimizePostImage($this->featured_image);
+            $featuredImagePath = $result['path'];
         }
 
         $this->post->update([

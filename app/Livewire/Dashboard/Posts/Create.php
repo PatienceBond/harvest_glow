@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Posts;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Services\ImageService;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -46,10 +47,12 @@ class Create extends Component
     {
         $this->validate();
 
-        // Handle file upload
+        // Handle file upload with optimization
         $featuredImagePath = null;
         if ($this->featured_image) {
-            $featuredImagePath = $this->featured_image->store('posts', 'public');
+            $imageService = new ImageService();
+            $result = $imageService->optimizePostImage($this->featured_image);
+            $featuredImagePath = $result['path']; // Optimized: 1200px width, WebP
         }
 
         $post = Post::create([
