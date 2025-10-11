@@ -117,5 +117,6 @@
     <x-includes.guest-footer />
 
     @livewireScripts
+    @fluxScripts
 </body>
 </html>

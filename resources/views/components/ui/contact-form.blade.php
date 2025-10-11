@@ -1,48 +1,50 @@
-@props([
-    'action' => '#',
-    'method' => 'POST'
-])
-
-<form action="{{ $action }}" method="{{ $method }}" {{ $attributes->merge(['class' => 'space-y-6']) }}>
-    @csrf
+<form wire:submit="submitContactForm" {{ $attributes->merge(['class' => 'space-y-6']) }}>
     
     <!-- Name Field -->
-    <div>
-        <label for="name" class="block text-sm font-medium mb-2">Name</label>
-        <input type="text" id="name" name="name" required
-               class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-               placeholder="Your name">
-    </div>
-    
+    <flux:input 
+        wire:model="name"
+        type="text"
+        label="Name"
+        placeholder="Your name"
+        required
+    />
+
     <!-- Email Field -->
-    <div>
-        <label for="email" class="block text-sm font-medium mb-2">Email</label>
-        <input type="email" id="email" name="email" required
-               class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-               placeholder="Your email address">
-    </div>
+    <flux:input 
+        wire:model="email"
+        type="email"
+        label="Email"
+        placeholder="Your email address"
+        required
+    />
 
     <!-- Subject Field -->
-    <div>
-        <label for="subject" class="block text-sm font-medium mb-2">Subject</label>
-        <input type="text" id="subject" name="subject" required
-               class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-               placeholder="Subject of your message">
-    </div>
+    <flux:input 
+        wire:model="subject"
+        type="text"
+        label="Subject"
+        placeholder="Subject of your message"
+        required
+    />
 
     <!-- Message Field -->
-    <div>
-        <label for="message" class="block text-sm font-medium mb-2">Message</label>
-        <textarea id="message" name="message" rows="6" required
-                  class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
-                  placeholder="Your message"></textarea>
-    </div>
+    <flux:textarea 
+        wire:model="message"
+        label="Message"
+        placeholder="Your message"
+        rows="6"
+        required
+    />
 
     <!-- Submit Button -->
     <div class="flex justify-end">
-        <button type="submit" 
-                class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors font-medium">
-            Send Message
-        </button>
+        <flux:button 
+            type="submit" 
+            variant="primary"
+            class="px-8"
+        >
+            <span wire:loading.remove wire:target="submitContactForm">Send Message</span>
+            <span wire:loading wire:target="submitContactForm">Sending...</span>
+        </flux:button>
     </div>
 </form>
