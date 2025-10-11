@@ -116,6 +116,9 @@
     <!-- Footer -->
     <x-includes.guest-footer />
 
+    <!-- Toast Notifications -->
+    <livewire:components.toast />
+
     @livewireScripts
     @fluxScripts
 </body>

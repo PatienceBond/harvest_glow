@@ -84,9 +84,16 @@ Once you update your `.env` with the correct `MAIL_PASSWORD`, the email will be 
 
 ### After Submission:
 
--   **Success**: Green banner with "Thank you for your message! We'll get back to you soon."
--   **Error**: Red banner with error message (if mail fails)
--   Form fields are cleared on success
+-   **Success**:
+    -   ✅ Green inline banner with "Thank you for your message! We'll get back to you soon."
+    -   ✅ Success toast notification (top-right corner)
+    -   ✅ Form fields are cleared on success
+-   **Error**:
+    -   ✅ Red inline banner with error message (if mail fails)
+    -   ✅ Error toast notification (top-right corner)
+-   **Validation Error**:
+    -   ✅ Field-level error messages below inputs
+    -   ✅ Toast notification "Please check the form for errors"
 
 ## 🔧 Next Step: Fix Email Authentication
 

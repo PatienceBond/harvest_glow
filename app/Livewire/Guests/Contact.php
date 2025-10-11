@@ -35,7 +35,13 @@ class Contact extends Component
 
     public function submitContactForm()
     {
-        $validated = $this->validate();
+        try {
+            $validated = $this->validate();
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Show validation error toast
+            $this->dispatch('showToast', message: 'Please check the form for errors.', type: 'error');
+            throw $e;
+        }
 
         try {
             // Send email to your organization's email
@@ -50,8 +56,9 @@ class Contact extends Component
             // Reset form fields
             $this->reset(['name', 'email', 'subject', 'message']);
 
-            // Show success message
+            // Show success message (both inline and toast)
             session()->flash('success', 'Thank you for your message! We\'ll get back to you soon.');
+            $this->dispatch('showToast', message: 'Message sent successfully! We\'ll get back to you soon.', type: 'success');
 
             // Scroll to top to show the success message
             $this->dispatch('scroll-to-top');
@@ -60,8 +67,9 @@ class Contact extends Component
             // Log the error
             logger()->error('Contact form email failed: ' . $e->getMessage());
 
-            // Show error message to user
+            // Show error message to user (both inline and toast)
             session()->flash('error', 'Sorry, there was an error sending your message. Please try again or contact us directly at info@harvestglow.org.');
+            $this->dispatch('showToast', message: 'Failed to send message. Please try again.', type: 'error');
         }
     }
 
