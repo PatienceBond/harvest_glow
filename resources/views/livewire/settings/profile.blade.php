@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Services\ImageService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -48,15 +49,16 @@ new #[Layout('components.layouts.dashboard.dashboard-layout')] class extends Com
             'avatar' => ['nullable', 'image', 'max:1024'], // Max 1MB
         ]);
 
-        // Handle avatar upload
+        // Handle avatar upload with optimization
         if ($this->avatar) {
             // Delete old avatar if exists
             if ($user->avatar) {
                 Storage::disk('public')->delete($user->avatar);
             }
             
-            // Store new avatar
-            $avatarPath = $this->avatar->store('avatars', 'public');
+            // Optimize and store new avatar (200x200px, square crop, WebP)
+            $imageService = new ImageService();
+            $avatarPath = $imageService->optimizeAvatar($this->avatar, 200);
             $validated['avatar'] = $avatarPath;
         }
 

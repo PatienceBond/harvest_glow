@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Users;
 
 use App\Models\User;
+use App\Services\ImageService;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
@@ -72,10 +73,12 @@ class CreateEdit extends Component
 
         $validated = $this->validate($rules);
 
-        // Handle avatar upload
+        // Handle avatar upload with optimization
         $avatarPath = null;
         if ($this->avatar) {
-            $avatarPath = $this->avatar->store('avatars', 'public');
+            $imageService = new ImageService();
+            // Optimize avatar: 200x200px, square crop, WebP format
+            $avatarPath = $imageService->optimizeAvatar($this->avatar, 200);
         }
 
         if ($this->userId) {
