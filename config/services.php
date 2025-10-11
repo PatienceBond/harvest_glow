@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'deepseek' => [
+        'api_key' => env('DEEPSEEK_API_KEY'),
+        'api_url' => env('DEEPSEEK_API_URL', 'https://openrouter.ai/api/v1/chat/completions'),
+        'model' => env('DEEPSEEK_MODEL', 'deepseek/deepseek-chat-v3.1:free'),
+    ],
+
 ];

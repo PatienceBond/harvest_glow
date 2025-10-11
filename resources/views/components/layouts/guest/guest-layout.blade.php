@@ -135,6 +135,9 @@
     <!-- Toast Notifications -->
     <livewire:components.toast />
 
+    <!-- AI Chat Widget -->
+    <livewire:guests.ai-chat-widget />
+
     @livewireScripts
     @fluxScripts
 </body>
