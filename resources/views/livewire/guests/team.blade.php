@@ -1,12 +1,22 @@
 <div>
     <!-- Hero Section -->
-    <x-ui.hero
-        image="{{ asset('images/hero/hero1.webp') }}"
-        heading="Our Team"
-        subheading="Meet the dedicated professionals working to transform agriculture in Malawi."
-        height="500px"
-        class="text-white"
-    />
+    @if($heroSection)
+        <x-ui.hero
+            image="{{ $heroSection->image ? Storage::url($heroSection->image) : asset('images/hero/hero1.webp') }}"
+            heading="{{ $heroSection->heading }}"
+            subheading="{{ $heroSection->subheading }}"
+            height="{{ $heroSection->height }}"
+            class="text-white"
+        />
+    @else
+        <x-ui.hero
+            image="{{ asset('images/hero/hero1.webp') }}"
+            heading="Our Team"
+            subheading="Meet the dedicated professionals working to transform agriculture in Malawi."
+            height="500px"
+            class="text-white"
+        />
+    @endif
 
     <x-ui.vstack>
         <!-- Leadership Team Section -->

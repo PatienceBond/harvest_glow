@@ -65,7 +65,7 @@ class HeroList extends Component
 
     public function render()
     {
-        $heroes = HeroSection::orderBy('page')->get();
+        $heroes = HeroSection::with('images')->orderBy('page')->get();
 
         return view('livewire.dashboard.hero-sections.hero-list', [
             'heroes' => $heroes,

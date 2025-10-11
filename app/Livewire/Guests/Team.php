@@ -3,12 +3,23 @@
 namespace App\Livewire\Guests;
 
 use App\Models\TeamMember;
+use App\Models\HeroSection;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 #[Layout('components.layouts.guest.guest-layout')]
 class Team extends Component
 {
+    public $heroSection;
+
+    public function mount()
+    {
+        // Fetch hero section for team page
+        $this->heroSection = cache()->remember('team.hero', 3600, function () {
+            return HeroSection::forPage('team');
+        });
+    }
+
     public function render()
     {
         $leadershipTeam = TeamMember::active()

@@ -11,7 +11,25 @@
         @forelse($heroes as $hero)
             <div class="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
                 <!-- Hero Image Preview -->
-                @if($hero->image)
+                @if($hero->page === 'home' && $hero->images->count() > 0)
+                    <!-- Show slider images for home page -->
+                    <div class="relative h-48 overflow-hidden">
+                        <div class="grid grid-cols-2 h-full">
+                            @foreach($hero->images->take(4) as $sliderImg)
+                                <img src="{{ Storage::url($sliderImg->image_path) }}" 
+                                     alt="Slider {{ $loop->iteration }}"
+                                     class="w-full h-full object-cover">
+                            @endforeach
+                        </div>
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <div class="text-white text-center p-4">
+                                <h3 class="font-bold text-lg">{{ $hero->heading }}</h3>
+                                <p class="text-xs mt-1">{{ $hero->images->count() }} Slider Images</p>
+                            </div>
+                        </div>
+                    </div>
+                @elseif($hero->image)
+                    <!-- Show single image for other pages -->
                     <div class="relative h-48 overflow-hidden">
                         <img src="{{ Storage::url($hero->image) }}" 
                              alt="{{ $hero->heading }}"

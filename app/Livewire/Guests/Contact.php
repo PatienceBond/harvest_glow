@@ -3,6 +3,7 @@
 namespace App\Livewire\Guests;
 
 use App\Mail\ContactMail;
+use App\Models\HeroSection;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -14,6 +15,7 @@ class Contact extends Component
     public string $email = '';
     public string $subject = '';
     public string $message = '';
+    public $heroSection;
 
     protected $rules = [
         'name' => 'required|string|min:2|max:255',
@@ -32,6 +34,14 @@ class Contact extends Component
         'message.required' => 'Please enter your message.',
         'message.min' => 'Message must be at least 10 characters.',
     ];
+
+    public function mount()
+    {
+        // Fetch hero section for contact page
+        $this->heroSection = cache()->remember('contact.hero', 3600, function () {
+            return HeroSection::forPage('contact');
+        });
+    }
 
     public function submitContactForm()
     {
