@@ -14,13 +14,21 @@ class CreateEdit extends Component
     use WithFileUploads;
 
     public $partnerId = null;
+
     public $name = '';
+
     public $description = '';
+
     public $website = '';
+
     public $category = 'Strategic Partner';
+
     public $logo;
+
     public $existing_logo;
+
     public $order = 0;
+
     public $is_active = true;
 
     #[On('edit-partner')]
@@ -58,7 +66,7 @@ class CreateEdit extends Component
             'description' => 'required|string',
             'website' => 'nullable|url|max:255',
             'category' => 'required|in:Strategic Partner,Research Partner,Implementation Partner',
-            'logo' => 'nullable|image|max:2048',
+            'logo' => 'nullable|image',
             'order' => 'required|integer|min:0',
             'is_active' => 'boolean',
         ]);
@@ -74,7 +82,7 @@ class CreateEdit extends Component
                 }
 
                 // Optimize and store new logo (400x400px square for logos)
-                $imageService = new ImageService();
+                $imageService = new ImageService;
                 $result = $imageService->optimizeAndSave($this->logo, 'partners', 400, 400, 90);
                 $logoPath = $result['path'];
             }
@@ -121,4 +129,3 @@ class CreateEdit extends Component
         return view('livewire.dashboard.partners.create-edit');
     }
 }
-

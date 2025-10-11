@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Dashboard\Posts;
 
-use App\Models\Post;
 use App\Models\Category;
+use App\Models\Post;
 use App\Services\ImageService;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
@@ -16,18 +16,24 @@ class Create extends Component
     use WithFileUploads;
 
     public $title = '';
+
     public $excerpt = '';
+
     public $content = '';
+
     public $featured_image;
+
     public $is_published = false;
+
     public $published_at = '';
+
     public $category_id = '';
 
     protected $rules = [
         'title' => 'required|string|max:255',
         'excerpt' => 'nullable|string|max:500',
         'content' => 'required|string',
-        'featured_image' => 'nullable|image|max:2048',
+        'featured_image' => 'nullable|image',
         'is_published' => 'boolean',
         'published_at' => 'nullable|date',
         'category_id' => 'nullable|exists:categories,id',
@@ -50,7 +56,7 @@ class Create extends Component
         // Handle file upload with optimization
         $featuredImagePath = null;
         if ($this->featured_image) {
-            $imageService = new ImageService();
+            $imageService = new ImageService;
             $result = $imageService->optimizePostImage($this->featured_image);
             $featuredImagePath = $result['path']; // Optimized: 1200px width, WebP
         }
@@ -69,9 +75,9 @@ class Create extends Component
 
         $this->dispatch('showToast', [
             'type' => 'success',
-            'message' => $this->is_published ? 'Post published successfully!' : 'Draft saved successfully!'
+            'message' => $this->is_published ? 'Post published successfully!' : 'Draft saved successfully!',
         ]);
-        
+
         return redirect()->route('dashboard.posts.index');
     }
 

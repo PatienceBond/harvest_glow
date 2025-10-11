@@ -37,7 +37,7 @@ class Edit extends Component
         'title' => 'required|string|max:255',
         'excerpt' => 'nullable|string|max:500',
         'content' => 'required|string',
-        'featured_image' => 'nullable|image|max:2048',
+        'featured_image' => 'nullable|image',
         'is_published' => 'boolean',
         'published_at' => 'nullable|date',
         'category_id' => 'nullable|exists:categories,id',
@@ -69,7 +69,7 @@ class Edit extends Component
             }
 
             // Optimize and store new image
-            $imageService = new ImageService();
+            $imageService = new ImageService;
             $result = $imageService->optimizePostImage($this->featured_image);
             $featuredImagePath = $result['path'];
         }

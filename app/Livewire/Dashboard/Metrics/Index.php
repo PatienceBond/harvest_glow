@@ -13,16 +13,27 @@ class Index extends Component
     use WithFileUploads;
 
     public $showModal = false;
+
     public $editing = false;
+
     public $title = '';
+
     public $value = '';
+
     public $unit = '';
+
     public $description = '';
+
     public $icon_emoji = '';
+
     public $icon_image;
+
     public $color = '#388E3C';
+
     public $is_featured = false;
+
     public $sort_order = 0;
+
     public $metricId = null;
 
     protected $rules = [
@@ -31,7 +42,7 @@ class Index extends Component
         'unit' => 'nullable|string|max:50',
         'description' => 'nullable|string|max:500',
         'icon_emoji' => 'nullable|string|max:10',
-        'icon_image' => 'nullable|image|max:512',
+        'icon_image' => 'nullable|image',
         'color' => 'required|string|max:7',
         'is_featured' => 'boolean',
         'sort_order' => 'integer|min:0',
@@ -40,8 +51,8 @@ class Index extends Component
     public function create()
     {
         $this->reset([
-            'title', 'value', 'unit', 'description', 'icon_emoji', 'icon_image', 'color', 
-            'is_featured', 'sort_order', 'metricId', 'editing'
+            'title', 'value', 'unit', 'description', 'icon_emoji', 'icon_image', 'color',
+            'is_featured', 'sort_order', 'metricId', 'editing',
         ]);
         $this->showModal = true;
     }
@@ -89,13 +100,13 @@ class Index extends Component
             $metric->update($data);
             $this->dispatch('showToast', [
                 'type' => 'success',
-                'message' => 'Metric updated successfully!'
+                'message' => 'Metric updated successfully!',
             ]);
         } else {
             ImpactMetric::create($data);
             $this->dispatch('showToast', [
                 'type' => 'success',
-                'message' => 'Metric created successfully!'
+                'message' => 'Metric created successfully!',
             ]);
         }
 
@@ -108,7 +119,7 @@ class Index extends Component
         $metric->delete();
         $this->dispatch('showToast', [
             'type' => 'success',
-            'message' => 'Metric deleted successfully!'
+            'message' => 'Metric deleted successfully!',
         ]);
     }
 
@@ -116,8 +127,8 @@ class Index extends Component
     {
         $this->showModal = false;
         $this->reset([
-            'title', 'value', 'unit', 'description', 'icon_emoji', 'icon_image', 'color', 
-            'is_featured', 'sort_order', 'metricId', 'editing'
+            'title', 'value', 'unit', 'description', 'icon_emoji', 'icon_image', 'color',
+            'is_featured', 'sort_order', 'metricId', 'editing',
         ]);
     }
 

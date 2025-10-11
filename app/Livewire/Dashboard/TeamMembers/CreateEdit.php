@@ -66,7 +66,7 @@ class CreateEdit extends Component
             'title' => 'required|string|max:255',
             'bio' => 'nullable|string',
             'type' => 'required|in:leadership,team,board',
-            'photo' => 'nullable|image|max:2048',
+            'photo' => 'nullable|image',
             'order' => 'required|integer|min:0',
             'is_active' => 'boolean',
         ]);
@@ -82,7 +82,7 @@ class CreateEdit extends Component
                 }
 
                 // Optimize and store new photo (400x400px square, WebP)
-                $imageService = new ImageService();
+                $imageService = new ImageService;
                 $photoPath = $imageService->optimizeTeamPhoto($this->photo, 400);
             }
 

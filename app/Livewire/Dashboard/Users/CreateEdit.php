@@ -16,17 +16,23 @@ class CreateEdit extends Component
     use WithFileUploads;
 
     public $userId = null;
+
     public $name = '';
+
     public $email = '';
+
     public $password = '';
+
     public $password_confirmation = '';
+
     public $avatar;
+
     public $existing_avatar;
 
     public function mount($userId = null)
     {
         $this->userId = $userId;
-        
+
         if ($userId) {
             $user = User::find($userId);
             if ($user) {
@@ -62,11 +68,11 @@ class CreateEdit extends Component
         $rules = [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($this->userId, 'id')],
-            'avatar' => ['nullable', 'image', 'max:1024'],
+            'avatar' => ['nullable', 'image'],
         ];
 
-        if (!$this->userId || $this->password) {
-            $rules['password'] = $this->userId 
+        if (! $this->userId || $this->password) {
+            $rules['password'] = $this->userId
                 ? ['nullable', 'string', 'min:8', 'confirmed']
                 : ['required', 'string', 'min:8', 'confirmed'];
         }
@@ -76,7 +82,7 @@ class CreateEdit extends Component
         // Handle avatar upload with optimization
         $avatarPath = null;
         if ($this->avatar) {
-            $imageService = new ImageService();
+            $imageService = new ImageService;
             // Optimize avatar: 200x200px, square crop, WebP format
             $avatarPath = $imageService->optimizeAvatar($this->avatar, 200);
         }
@@ -86,7 +92,7 @@ class CreateEdit extends Component
             $user = User::find($this->userId);
             $user->name = $validated['name'];
             $user->email = $validated['email'];
-            
+
             if ($avatarPath) {
                 // Delete old avatar if exists
                 if ($user->avatar) {
@@ -94,13 +100,13 @@ class CreateEdit extends Component
                 }
                 $user->avatar = $avatarPath;
             }
-            
+
             if ($this->password) {
                 $user->password = Hash::make($this->password);
             }
-            
+
             $user->save();
-            
+
             // Show success toast and flash
             $this->dispatch('showToast', message: 'User updated successfully!', type: 'success');
             session()->flash('success', 'User updated successfully.');
@@ -112,7 +118,7 @@ class CreateEdit extends Component
                 'password' => Hash::make($validated['password']),
                 'avatar' => $avatarPath,
             ]);
-            
+
             // Show success toast and flash
             $this->dispatch('showToast', message: 'User created successfully!', type: 'success');
             session()->flash('success', 'User created successfully.');
@@ -129,4 +135,3 @@ class CreateEdit extends Component
         return view('livewire.dashboard.users.create-edit');
     }
 }
-

@@ -14,11 +14,17 @@ class CreateEdit extends Component
     use WithFileUploads;
 
     public $productId = null;
+
     public $title = '';
+
     public $description = '';
+
     public $image;
+
     public $existing_image;
+
     public $order = 0;
+
     public $is_active = true;
 
     #[On('edit-product')]
@@ -50,7 +56,7 @@ class CreateEdit extends Component
         $this->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image',
             'order' => 'required|integer|min:0',
             'is_active' => 'boolean',
         ]);
@@ -66,7 +72,7 @@ class CreateEdit extends Component
                 }
 
                 // Optimize and store new image (800x600px, WebP)
-                $imageService = new ImageService();
+                $imageService = new ImageService;
                 $result = $imageService->optimizeAndSave($this->image, 'products', 800, 600, 85);
                 $imagePath = $result['path'];
             }
