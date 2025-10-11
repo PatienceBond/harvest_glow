@@ -15,6 +15,8 @@ class TeamMemberList extends Component
     public $memberId = null;
 
     #[On('$refresh')]
+    #[On('refresh-members')]
+    #[On('member-saved')]
     public function refresh(): void
     {
         // No logic needed; this just forces re-render

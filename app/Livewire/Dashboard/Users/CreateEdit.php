@@ -100,6 +100,9 @@ class CreateEdit extends Component
             }
             
             $user->save();
+            
+            // Show success toast and flash
+            $this->dispatch('showToast', message: 'User updated successfully!', type: 'success');
             session()->flash('success', 'User updated successfully.');
         } else {
             // Create new user
@@ -109,10 +112,14 @@ class CreateEdit extends Component
                 'password' => Hash::make($validated['password']),
                 'avatar' => $avatarPath,
             ]);
+            
+            // Show success toast and flash
+            $this->dispatch('showToast', message: 'User created successfully!', type: 'success');
             session()->flash('success', 'User created successfully.');
         }
 
         $this->dispatch('user-saved');
+        $this->dispatch('refresh-users'); // Trigger list refresh
         $this->dispatch('close-modal');
         $this->reset();
     }

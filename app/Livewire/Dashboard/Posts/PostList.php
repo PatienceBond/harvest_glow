@@ -18,6 +18,8 @@ class PostList extends Component
     public $postId = null;
 
     #[On('$refresh')]
+    #[On('refresh-posts')]
+    #[On('post-saved')]
     public function refresh(): void
     {
         // No logic needed; this just forces re-render

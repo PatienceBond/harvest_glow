@@ -14,7 +14,12 @@ class UserList extends Component
     public $term = '';
     public $userId = null;
 
-    protected $listeners = ['user-saved' => '$refresh'];
+    #[On('user-saved')]
+    #[On('refresh-users')]
+    public function refresh(): void
+    {
+        // No logic needed; this just forces re-render
+    }
 
     public function updatingTerm()
     {

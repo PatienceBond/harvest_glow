@@ -115,6 +115,7 @@ class CreateEdit extends Component
             $this->dispatch('showToast', message: $message, type: 'success');
 
             $this->dispatch('post-saved');
+            $this->dispatch('refresh-posts'); // Trigger list refresh
         } catch (\Exception $e) {
             $this->dispatch('showToast', message: $e->getMessage(), type: 'error');
         }
