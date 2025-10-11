@@ -32,15 +32,31 @@
 
             <!-- Auth Buttons (hidden on mobile) -->
             <div class="hidden md:flex items-center space-x-4">
-                <livewire:theme-toggle />
+                <!-- Flux Theme Toggle -->
+                <flux:button 
+                    x-data 
+                    x-on:click="$flux.dark = ! $flux.dark" 
+                    icon="moon" 
+                    variant="ghost" 
+                    size="sm"
+                    aria-label="Toggle dark mode"
+                />
                 <x-ui.button-link href="{{ route('contact') }}" variant="primary">
                    Support Our Mission
                 </x-ui.button-link>
             </div>
 
             <!-- Mobile menu button -->
-            <div class="md:hidden flex items-center">
-                <livewire:theme-toggle class="mr-2" />
+            <div class="md:hidden flex items-center space-x-2">
+                <!-- Flux Theme Toggle -->
+                <flux:button 
+                    x-data 
+                    x-on:click="$flux.dark = ! $flux.dark" 
+                    icon="moon" 
+                    variant="ghost" 
+                    size="sm"
+                    aria-label="Toggle dark mode"
+                />
                 <button
                     type="button"
                     @click="mobileMenuOpen = !mobileMenuOpen"
