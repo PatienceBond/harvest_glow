@@ -26,6 +26,9 @@
             <flux:sidebar.item icon="user-group" href="{{ route('dashboard.team.index') }}" :current="request()->routeIs('dashboard.team.*')">Team</flux:sidebar.item>
             <flux:sidebar.item icon="users" href="{{ route('dashboard.users.index') }}" :current="request()->routeIs('dashboard.users.*')">Users</flux:sidebar.item>
             <flux:sidebar.item icon="chart-bar" href="{{ route('dashboard.metrics.index') }}" :current="request()->routeIs('dashboard.metrics.*')">Impact Metrics</flux:sidebar.item>
+            <flux:sidebar.item icon="cube" href="{{ route('dashboard.products.index') }}" :current="request()->routeIs('dashboard.products.*')">Products</flux:sidebar.item>
+            <flux:sidebar.item icon="building-office-2" href="{{ route('dashboard.partners.index') }}" :current="request()->routeIs('dashboard.partners.*')">Partners</flux:sidebar.item>
+            <flux:sidebar.item icon="photo" href="{{ route('dashboard.hero.index') }}" :current="request()->routeIs('dashboard.hero.*')">Hero Sections</flux:sidebar.item>
         </flux:sidebar.nav>
 
         <flux:sidebar.spacer />

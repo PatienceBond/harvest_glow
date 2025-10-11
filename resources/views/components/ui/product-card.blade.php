@@ -1,16 +1,18 @@
 @props([
     'title' => '',
     'description' => '',
-    'image' => ''
+    'image' => null
 ])
 
 <div {{ $attributes->merge(['class' => 'bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow']) }}>
-    <!-- Product Image -->
-    <!-- <div class="aspect-video overflow-hidden">
-        <img src="{{ $image }}"
-             alt="{{ $title }}"
-             class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
-    </div> -->
+    <!-- Product Image (Optional) -->
+    @if($image)
+        <div class="aspect-video overflow-hidden">
+            <img src="{{ $image }}"
+                 alt="{{ $title }}"
+                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+        </div>
+    @endif
 
     <!-- Product Content -->
     <div class="p-6">

@@ -4,6 +4,8 @@ namespace App\Livewire\Guests;
 
 use App\Models\Post;
 use App\Models\ImpactMetric;
+use App\Models\Product;
+use App\Models\HeroSection;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -13,6 +15,8 @@ class Home extends Component
     public $heroImages = [];
     public $latestPosts;
     public $featuredMetrics;
+    public $products;
+    public $heroSection;
 
     public function mount()
     {
@@ -41,6 +45,16 @@ class Home extends Component
         $this->featuredMetrics = cache()->remember('home.featured_metrics', 3600, function () {
             return ImpactMetric::featured()->ordered()->get();
         });
+
+        // Fetch active products
+        $this->products = cache()->remember('home.products', 3600, function () {
+            return Product::active()->ordered()->get();
+        });
+
+        // Fetch hero section for home page
+        $this->heroSection = cache()->remember('home.hero', 3600, function () {
+            return HeroSection::forPage('home');
+        });
     }
 
     public function render()
@@ -48,6 +62,8 @@ class Home extends Component
         return view('livewire.guests.home', [
             'latestPosts' => $this->latestPosts,
             'featuredMetrics' => $this->featuredMetrics,
+            'products' => $this->products,
+            'heroSection' => $this->heroSection,
         ]);
     }
 }

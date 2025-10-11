@@ -1,5 +1,8 @@
 @props([
     'heading' => 'Empowering Farmers, Building Futures',
+    'subheading' => null,
+    'image' => null,
+    'sliderImages' => [],
     'height' => '600px'
 ])
 
@@ -8,10 +11,16 @@
     <div class="absolute inset-0" x-data="{
         currentSlide: 0,
         slides: [
-            '{{ asset('images/landing hero/staff.webp') }}',
-            '{{ asset('images/landing hero/field farm2.webp') }}',
-            '{{ asset('images/landing hero/landing-farm.webp') }}',
-            '{{ asset('images/landing hero/harvest farm.webp') }}'
+            @if(!empty($sliderImages))
+                @foreach($sliderImages as $sliderImage)
+                    '{{ $sliderImage }}',
+                @endforeach
+            @else
+                '{{ asset('images/landing hero/staff.webp') }}',
+                '{{ asset('images/landing hero/field farm2.webp') }}',
+                '{{ asset('images/landing hero/landing-farm.webp') }}',
+                '{{ asset('images/landing hero/harvest farm.webp') }}'
+            @endif
         ],
         autoplay: null,
         init() {
@@ -99,6 +108,12 @@
                 <h1 class="text-white text-5xl sm:text-6xl  font-bold leading-tight mb-8 animate-fade-in drop-shadow-2xl">
                     {{ $heading }}
                 </h1>
+
+                @if($subheading)
+                    <p class="text-white/90 text-xl sm:text-2xl mb-6 animate-fade-in-delay drop-shadow-lg">
+                        {{ $subheading }}
+                    </p>
+                @endif
 
                 @if($slot->isNotEmpty())
                     <div class="mt-8 animate-fade-in-delay text-white/90 text-xl drop-shadow-lg">

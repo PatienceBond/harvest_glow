@@ -1,12 +1,22 @@
 <div>
-    <!-- Hero Section -->
-    <x-ui.hero
-        image="{{ asset('images/hero/hero1.webp') }}"
-        heading="Our Partners"
-        subheading="Collaborating with organizations that share our vision for sustainable agriculture and rural development."
-        height="500px"
-        class="text-white"
-    />
+    <!-- Hero Section (From Database) -->
+    @if($heroSection)
+        <x-ui.hero
+            image="{{ $heroSection->image ? Storage::url($heroSection->image) : asset('images/hero/hero1.webp') }}"
+            heading="{{ $heroSection->heading }}"
+            subheading="{{ $heroSection->subheading }}"
+            height="{{ $heroSection->height }}"
+            class="text-white"
+        />
+    @else
+        <x-ui.hero
+            image="{{ asset('images/hero/hero1.webp') }}"
+            heading="Our Partners"
+            subheading="Collaborating with organizations that share our vision for sustainable agriculture and rural development."
+            height="500px"
+            class="text-white"
+        />
+    @endif
 
     <x-ui.vstack>
         <!-- Strategic Partners Section -->
@@ -17,55 +27,21 @@
                     description="Organizations that provide critical support and collaboration for our programs."
                 />
 
-                <!-- Strategic Partners Grid -->
+                <!-- Strategic Partners Grid (From Database) -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <x-ui.partner-card
-                        name="MasterCard Foundation"
-                        description="The Mastercard Foundation works with visionary organizations to enable young people in Africa and in Indigenous communities in Canada to access dignified and fulfilling work."
-                        website="https://mastercardfdn.org"
-                        category="Strategic Partner"
-                        logo="{{ asset('images/partners/mastercard.png') }}"
-                    />
-
-                    <x-ui.partner-card
-                        name="AWARD"
-                        description="African Women in Agricultural Research and Development (AWARD) works toward inclusive, agriculture-driven prosperity for Africa by strengthening the production and dissemination of more gender-responsive agricultural research and innovation."
-                        website="https://awardfellowships.org"
-                        category="Strategic Partner"
-                        logo="{{ asset('images/partners/Woman research award.png') }}"
-                    />
-
-                    <x-ui.partner-card
-                        name="Anzisha Prize"
-                        description="The Anzisha Prize is Africa's biggest award for young entrepreneurs aged 15-22 and is a partnership between African Leadership Academy and Mastercard Foundation."
-                        website="https://anzishaprize.org"
-                        category="Strategic Partner"
-                        logo="{{ asset('images/partners/anzisha prize.png') }}"
-                    />
-
-                    <x-ui.partner-card
-                        name="African Leadership Academy"
-                        description="African Leadership Academy seeks to transform Africa by developing a powerful network of young leaders who will work together to address Africa's greatest challenges."
-                        website="https://africanleadershipacademy.org"
-                        category="Strategic Partner"
-                        logo="{{ asset('images/partners/ala.png') }}"
-                    />
-
-                    <x-ui.partner-card
-                        name="Talloires Network"
-                        description="The Talloires Network is an international association of institutions committed to strengthening the civic roles and social responsibilities of higher education."
-                        website="https://talloiresnetwork.tufts.edu"
-                        category="Strategic Partner"
-                        logo="{{ asset('images/partners/Talloires_Network_Logo.png') }}"
-                    />
-
-                    <x-ui.partner-card
-                        name="University of Pretoria"
-                        description="The University of Pretoria is one of Africa's top universities and the largest contact university in South Africa, with a focus on research and agricultural innovation."
-                        website="https://www.up.ac.za"
-                        category="Strategic Partner"
-                        logo="{{ asset('images/partners/university_of_pretoria.png') }}"
-                    />
+                    @forelse($strategicPartners as $partner)
+                        <x-ui.partner-card
+                            name="{{ $partner->name }}"
+                            description="{{ $partner->description }}"
+                            website="{{ $partner->website }}"
+                            category="{{ $partner->category }}"
+                            logo="{{ $partner->logo ? Storage::url($partner->logo) : null }}"
+                        />
+                    @empty
+                        <div class="col-span-full text-center py-8 text-muted-foreground">
+                            <p>No strategic partners yet.</p>
+                        </div>
+                    @endforelse
                 </div>
             </x-ui.container>
         </section>
@@ -78,15 +54,21 @@
                     description="Institutions that collaborate with us on agricultural research and innovation."
                 />
 
-                <!-- Research Partners Grid -->
+                <!-- Research Partners Grid (From Database) -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <x-ui.partner-card
-                        name="Department of Agricultural Research"
-                        description="Malawi's Department of Agricultural Research conducts research on crops, livestock, and natural resources to improve agricultural productivity and sustainability."
-                        website="https://www.malawi.gov.mw"
-                        category="Research Partner"
-                       
-                    />
+                    @forelse($researchPartners as $partner)
+                        <x-ui.partner-card
+                            name="{{ $partner->name }}"
+                            description="{{ $partner->description }}"
+                            website="{{ $partner->website }}"
+                            category="{{ $partner->category }}"
+                            logo="{{ $partner->logo ? Storage::url($partner->logo) : null }}"
+                        />
+                    @empty
+                        <div class="col-span-full text-center py-8 text-muted-foreground">
+                            <p>No research partners yet.</p>
+                        </div>
+                    @endforelse
                 </div>
             </x-ui.container>
         </section>
@@ -99,23 +81,21 @@
                     description="Organizations that work with us to implement programs and reach communities."
                 />
 
-                <!-- Implementation Partners Grid -->
+                <!-- Implementation Partners Grid (From Database) -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <x-ui.partner-card
-                        name="Local Government Authorities"
-                        description="We work closely with district councils and local government authorities to ensure our programs align with local development priorities."
-                        website="#"
-                        category="Implementation Partner"
-                        
-                    />
-
-                    <x-ui.partner-card
-                        name="Farmer Cooperatives"
-                        description="We partner with local farmer cooperatives to implement our programs and ensure community ownership and sustainability."
-                        website="#"
-                        category="Implementation Partner"
-                       
-                    />
+                    @forelse($implementationPartners as $partner)
+                        <x-ui.partner-card
+                            name="{{ $partner->name }}"
+                            description="{{ $partner->description }}"
+                            website="{{ $partner->website }}"
+                            category="{{ $partner->category }}"
+                            logo="{{ $partner->logo ? Storage::url($partner->logo) : null }}"
+                        />
+                    @empty
+                        <div class="col-span-full text-center py-8 text-muted-foreground">
+                            <p>No implementation partners yet.</p>
+                        </div>
+                    @endforelse
                 </div>
             </x-ui.container>
         </section>

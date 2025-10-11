@@ -1,10 +1,19 @@
 <div>
     
     <!-- Hero Section -->
-    <x-ui.landing-hero
-        heading="Empowering Farmers, Building Futures"
-        height="700px"
-    />
+    @if($heroSection)
+        <x-ui.landing-hero
+            heading="{{ $heroSection->heading }}"
+            subheading="{{ $heroSection->subheading }}"
+            :sliderImages="$heroSection->images->pluck('image_path')->map(fn($path) => Storage::url($path))->toArray()"
+            height="{{ $heroSection->height }}"
+        />
+    @else
+        <x-ui.landing-hero
+            heading="Empowering Farmers, Building Futures"
+            height="700px"
+        />
+    @endif
 
 
     <x-ui.vstack>
@@ -94,37 +103,19 @@
                 description="Through our value-added processing initiatives, we help farmers transform raw crops into high-quality products. View more on our model page."
             />
 
-            <!-- Products Grid -->
+            <!-- Products Grid (From Database) -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <x-ui.product-card
-                    title="Peanut Butter"
-                    description="Locally produced, nutritious peanut butter made from high-quality groundnuts grown by our farmer network."
-                    image="{{ asset('images/products/peanut-butter.jpg') }}"
-                />
-
-                <x-ui.product-card
-                    title="Soy Milk"
-                    description="Plant-based milk alternative rich in protein and essential nutrients, supporting dietary diversity."
-                    image="{{ asset('images/products/soy-milk.jpg') }}"
-                />
-
-                <x-ui.product-card
-                    title="Cooking Oil"
-                    description="Pure, cold-pressed cooking oil produced from locally grown oilseeds, providing a healthy cooking option."
-                    image="{{ asset('images/products/cooking-oil.jpg') }}"
-                />
-
-                <x-ui.product-card
-                    title="Soy Cake"
-                    description="Protein-rich animal feed byproduct from soy processing, enhancing livestock nutrition."
-                    image="{{ asset('images/products/soy-milk.jpg') }}"
-                />
-
-                <x-ui.product-card
-                    title="Plant-Based Juices"
-                    description="Traditional and nutritious juices made from local plants, promoting health and wellness."
-                    image="{{ asset('images/products/cooking-oil.jpg') }}"
-                />
+                @forelse($products as $product)
+                    <x-ui.product-card
+                        title="{{ $product->title }}"
+                        description="{{ $product->description }}"
+                        image="{{ $product->image ? Storage::url($product->image) : null }}"
+                    />
+                @empty
+                    <div class="col-span-full text-center py-8 text-muted-foreground">
+                        <p>No products available at the moment.</p>
+                    </div>
+                @endforelse
             </div>
         </x-ui.container>
     </section>

@@ -35,6 +35,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Impact Metrics routes
     Route::get('/dashboard/metrics', \App\Livewire\Dashboard\Metrics\Index::class)->name('dashboard.metrics.index');
+
+    // Products routes
+    Route::get('/dashboard/products', \App\Livewire\Dashboard\Products\Index::class)->name('dashboard.products.index');
+
+    // Partners routes
+    Route::get('/dashboard/partners', \App\Livewire\Dashboard\Partners\Index::class)->name('dashboard.partners.index');
+
+    // Hero Sections routes
+    Route::get('/dashboard/hero-sections', \App\Livewire\Dashboard\HeroSections\Index::class)->name('dashboard.hero.index');
 });
 
 Route::middleware(['auth'])->group(function () {
