@@ -45,7 +45,7 @@
                     <li><a href="{{ route('team') }}" class="hover:text-primary transition">Our Team</a></li>
                     <li><a href="{{ route('partners') }}" class="hover:text-primary transition">Partners</a></li>
                     <li><a href="{{ route('contact') }}" class="hover:text-primary transition">Contact Us</a></li>
-                    <li><a href="{{ route('login') }}" class="hover:text-primary transition">Login</a></li>
+                    <li><a href="{{ route('login') }}" class="hover:text-primary transition">Admin</a></li>
                 </ul>
             </div>
 
@@ -83,9 +83,23 @@
             </div>
         </div>
 
-        <!-- Copyright -->
-        <div class="border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
-            <p>&copy; 2025 HarvestGlow. All rights reserved.</p>
+        <!-- Footer Bottom -->
+        <div class="border-t border-gray-700 pt-6 text-sm text-gray-400">
+            <div class="flex flex-col items-center sm:items-end gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="https://www.facebook.com/profile.php?id=61581821352646" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="hover:text-primary transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                            <path d="M22 12.073C22 6.477 17.523 2 11.927 2 6.33 2 1.853 6.477 1.853 12.073c0 4.99 3.657 9.128 8.438 9.878v-6.987H7.898v-2.89h2.393V9.845c0-2.367 1.41-3.677 3.562-3.677 1.032 0 2.112.184 2.112.184v2.326h-1.19c-1.174 0-1.54.728-1.54 1.476v1.773h2.623l-.419 2.89h-2.204V22c4.78-.75 8.437-4.888 8.437-9.927z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/harvestglow/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="hover:text-primary transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                            <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4v16h-4V8zm7.5 0h3.8v2.2h.1c.5-1 1.7-2.2 3.6-2.2 3.8 0 4.5 2.5 4.5 5.7V24h-4v-7.6c0-1.8 0-4.1-2.5-4.1-2.5 0-2.9 1.9-2.9 3.9V24h-4V8z"/>
+                        </svg>
+                    </a>
+                </div>
+                <p class="text-center sm:text-right">&copy; 2025 HarvestGlow. All rights reserved.</p>
+            </div>
         </div>
     </x-ui.container>
 </footer>
