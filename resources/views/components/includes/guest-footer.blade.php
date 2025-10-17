@@ -2,7 +2,7 @@
 <section class="bg-primary py-16">
     <x-ui.container>
         <div class="text-center text-white">
-            <h1 class="text-white mb-6">Join Us in Transforming Agriculture in Malawi</h1>
+            <h1 class="text-white text-3xl sm:text-4xl mb-6">Join Us in Transforming Agriculture in Malawi</h1>
             <p class="text-lg mb-8 max-w-4xl mx-auto">
                 Every $1 invested in HarvestGlow is projected to generate $4 in community income, along with strengthened food security and climate resilience.
             </p>

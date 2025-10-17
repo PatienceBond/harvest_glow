@@ -21,10 +21,41 @@
                 x-transition:leave="transition ease-in duration-150"
                 x-transition:leave-start="opacity-100 translate-y-0"
                 x-transition:leave-end="opacity-0 translate-y-1"
-                class="absolute bottom-full right-0 mb-2 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg shadow-lg whitespace-nowrap"
+                class="absolute bottom-full right-0 mb-2 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg shadow-lg"
                 style="display: none;"
             >
-                Chat with us about HarvestGlow
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
+                    <button 
+                        type="button"
+                        wire:click="toggleChat"
+                        class="text-white hover:text-primary transition-colors"
+                        aria-label="Live chat"
+                        title="Live chat"
+                    >
+                        Live chat
+                    </button>
+                    <a 
+                        href="https://wa.me/265880856731"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="flex items-center justify-center text-white hover:text-primary transition-colors"
+                        aria-label="WhatsApp"
+                        title="WhatsApp"
+                    >
+                        <!-- WhatsApp Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                            <path d="M20.52 3.48A11.94 11.94 0 0012.06 0C5.53 0 .25 5.27.25 11.78c0 2.07.54 4.08 1.57 5.86L0 24l6.5-1.7a11.76 11.76 0 005.57 1.42h.01c6.53 0 11.81-5.27 11.81-11.78 0-3.15-1.23-6.11-3.37-8.26zM12.08 21.3h-.01a9.5 9.5 0 01-4.84-1.32l-.35-.21-3.86 1.01 1.03-3.76-.23-.39a9.49 9.49 0 01-1.45-5.05c0-5.23 4.27-9.49 9.52-9.49 2.54 0 4.93.99 6.72 2.78a9.47 9.47 0 012.79 6.72c0 5.23-4.27 9.49-9.52 9.49zm5.46-7.12c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.24-.46-2.36-1.47-.87-.77-1.46-1.72-1.63-2.01-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.48-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.1 4.48.71.31 1.27.5 1.7.64.72.23 1.37.2 1.89.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/>
+                        </svg>
+                    </a>
+                    <a 
+                        href="tel:+265880856731"
+                        class="flex items-center justify-center text-white hover:text-primary transition-colors"
+                        aria-label="Call"
+                        title="Call"
+                    >
+                        <x-heroicon-o-phone class="w-5 h-5" />
+                    </a>
+                </div>
                 <div class="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
             </div>
         @endif

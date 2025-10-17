@@ -105,7 +105,7 @@
         <x-ui.container>
             <div class="max-w-4xl">
                 <!-- Main Heading with animated gradient -->
-                <h1 class="text-white text-5xl sm:text-6xl  font-bold leading-tight mb-4 animate-fade-in drop-shadow-2xl">
+                <h1 class="text-white text-4xl sm:text-5xl  font-bold leading-tight mb-4 animate-fade-in drop-shadow-2xl">
                     {{ $heading }}
                 </h1>
 
