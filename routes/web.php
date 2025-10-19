@@ -17,6 +17,48 @@ Route::get('/partners', \App\Livewire\Guests\Partners::class)->name('partners');
 Route::get('/contact', \App\Livewire\Guests\Contact::class)->name('contact');
 Route::get('/news/{slug?}', \App\Livewire\Guests\NewsDetails::class)->name('news-details');
 
+// Storage symlink route - for deployment/setup purposes
+Route::get('/setup/storage-link', function () {
+    try {
+        $target = storage_path('app/public');
+        $link = public_path('storage');
+
+        // Check if symlink already exists
+        if (file_exists($link)) {
+            return response()->json([
+                'status' => 'info',
+                'message' => 'The "public/storage" directory already exists.'
+            ], 200);
+        }
+
+        // Check if target directory exists
+        if (!file_exists($target)) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'The target directory "storage/app/public" does not exist.'
+            ], 500);
+        }
+
+        // Create the symbolic link manually
+        if (symlink($target, $link)) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'The storage symlink has been created successfully!'
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to create storage symlink. Check file permissions.'
+            ], 500);
+        }
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Failed to create storage symlink: ' . $e->getMessage()
+        ], 500);
+    }
+})->name('setup.storage-link');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     // Dashboard routes
     Route::get('/dashboard', \App\Livewire\Dashboard\Dashboard::class)->name('dashboard');
