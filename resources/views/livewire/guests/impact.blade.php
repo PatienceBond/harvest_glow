@@ -1,35 +1,16 @@
 <div>
     <!-- Hero Section -->
-    @if($heroSection)
-        <x-ui.hero
-            image="{{ $heroSection->image ? Storage::url($heroSection->image) : asset('images/hero/hero1.webp') }}"
-            heading="{{ $heroSection->heading }}"
-            subheading="{{ $heroSection->subheading }}"
-            height="{{ $heroSection->height }}"
-            class="text-white"
-        />
-    @else
-        <x-ui.hero
-            image="{{ asset('images/hero/hero1.webp') }}"
-            heading="Impact by the Numbers"
-            subheading="Our work is creating measurable change in communities across Malawi."
-            height="500px"
-            class="text-white"
-        />
-    @endif
 
-    <x-ui.vstack>
+    <x-ui.vstack spacing="4">
         <!-- Impact Metrics Section -->
         <section>
             <x-ui.container>
                 <x-ui.section-header
                     title="Impact by the Numbers"
-                    description="Our work is creating measurable change in communities across Malawi."
                 />
-
                 <!-- Impact Metrics Grid - Dynamic from Database -->
                 @if($featuredMetrics && $featuredMetrics->count() > 0)
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-4">
                         @foreach($featuredMetrics as $metric)
                             <x-ui.impact-metric-card
                                 value="{{ $metric->value }}{{ $metric->unit ? $metric->unit : '' }}"
@@ -41,7 +22,7 @@
                     </div>
                 @else
                     <!-- Fallback if no metrics -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-4">
                         <x-ui.impact-metric-card
                             value="100,000+"
                             title="Farmers Engaged"
