@@ -11,10 +11,12 @@
     @else
         <x-ui.hero
             image="{{ asset('images/hero/hero1.webp') }}"
-            heading="About HarvestGlow"
-            subheading="Transforming Agriculture,"
-            height="500px"
+            heading="Our Story"
+            height="380px"
             class="text-white"
+            align="center"
+            headingClass="text-4xl md:text-5xl"
+            contentPaddingClass="py-16 md:py-20"
         />
     @endif
 

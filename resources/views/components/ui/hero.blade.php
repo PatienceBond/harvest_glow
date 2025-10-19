@@ -2,7 +2,11 @@
     'image' => '',
     'heading' => '',
     'subheading' => '',
-    'height' => '700px'
+    'height' => '700px',
+    'headingClass' => '',
+    'subheadingClass' => '',
+    'align' => 'left',
+    'contentPaddingClass' => 'py-32'
 ])
 
 <section {{ $attributes->merge(['class' => 'relative bg-slate-900 flex items-center']) }} style="min-height: {{ $height }}">
@@ -16,13 +20,13 @@
     </div>
 
     <!-- Content -->
-    <div class="relative z-10 py-32 text-left w-full">
+    <div class="relative z-10 {{ $contentPaddingClass }} w-full {{ $align === 'center' ? 'text-center' : 'text-left' }}">
         <x-ui.container>
         @if($subheading)
-            <h1 class="tracking-wider font-normal text-left text-3xl">{{ $subheading }}</h1>
+            <h1 class="tracking-wider font-normal {{ $subheadingClass ?: 'text-3xl' }}">{{ $subheading }}</h1>
         @endif
 
-        <h1 class="text-left" >
+        <h1 class="{{ $headingClass }}" >
             {{ $heading }}
         </h1>
 

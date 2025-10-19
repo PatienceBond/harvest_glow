@@ -76,7 +76,7 @@
                                     <div class="bg-primary/5 border border-primary/20 rounded-lg p-6 mb-6">
                                         <h4 class="font-bold text-lg mb-3">Case Example</h4>
                                         <p class="text-muted-foreground">
-                                            Farmer A in Kasungu increased maize yield from 1.5 to 4 tons/ha within one season using HarvestGlow-certified seed.
+                                            Lucy Tembo of Kasungu increased maize production from 1.5 to 4 tons per hectare in one season using HarvestGlow-certified seed.
                                         </p>
                                     </div>
                                 </div>
