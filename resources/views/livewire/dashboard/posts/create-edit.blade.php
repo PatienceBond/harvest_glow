@@ -13,10 +13,9 @@
             placeholder="Post title"
         />
 
-        <!-- Excerpt -->
-        <flux:textarea 
+        <flux:textarea class="{{ $postId ? '' : 'hidden' }}"
             wire:model="excerpt"
-            label="Excerpt"
+            label=""
             rows="2"
             placeholder="Brief description (optional)"
         />

@@ -24,10 +24,8 @@
                 <p class="text-sm text-muted-foreground">{{ $post->slug }}</p>
             </div>
 
-            <!-- Excerpt -->
             @if($post->excerpt)
                 <div>
-                    <h4 class="text-sm font-semibold text-foreground mb-2">Excerpt</h4>
                     <p class="text-foreground leading-relaxed">{{ $post->excerpt }}</p>
                 </div>
             @endif

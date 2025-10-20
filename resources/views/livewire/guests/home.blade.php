@@ -162,7 +162,7 @@
     </section>
 
     <!-- News Section -->
-    <section>
+    <section id="news">
         <x-ui.container>
             <x-ui.section-header
                 title="News"

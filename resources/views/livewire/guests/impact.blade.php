@@ -1,7 +1,7 @@
 <div>
     <!-- Hero Section -->
 
-    <x-ui.vstack spacing="4">
+    <x-ui.vstack spacing="4" class="mt-24 md:mt-32">
         <!-- Impact Metrics Section -->
         <section>
             <x-ui.container>
