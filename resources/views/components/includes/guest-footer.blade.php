@@ -44,6 +44,7 @@
                     <li><a href="{{ route('impact') }}" class="hover:text-primary transition">Impact</a></li>
                     <li><a href="{{ route('team') }}" class="hover:text-primary transition">Our Team</a></li>
                     <li><a href="{{ route('partners') }}" class="hover:text-primary transition">Partners</a></li>
+                    <li><a href="{{ route('publications') }}" class="hover:text-primary transition">Publications</a></li>
                     <li><a href="{{ route('contact') }}" class="hover:text-primary transition">Contact Us</a></li>
                     <li><a href="{{ route('login') }}" class="hover:text-primary transition">Admin</a></li>
                 </ul>
