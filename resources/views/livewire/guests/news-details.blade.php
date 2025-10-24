@@ -2,10 +2,12 @@
 <div>
     <!-- Hero Section -->
     <x-ui.hero
-        image="{{ $post->featured_image ? Storage::url($post->featured_image) : asset('images/hero/hero1.webp') }}"
-        heading="{{ $post->title }}"
-        subheading="Stay informed about our latest activities and impact in communities across Malawi."
-        height="400px"
+        image="{{ asset('images/hero/soya.jpg') }}"
+        heading="stay informed"
+        height="300px"
+        align="center"
+        headingClass="text-3xl md:text-4xl font-bold"
+        contentPaddingClass="py-16"
         class="text-white"
     />
 

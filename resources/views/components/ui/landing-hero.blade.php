@@ -101,16 +101,16 @@
     <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/10 to-transparent z-10 pointer-events-none"></div>
 
     <!-- Content -->
-    <div class="relative z-20 pb-24 sm:pb-32 pt-12 text-left w-full">
+    <div class="relative z-20 pb-8 sm:pb-12 pt-4 sm:pt-6 text-left w-full">
         <x-ui.container>
             <div class="max-w-4xl">
                 <!-- Main Heading with animated gradient -->
-                <h1 class="text-white text-5xl sm:text-6xl  font-bold leading-tight mb-8 animate-fade-in drop-shadow-2xl">
+                <h1 class="text-white text-4xl sm:text-5xl  font-bold leading-tight mb-4 animate-fade-in drop-shadow-2xl">
                     {{ $heading }}
                 </h1>
 
                 @if($subheading)
-                    <p class="text-white/90 text-xl sm:text-2xl mb-6 animate-fade-in-delay drop-shadow-lg">
+                    <p class="text-white/90 text-xl sm:text-2xl mb-3 animate-fade-in-delay drop-shadow-lg">
                         {{ $subheading }}
                     </p>
                 @endif
@@ -122,7 +122,7 @@
                 @endif
 
                 <!-- Optional CTA Button -->
-                <div class="mt-12 animate-fade-in-delay-2">
+                <div class="mt-8 animate-fade-in-delay-2">
                     <a href="{{ route('about') }}"
                        class="inline-flex items-center justify-center gap-3 px-8 py-4 sm:px-10 sm:py-5 text-base sm:text-lg font-semibold rounded-lg bg-primary text-white hover:bg-primary/90 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-base-950 shadow-xl whitespace-nowrap">
                         Learn Our Story

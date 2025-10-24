@@ -4,16 +4,21 @@
         <x-ui.hero
             image="{{ $heroSection->image ? Storage::url($heroSection->image) : asset('images/hero/hero1.webp') }}"
             heading="{{ $heroSection->heading }}"
-            subheading="{{ $heroSection->subheading }}"
-            height="{{ $heroSection->height }}"
+            subheading=""
+            height="350px"
+            align="center"
+            headingClass="text-3xl md:text-4xl font-bold"
+            contentPaddingClass="py-20"
             class="text-white"
         />
     @else
         <x-ui.hero
             image="{{ asset('images/hero/hero1.webp') }}"
             heading="Contact Us"
-            subheading="Get in touch with our team to learn more about our work or explore collaboration opportunities."
-            height="500px"
+            height="350px"
+            align="center"
+            headingClass="text-3xl md:text-4xl font-bold"
+            contentPaddingClass="py-20"
             class="text-white"
         />
     @endif
@@ -56,7 +61,7 @@
                         <x-ui.contact-info-card
                             icon="heroicon-o-map-pin"
                             title="Office Location"
-                            content="HarvestGlow<br>Likuni, Lilongwe<br>Malawi"
+                            content="HarvestGlow, Likuni, Lilongwe, Malawi"
                         />
 
                         <x-ui.contact-info-card
@@ -68,7 +73,7 @@
                         <x-ui.contact-info-card
                             icon="heroicon-o-phone"
                             title="Phone"
-                            content="+265 880 856 731<br>+265 996 084 781"
+                            content="+265 880 856 731, +265 996 084 781"
                         />
 
                         <x-ui.contact-info-card
@@ -99,12 +104,16 @@
                         </p>
                         
                         <!-- Map Placeholder -->
-                        <div class="bg-card border border-border rounded-lg h-96 flex items-center justify-center">
-                            <div class="text-center text-muted-foreground">
-                                <x-heroicon-o-map-pin class="w-16 h-16 mx-auto mb-4 text-primary" />
-                                <p class="text-lg font-medium">Interactive map would be displayed here</p>
-                                <p class="text-sm">Likuni, Lilongwe, Malawi</p>
-                            </div>
+                        <div class="relative bg-card border border-border rounded-lg h-96 overflow-hidden">
+                            <iframe
+                                title="Map of Likuni, Lilongwe, Malawi"
+                                src="https://www.google.com/maps?q=Likuni,+Lilongwe,+Malawi&output=embed"
+                                class="absolute inset-0 w-full h-full"
+                                style="border:0;"
+                                allowfullscreen
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                            ></iframe>
                         </div>
                     </div>
 

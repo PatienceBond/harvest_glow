@@ -14,6 +14,19 @@ Route::get('/our-model', \App\Livewire\Guests\OurModel::class)->name('our-model'
 Route::get('/impact', \App\Livewire\Guests\Impact::class)->name('impact');
 Route::get('/team', \App\Livewire\Guests\Team::class)->name('team');
 Route::get('/partners', \App\Livewire\Guests\Partners::class)->name('partners');
+Route::get('/publications', \App\Livewire\Guests\Publications::class)->name('publications');
+Route::get('/publications/{publication}/download', function (\App\Models\Publication $publication) {
+    $path = \Illuminate\Support\Facades\Storage::disk('public')->path($publication->file_path);
+    $name = \Illuminate\Support\Str::slug($publication->title) . '.pdf';
+    return response()->download($path, $name);
+})->name('publications.download');
+Route::get('/publications/{publication}/file', function (\App\Models\Publication $publication) {
+    $path = \Illuminate\Support\Facades\Storage::disk('public')->path($publication->file_path);
+    return response()->file($path, [
+        'Content-Type' => 'application/pdf',
+        'Cache-Control' => 'public, max-age=3600',
+    ]);
+})->name('publications.file');
 Route::get('/contact', \App\Livewire\Guests\Contact::class)->name('contact');
 Route::get('/news/{slug?}', \App\Livewire\Guests\NewsDetails::class)->name('news-details');
 
@@ -80,6 +93,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Products routes
     Route::get('/dashboard/products', \App\Livewire\Dashboard\Products\Index::class)->name('dashboard.products.index');
+
+    // Publications routes
+    Route::get('/dashboard/publications', \App\Livewire\Dashboard\Publications\Index::class)->name('dashboard.publications.index');
 
     // Partners routes
     Route::get('/dashboard/partners', \App\Livewire\Dashboard\Partners\Index::class)->name('dashboard.partners.index');

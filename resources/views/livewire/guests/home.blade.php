@@ -67,7 +67,7 @@
     </section>
 
     <x-ui.feature-section
-        title="Our Integrated Model"
+        title="our model"
         description="HarvestGlow's approach combines four key elements to create sustainable agricultural systems that empower farmers and build resilient communities."
     >
         <x-ui.feature-card
@@ -162,10 +162,10 @@
     </section>
 
     <!-- News Section -->
-    <section>
+    <section id="news">
         <x-ui.container>
             <x-ui.section-header
-                title="Latest News & Updates"
+                title="News"
                 description="Stay informed about our latest activities, success stories, and impact in communities across Malawi."
             />
 

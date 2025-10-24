@@ -21,13 +21,14 @@
 
             <!-- Desktop Navigation Links -->
             <div class="hidden md:flex items-center space-x-8 text-foreground">
-                <a href="{{ route('home') }}" class="hover:text-primary transition">Home</a>
-                <a href="{{ route('about') }}" class="hover:text-primary transition">About</a>
-                <a href="{{ route('our-model') }}" class="hover:text-primary transition">Our Model</a>
-                <a href="{{ route('impact') }}" class="hover:text-primary transition">Impact</a>
-                <a href="{{ route('team') }}" class="hover:text-primary transition">Team</a>
-                <a href="{{ route('partners') }}" class="hover:text-primary transition">Partners</a>
-                <a href="{{ route('contact') }}" class="hover:text-primary transition">Contact</a>
+                <a id="nav-home-link" href="{{ route('home') }}" class="hover:text-primary transition pb-1 border-b-2 {{ request()->routeIs('home') ? 'border-[#E1C097]' : 'border-transparent' }}">Home</a>
+                <a href="{{ route('about') }}" class="hover:text-primary transition pb-1 border-b-2 {{ request()->routeIs('about') ? 'border-[#E1C097]' : 'border-transparent' }}">About</a>
+                <a href="{{ route('our-model') }}" class="hover:text-primary transition pb-1 border-b-2 {{ request()->routeIs('our-model') ? 'border-[#E1C097]' : 'border-transparent' }}">Our Model</a>
+                <a href="{{ route('impact') }}" class="hover:text-primary transition pb-1 border-b-2 {{ request()->routeIs('impact') ? 'border-[#E1C097]' : 'border-transparent' }}">Impact</a>
+                <a id="nav-blog-link" href="{{ route('home') }}#news" class="hover:text-primary transition pb-1 border-b-2 border-transparent">Blog</a>
+                <a href="{{ route('team') }}" class="hover:text-primary transition pb-1 border-b-2 {{ request()->routeIs('team') ? 'border-[#E1C097]' : 'border-transparent' }}">Team</a>
+                <a href="{{ route('partners') }}" class="hover:text-primary transition pb-1 border-b-2 {{ request()->routeIs('partners') ? 'border-[#E1C097]' : 'border-transparent' }}">Partners</a>
+                <a href="{{ route('contact') }}" class="hover:text-primary transition pb-1 border-b-2 {{ request()->routeIs('contact') ? 'border-[#E1C097]' : 'border-transparent' }}">Contact</a>
             </div>
 
             <!-- Auth Buttons (hidden on mobile) -->
@@ -98,6 +99,10 @@
                    class="block px-4 py-3 text-base font-medium text-foreground hover:bg-primary hover:text-white transition-colors rounded-md mx-2 {{ request()->routeIs('impact') ? 'bg-primary/10 text-primary' : '' }}">
                     Impact
                 </a>
+                <a href="{{ route('home') }}#news"
+                   class="block px-4 py-3 text-base font-medium text-foreground hover:bg-primary hover:text-white transition-colors rounded-md mx-2">
+                    Blog
+                </a>
                 <a href="{{ route('team') }}"
                    class="block px-4 py-3 text-base font-medium text-foreground hover:bg-primary hover:text-white transition-colors rounded-md mx-2 {{ request()->routeIs('team') ? 'bg-primary/10 text-primary' : '' }}">
                     Team
@@ -140,5 +145,48 @@
 
     @livewireScripts
     @fluxScripts
+    <script>
+        (function() {
+            function updateBlogActive() {
+                var blogLink = document.getElementById('nav-blog-link');
+                var homeLink = document.getElementById('nav-home-link');
+                if (!blogLink) return;
+
+                // Determine the home path from the Home link href
+                var homePath = '/';
+                if (homeLink && homeLink.getAttribute('href')) {
+                    try {
+                        homePath = new URL(homeLink.getAttribute('href'), window.location.origin).pathname || '/';
+                    } catch (e) {
+                        homePath = '/';
+                    }
+                }
+
+                var atNews = window.location.hash === '#news';
+
+                if (atNews) {
+                    // Activate Blog underline
+                    blogLink.classList.remove('border-transparent');
+                    blogLink.classList.add('border-\[\#E1C097\]');
+                    // Deactivate Home underline if present
+                    if (homeLink) {
+                        homeLink.classList.remove('border-\[\#E1C097\]');
+                        homeLink.classList.add('border-transparent');
+                    }
+                } else {
+                    // Deactivate Blog underline
+                    blogLink.classList.remove('border-\[\#E1C097\]');
+                    blogLink.classList.add('border-transparent');
+                    // Restore Home underline when at home path
+                    if (homeLink && window.location.pathname === homePath) {
+                        homeLink.classList.remove('border-transparent');
+                        homeLink.classList.add('border-\[\#E1C097\]');
+                    }
+                }
+            }
+            window.addEventListener('hashchange', updateBlogActive);
+            window.addEventListener('DOMContentLoaded', updateBlogActive);
+        })();
+    </script>
 </body>
 </html>

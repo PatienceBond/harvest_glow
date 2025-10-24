@@ -26,12 +26,13 @@ new class extends Component {
 
             <!-- Desktop Navigation -->
             <div class="hidden md:flex items-center space-x-8">
-                <a href="/" class="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors">Home</a>
-                <a href="/about" class="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors">About</a>
-                <a href="/programs" class="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors">Programs</a>
-                <a href="/impact" class="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors">Impact</a>
-                <a href="/news" class="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors">News</a>
-                <a href="/contact" class="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors">Contact</a>
+                <a id="nav-home-link-alt" href="/" class="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors pb-1 border-b-2 {{ request()->routeIs('home') ? 'border-[#E1C097]' : 'border-transparent' }}">Home</a>
+                <a href="/about" class="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors pb-1 border-b-2 {{ request()->routeIs('about') ? 'border-[#E1C097]' : 'border-transparent' }}">About</a>
+                <a href="/programs" class="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors pb-1 border-b-2 border-transparent">Programs</a>
+                <a href="/impact" class="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors pb-1 border-b-2 {{ request()->routeIs('impact') ? 'border-[#E1C097]' : 'border-transparent' }}">Impact</a>
+                <a id="nav-blog-link-alt" href="/#news" class="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors pb-1 border-b-2 border-transparent">Blog</a>
+                <a href="/team" class="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors pb-1 border-b-2 {{ request()->routeIs('team') ? 'border-[#E1C097]' : 'border-transparent' }}">Team</a>
+                <a href="/contact" class="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors pb-1 border-b-2 {{ request()->routeIs('contact') ? 'border-[#E1C097]' : 'border-transparent' }}">Contact</a>
                 
                 <!-- Theme Toggle -->
                 <livewire:theme-toggle />
@@ -67,7 +68,8 @@ new class extends Component {
                     <a href="/about" class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400">About</a>
                     <a href="/programs" class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400">Programs</a>
                     <a href="/impact" class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400">Impact</a>
-                    <a href="/news" class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400">News</a>
+                    <a href="/#news" class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400">Blog</a>
+                    <a href="/team" class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400">Team</a>
                     <a href="/contact" class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400">Contact</a>
                     
                     @auth
@@ -80,4 +82,34 @@ new class extends Component {
             </div>
         @endif
     </div>
+    <span id="nav-state-alt" data-home-route="{{ request()->routeIs('home') ? '1' : '0' }}" class="hidden"></span>
+    <script>
+        (function() {
+            function updateBlogActiveAlt() {
+                var blog = document.getElementById('nav-blog-link-alt');
+                var home = document.getElementById('nav-home-link-alt');
+                var stateEl = document.getElementById('nav-state-alt');
+                var isHomeRoute = stateEl && stateEl.dataset.homeRoute === '1';
+                if (!blog) return;
+                var atNews = window.location.hash === '#news';
+                if (atNews) {
+                    blog.classList.remove('border-transparent');
+                    blog.classList.add('border-\[\#E1C097\]');
+                    if (home) {
+                        home.classList.remove('border-\[\#E1C097\]');
+                        home.classList.add('border-transparent');
+                    }
+                } else {
+                    blog.classList.remove('border-\[\#E1C097\]');
+                    blog.classList.add('border-transparent');
+                    if (home && isHomeRoute) {
+                        home.classList.remove('border-transparent');
+                        home.classList.add('border-\[\#E1C097\]');
+                    }
+                }
+            }
+            window.addEventListener('hashchange', updateBlogActiveAlt);
+            window.addEventListener('DOMContentLoaded', updateBlogActiveAlt);
+        })();
+    </script>
 </nav>

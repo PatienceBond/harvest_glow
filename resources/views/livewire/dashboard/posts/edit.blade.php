@@ -32,10 +32,9 @@
                     placeholder="Enter post title"
                 />
 
-                <!-- Excerpt -->
                 <flux:textarea 
                     wire:model="excerpt"
-                    label="Excerpt"
+                    label=""
                     rows="3"
                     placeholder="Brief description of the post"
                 />

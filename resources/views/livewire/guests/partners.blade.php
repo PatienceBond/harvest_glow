@@ -4,16 +4,21 @@
         <x-ui.hero
             image="{{ $heroSection->image ? Storage::url($heroSection->image) : asset('images/hero/hero1.webp') }}"
             heading="{{ $heroSection->heading }}"
-            subheading="{{ $heroSection->subheading }}"
-            height="{{ $heroSection->height }}"
+            subheading=""
+            height="350px"
+            align="center"
+            headingClass="text-3xl md:text-4xl font-bold"
+            contentPaddingClass="py-20"
             class="text-white"
         />
     @else
         <x-ui.hero
             image="{{ asset('images/hero/hero1.webp') }}"
             heading="Our Partners"
-            subheading="Collaborating with organizations that share our vision for sustainable agriculture and rural development."
-            height="500px"
+            height="350px"
+            align="center"
+            headingClass="text-3xl md:text-4xl font-bold"
+            contentPaddingClass="py-20"
             class="text-white"
         />
     @endif
