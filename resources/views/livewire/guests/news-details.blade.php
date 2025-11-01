@@ -52,7 +52,7 @@
                         @endif
 
                         <div class="space-y-6 text-lg leading-relaxed">
-                            {!! $post->content !!}
+                            {!! $renderedContent !!}
                         </div>
                     </div>
 

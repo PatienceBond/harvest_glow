@@ -58,6 +58,7 @@
                     <h4 class="text-sm font-semibold text-foreground mb-1">Last Updated</h4>
                     <span class="text-sm text-foreground">{{ $member->updated_at->format('F d, Y') }}</span>
                 </div>
+
             </div>
 
             <!-- Actions -->

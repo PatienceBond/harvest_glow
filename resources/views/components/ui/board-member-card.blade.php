@@ -42,5 +42,7 @@
                 <p class="text-muted-foreground text-xs">{{ $title }}</p>
             @endif
         </div>
+
+        
     </div>
 </div>
