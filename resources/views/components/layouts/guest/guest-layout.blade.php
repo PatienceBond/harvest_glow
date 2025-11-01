@@ -26,6 +26,7 @@
                 <a href="{{ route('our-model') }}" class="hover:text-primary transition pb-1 border-b-2 {{ request()->routeIs('our-model') ? 'border-[#E1C097]' : 'border-transparent' }}">Our Model</a>
                 <a href="{{ route('impact') }}" class="hover:text-primary transition pb-1 border-b-2 {{ request()->routeIs('impact') ? 'border-[#E1C097]' : 'border-transparent' }}">Impact</a>
                 <a id="nav-blog-link" href="{{ route('home') }}#news" class="hover:text-primary transition pb-1 border-b-2 border-transparent">Blog</a>
+                <a href="{{ route('publications') }}" class="hover:text-primary transition pb-1 border-b-2 {{ request()->routeIs('publications') ? 'border-[#E1C097]' : 'border-transparent' }}">Publications</a>
                 <a href="{{ route('team') }}" class="hover:text-primary transition pb-1 border-b-2 {{ request()->routeIs('team') ? 'border-[#E1C097]' : 'border-transparent' }}">Team</a>
                 <a href="{{ route('partners') }}" class="hover:text-primary transition pb-1 border-b-2 {{ request()->routeIs('partners') ? 'border-[#E1C097]' : 'border-transparent' }}">Partners</a>
                 <a href="{{ route('contact') }}" class="hover:text-primary transition pb-1 border-b-2 {{ request()->routeIs('contact') ? 'border-[#E1C097]' : 'border-transparent' }}">Contact</a>
@@ -43,7 +44,7 @@
                     aria-label="Toggle dark mode"
                 />
                 <x-ui.button-link href="{{ route('contact') }}" variant="primary">
-                   Support Our Mission
+                   Donate
                 </x-ui.button-link>
             </div>
 
@@ -103,6 +104,10 @@
                    class="block px-4 py-3 text-base font-medium text-foreground hover:bg-primary hover:text-white transition-colors rounded-md mx-2">
                     Blog
                 </a>
+                <a href="{{ route('publications') }}"
+                   class="block px-4 py-3 text-base font-medium text-foreground hover:bg-primary hover:text-white transition-colors rounded-md mx-2 {{ request()->routeIs('publications') ? 'bg-primary/10 text-primary' : '' }}">
+                    Publications
+                </a>
                 <a href="{{ route('team') }}"
                    class="block px-4 py-3 text-base font-medium text-foreground hover:bg-primary hover:text-white transition-colors rounded-md mx-2 {{ request()->routeIs('team') ? 'bg-primary/10 text-primary' : '' }}">
                     Team
@@ -120,7 +125,7 @@
                 <div class="px-4 pt-4 pb-2 border-t border-border mt-2">
                     <a href="{{ route('contact') }}"
                        class="block w-full text-center px-4 py-3 text-base font-semibold rounded-lg bg-primary text-white hover:bg-primary/90 transition-all shadow-md">
-                        Support Our Mission
+                        Donate
                     </a>
                 </div>
             </div>

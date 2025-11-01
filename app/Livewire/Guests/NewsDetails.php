@@ -13,6 +13,48 @@ class NewsDetails extends Component
     public $post;
     public $relatedPosts;
 
+    protected function formatContentForReadability($content, int $minWords = 50, int $maxWords = 70)
+    {
+        if (!$content) {
+            return '';
+        }
+
+        // If content likely contains HTML, return as-is
+        if ($content !== strip_tags($content)) {
+            return $content;
+        }
+
+        $text = trim(preg_replace('/\s+/u', ' ', $content));
+        if ($text === '') {
+            return '';
+        }
+
+        $sentences = preg_split('/(?<=[\.\!\?])\s+/u', $text, -1, PREG_SPLIT_NO_EMPTY);
+        if (!$sentences) {
+            return '<p>' . e($text) . '</p>';
+        }
+
+        $paragraphs = [];
+        $current = [];
+        $count = 0;
+        foreach ($sentences as $s) {
+            $s = trim($s);
+            if ($s === '') continue;
+            $wordsInSentence = count(preg_split('/\s+/u', $s));
+            if ($count >= $minWords && ($count + $wordsInSentence) > $maxWords) {
+                $paragraphs[] = '<p>' . e(implode(' ', $current)) . '</p>';
+                $current = [];
+                $count = 0;
+            }
+            $current[] = $s;
+            $count += $wordsInSentence;
+        }
+        if (!empty($current)) {
+            $paragraphs[] = '<p>' . e(implode(' ', $current)) . '</p>';
+        }
+        return implode('', $paragraphs);
+    }
+
     public function mount($slug = null)
     {
         $this->slug = $slug;
@@ -44,6 +86,7 @@ class NewsDetails extends Component
     {
         return view('livewire.guests.news-details', [
             'relatedPosts' => $this->relatedPosts,
+            'renderedContent' => $this->formatContentForReadability($this->post?->content ?? ''),
         ]);
     }
 }

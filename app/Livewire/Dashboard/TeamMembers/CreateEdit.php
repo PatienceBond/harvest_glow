@@ -31,6 +31,7 @@ class CreateEdit extends Component
 
     public $is_active = true;
 
+
     #[On('edit-member')]
     public function loadMember(int $memberId): void
     {
@@ -44,6 +45,7 @@ class CreateEdit extends Component
         $this->existing_photo = null;
         $this->order = 0;
         $this->is_active = true;
+        
 
         // Load the member
         $member = TeamMember::find($memberId);
@@ -56,6 +58,7 @@ class CreateEdit extends Component
             $this->existing_photo = $member->photo;
             $this->order = $member->order;
             $this->is_active = $member->is_active;
+            
         }
     }
 
@@ -69,6 +72,7 @@ class CreateEdit extends Component
             'photo' => 'nullable|image',
             'order' => 'required|integer|min:0',
             'is_active' => 'boolean',
+            
         ]);
 
         try {

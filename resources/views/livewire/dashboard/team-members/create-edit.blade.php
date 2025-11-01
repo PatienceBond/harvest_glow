@@ -46,6 +46,7 @@
             help-text="Upload a profile photo (Max 1MB, JPG, PNG)"
         />
 
+
         <!-- Order & Active Status -->
         <div class="grid grid-cols-2 gap-4">
             <flux:input 

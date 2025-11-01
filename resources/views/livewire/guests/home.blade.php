@@ -1,6 +1,7 @@
 <div>
     
     <!-- Hero Section -->
+    <div id="home-hero">
     @if($heroSection)
         <x-ui.landing-hero
             heading="{{ $heroSection->heading }}"
@@ -14,11 +15,12 @@
             height="700px"
         />
     @endif
+    </div>
 
 
     <x-ui.vstack>
     <!-- Impact Section -->
-    <section class="bg-muted/30 py-12">
+    <section id="home-impact" class="bg-muted/30 py-12">
         <x-ui.container>
             <x-ui.section-header
                 title="Our Impact (2025)"
@@ -66,6 +68,7 @@
         </x-ui.container>
     </section>
 
+    <section id="home-model">
     <x-ui.feature-section
         title="our model"
         description="HarvestGlow's approach combines four key elements to create sustainable agricultural systems that empower farmers and build resilient communities."
@@ -94,9 +97,10 @@
             icon="heroicon-o-sun"
         />
     </x-ui.feature-section>
+    </section>
 
     <!-- Products Section -->
-    <section>
+    <section id="home-products">
         <x-ui.container>
             <x-ui.section-header
                 title="Our Products"
@@ -121,7 +125,7 @@
     </section>
 
     <!-- Progress Section -->
-    <section>
+    <section id="home-progress">
         <x-ui.container>
             <x-ui.section-header
                 title="Progress Toward Our 2028 Goals"
@@ -222,6 +226,20 @@
         
         </x-ui.container>
     </section>
+    <script>
+        (function(){
+            function toggleOnlyNews(){
+                var onlyNews = window.location.hash === '#news';
+                var ids = ['home-hero','home-impact','home-model','home-products','home-progress'];
+                ids.forEach(function(id){
+                    var el = document.getElementById(id);
+                    if(el){ el.style.display = onlyNews ? 'none' : ''; }
+                });
+            }
+            window.addEventListener('hashchange', toggleOnlyNews);
+            document.addEventListener('DOMContentLoaded', toggleOnlyNews);
+        })();
+    </script>
     </x-ui.vstack>
 </div>
 
