@@ -28,6 +28,14 @@
             placeholder="Brief biography (optional for board members)"
         />
 
+        <!-- LinkedIn URL -->
+        <flux:input 
+            wire:model="linkedin_url"
+            label="LinkedIn Profile URL"
+            placeholder="https://www.linkedin.com/in/username"
+            help-text="Enter the full LinkedIn profile URL (e.g., https://www.linkedin.com/in/username)"
+        />
+
         <!-- Type -->
         <flux:select 
             wire:model="type"
