@@ -41,10 +41,31 @@ class LocalChatService
         
         // Impact & Results
         'impact' => [
-            'HarvestGlow has made significant impacts including: improved crop yields for thousands of farmers, increased household incomes, enhanced food security, empowered women and youth, and strengthened community resilience.'
+            'HarvestGlow has made significant impact through its programs:
+            - 4,000+ people reached through sustainable agriculture and nutrition programs
+            - 2,000+ youths and children engaged in educational initiatives
+            - 1,500+ young people trained in digital and agricultural skills
+            - 150+ entrepreneurs supported with capacity-building
+            - 200 hectares of basic seed produced
+            - $30,000 mobilized in seed capital to support trainings and innovations'
         ],
         'farmers reached' => [
-            'HarvestGlow has reached over [X] farmers across [X] communities in Malawi, with plans to expand to more regions in the coming years.'
+            'HarvestGlow has reached 4,000+ people through sustainable agriculture, nutrition, and livelihoods programs.'
+        ],
+        'youth' => [
+            '2,000+ youths and children have been engaged in school feeding, agri-nutrition clubs, and awareness campaigns.'
+        ],
+        'training' => [
+            '1,500+ young people have been trained in digital skills, agribusiness, and climate-smart farming practices.'
+        ],
+        'entrepreneurs' => [
+            '150+ entrepreneurs have been engaged in capacity-building, market linkages, and value chain development.'
+        ],
+        'seed production' => [
+            '200 hectares of basic seed have been produced to strengthen food security and boost farmer productivity.'
+        ],
+        'funding' => [
+            '$30,000 has been mobilized in seed capital to support trainings, community enterprises, and farmer-led innovations.'
         ],
         'success stories' => [
             'One of our success stories includes [brief story of impact]. For more detailed stories, please visit the "Impact" section of our website.'
@@ -90,10 +111,36 @@ class LocalChatService
     public function getResponse(string $message): array
     {
         try {
-            $message = strtolower(trim($message));
+            $message = trim($message);
+            $lowerMessage = strtolower($message);
+            
+            // Check if message contains a team member's name
+            $teamMember = TeamMember::active()
+                ->where(function($query) use ($message) {
+                    $query->where('name', 'like', '%' . $message . '%')
+                        ->orWhereRaw('LOWER(name) LIKE ?', ['%' . strtolower($message) . '%']);
+                })
+                ->first();
+
+            if ($teamMember) {
+                $response = "**{$teamMember->name}**";
+                if ($teamMember->title) {
+                    $response .= "\n*{$teamMember->title}*";
+                }
+                if ($teamMember->bio) {
+                    $response .= "\n\n{$teamMember->bio}";
+                }
+                if ($teamMember->linkedin_url) {
+                    $response .= "\n\n[View LinkedIn Profile]({$teamMember->linkedin_url})";
+                }
+                return [
+                    'success' => true,
+                    'message' => $response
+                ];
+            }
             
             // Greetings
-            if (str_contains($message, 'hello') || str_contains($message, 'hi') || str_contains($message, 'hey')) {
+            if (str_contains($lowerMessage, 'hello') || str_contains($lowerMessage, 'hi') || str_contains($lowerMessage, 'hey')) {
                 return [
                     'success' => true,
                     'message' => 'Hello! 👋 I\'m the HarvestGlow Assistant. How can I help you learn more about our work today?'
@@ -265,18 +312,21 @@ class LocalChatService
     
     protected function getResponseKey(string $message): string
     {
-        $message = strtolower(trim($message));
+        $lowerMessage = strtolower(trim($message));
         
-        // Check for founder-related questions
-        if (str_contains($message, 'founder') || 
-            (str_contains($message, 'who') && str_contains($message, 'start') && str_contains($message, 'harvestglow')) ||
-            (str_contains($message, 'who') && str_contains($message, 'found'))) {
-            return 'founder';
+        // Check for exact matches first
+        if (array_key_exists($lowerMessage, $this->knowledgeBase)) {
+            return $lowerMessage;
         }
         
-        // Add other keyword mappings here...
+        // Check for partial matches
+        foreach ($this->knowledgeBase as $key => $responses) {
+            if (str_contains($lowerMessage, strtolower($key))) {
+                return $key;
+            }
+        }
         
-        return ''; // Empty string means no direct key match
+        return '';
     }
 
     protected function getRandomResponse(string $key): array
