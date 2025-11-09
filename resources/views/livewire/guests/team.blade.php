@@ -44,6 +44,7 @@
                             :bio="$member->bio"
                             :image="$member->photo ? Storage::url($member->photo) : null"
                             :is-leadership="true"
+                            :linkedin-url="$member->linkedin_url"
                         />
                     @empty
                         <p class="text-center text-muted-foreground col-span-full">No leadership team members added yet.</p>
@@ -66,8 +67,9 @@
                         <x-ui.team-member-card
                             :name="$member->name"
                             :title="$member->title"
-                            :bio="$member->bio"
+                            :bio="$member->bio ?? ''"
                             :image="$member->photo ? Storage::url($member->photo) : null"
+                            :linkedin-url="$member->linkedin_url"
                         />
                     @empty
                         <p class="text-center text-muted-foreground col-span-full">No team members added yet.</p>
@@ -87,10 +89,12 @@
                 <!-- Board Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     @forelse($boardMembers as $member)
-                        <x-ui.board-member-card
+                        <x-ui.team-member-card
                             :name="$member->name"
-                            :role="$member->title"
+                            :title="$member->title"
+                            :bio="$member->bio ?? ''"
                             :image="$member->photo ? Storage::url($member->photo) : null"
+                            :linkedin-url="$member->linkedin_url"
                         />
                     @empty
                         <p class="text-center text-muted-foreground col-span-full">No board members added yet.</p>

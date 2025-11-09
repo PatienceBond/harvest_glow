@@ -15,6 +15,7 @@ class TeamMember extends Model
         'bio',
         'type',
         'photo',
+        'linkedin_url',
         'order',
         'is_active',
     ];

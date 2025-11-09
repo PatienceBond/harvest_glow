@@ -31,6 +31,8 @@ class CreateEdit extends Component
 
     public $is_active = true;
 
+    public $linkedin_url = '';
+
 
     #[On('edit-member')]
     public function loadMember(int $memberId): void
@@ -45,6 +47,7 @@ class CreateEdit extends Component
         $this->existing_photo = null;
         $this->order = 0;
         $this->is_active = true;
+        $this->linkedin_url = '';
         
 
         // Load the member
@@ -58,6 +61,7 @@ class CreateEdit extends Component
             $this->existing_photo = $member->photo;
             $this->order = $member->order;
             $this->is_active = $member->is_active;
+            $this->linkedin_url = $member->linkedin_url;
             
         }
     }
@@ -72,6 +76,7 @@ class CreateEdit extends Component
             'photo' => 'nullable|image',
             'order' => 'required|integer|min:0',
             'is_active' => 'boolean',
+            'linkedin_url' => 'nullable|url|starts_with:https://www.linkedin.com/|max:255',
             
         ]);
 
@@ -98,6 +103,7 @@ class CreateEdit extends Component
                 'photo' => $photoPath,
                 'order' => $this->order,
                 'is_active' => $this->is_active,
+                'linkedin_url' => $this->linkedin_url,
             ];
 
             if ($this->memberId) {

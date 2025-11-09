@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Guests;
 
-use App\Services\DeepSeekService;
+use App\Services\LocalChatService;
 use Livewire\Component;
 
 class AiChatWidget extends Component
@@ -50,32 +50,16 @@ class AiChatWidget extends Component
         $this->isLoading = true;
 
         try {
-            // Prepare conversation history for API
-            $apiMessages = collect($this->messages)
-                ->map(fn ($msg) => [
-                    'role' => $msg['role'],
-                    'content' => $msg['content'],
-                ])
-                ->toArray();
-
-            // Get AI response
-            $deepSeekService = new DeepSeekService;
-            $response = $deepSeekService->chat($apiMessages);
+            // Get response from local chat service
+            $chatService = new LocalChatService();
+            $response = $chatService->getResponse($messageToSend);
 
             // Add AI response to chat
-            if ($response['success']) {
-                $this->messages[] = [
-                    'role' => 'assistant',
-                    'content' => $response['message'],
-                    'timestamp' => now()->format('H:i'),
-                ];
-            } else {
-                $this->messages[] = [
-                    'role' => 'assistant',
-                    'content' => 'I apologize, but I\'m having trouble connecting right now. Please try again or visit our contact page for assistance.',
-                    'timestamp' => now()->format('H:i'),
-                ];
-            }
+            $this->messages[] = [
+                'role' => 'assistant',
+                'content' => $response['message'],
+                'timestamp' => now()->format('H:i'),
+            ];
         } catch (\Exception $e) {
             $this->messages[] = [
                 'role' => 'assistant',
