@@ -15,6 +15,7 @@ return new class extends Migration
             $table->text('bio')->nullable();
             $table->enum('type', ['leadership', 'team', 'board'])->default('team');
             $table->string('photo')->nullable();
+            $table->string('linkedin_url')->nullable();
             $table->integer('order')->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
