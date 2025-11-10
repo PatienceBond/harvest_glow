@@ -17,7 +17,7 @@
     </div>
 
     <!-- AI-Powered Agricultural Innovation -->
-    <section id="ai-innovation" class="pt-12 pb-16 bg-white relative">
+    <section id="ai-innovation" class="py-4.5 bg-white relative">
         <style>
             .ai-card {
                 position: relative;
@@ -179,18 +179,18 @@
                     </div>
                 </div>
 
-                <!-- Financial Inclusion & Smart Lending -->
+                <!-- Financial & Gender Inclusion | Smart Lending -->
                 <div class="ai-card bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition-all h-full flex flex-col relative w-80" id="card-2" style="min-height: 280px;">
                     <div class="p-3 flex flex-col h-full">
                         <div class="w-16 h-16 rounded-full icon-bg border-2 border-[#f9fafb] flex items-center justify-center mx-auto mb-3 overflow-hidden">
-                            <img src="{{ asset('logo/icons/financial-inclusion.png') }}" alt="Financial Inclusion" class="w-8 h-8 object-contain">
+                            <img src="{{ asset('logo/icons/financial-inclusion.png') }}" alt="Financial & Gender Inclusion" class="w-8 h-8 object-contain">
                         </div>
-                        <h3 class="text-xlg font-bold text-center mb-2">Financial Inclusion & Smart Lending</h3>
-                        <p class="text-muted-foreground text-center mb-3 text-base">AI credit scoring from cooperative & yield data</p>
+                        <h3 class="text-xlg font-bold text-center mb-2">Financial & Gender Inclusion</h3>
+                        <p class="text-muted-foreground text-center mb-3 text-base">Access to finance through AI-driven credit scoring from cooperative and yield data</p>
                         <div class="mt-auto">
                             <div class="bg-gray-50 p-4 rounded-lg">
                                 <p class="text-sm font-medium text-gray-500 mb-1">Outcome</p>
-                                <p class="text-sm font-medium">Affordable finance for smallholders & youth</p>
+                                <p class="text-sm font-medium">Inclusive finance for women and smallholders.</p>
                             </div>
                         </div>
                     </div>
@@ -406,8 +406,8 @@
         </x-ui.container>
     </section>
 
-    <!-- Impact Section -->
-    <section id="home-impact" class="pt-12 pb-16 bg-muted/30">
+<!-- Impact Section -->
+    <section id="home-impact" class="py-18">
         <x-ui.container>
             <x-ui.section-header
                 title="Our Impact (2025)"
@@ -455,39 +455,62 @@
         </x-ui.container>
     </section>
 
-    <section id="home-model">
-    <x-ui.feature-section
-        title="our model"
-        description="HarvestGlow's approach combines four key elements to create sustainable agricultural systems that empower farmers and build resilient communities."
-    >
-        <x-ui.feature-card
-            title="Seed Access & Multiplication"
-            description="Creating locally controlled seed supply chains through farmer-led multiplication in Seed Villages."
-            icon="heroicon-o-sparkles"
-        />
+    <section id="home-model" class="py-18 bg-white">
+        <x-ui.container>
+            <div class="text-center mb-12">
+                <a href="/our-model" class="inline-flex items-center bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-all shadow-md mx-auto mb-6">
+                    Our Model
+                    <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </a>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    HarvestGlow transforms agriculture and strengthens communities through a smart, technology-driven model that integrates:
+                </p>
+            </div>
 
-        <x-ui.feature-card
-            title="Village Savings & Loans"
-            description="Building financial resilience through community-based savings groups and cooperative ownership."
-            icon="heroicon-o-banknotes"
-        />
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+                <!-- Seed Access & Multiplication -->
+                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-all text-center">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto">
+                        <img src="{{ asset('logo/icons/seed.png') }}" alt="Seed Access" class="w-6 h-6">
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Seed Access & Multiplication</h3>
+                    <p class="text-muted-foreground text-sm">Empowering farmers with high-quality, locally adapted seeds. Building resilient, farmer-led seed systems through community-based Seed Villages.</p>
+                </div>
 
-        <x-ui.feature-card
-            title="Value-Added Processing"
-            description="Enabling farmers to process crops into high-value products, increasing income and creating jobs."
-            icon="heroicon-o-building-storefront"
-        />
+                <!-- Village Savings & Loans -->
+                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-all text-center">
+                    <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-4 mx-auto">
+                        <x-heroicon-o-banknotes class="w-6 h-6 text-secondary" />
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Village Savings & Loans (VSLs)</h3>
+                    <p class="text-muted-foreground text-sm">Empowering farmers with financial tools to invest in their farms.</p>
+                </div>
 
-        <x-ui.feature-card
-            title="Climate-Smart Training"
-            description="Providing hands-on training in conservation agriculture and climate adaptation techniques."
-            icon="heroicon-o-sun"
-        />
-    </x-ui.feature-section>
+                <!-- Processing & Value Addition -->
+                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-all text-center">
+                    <div class="w-12 h-12 rounded-full bg-success/10 flex items-center justify-center mb-4 mx-auto">
+                        <x-heroicon-o-cog-6-tooth class="w-6 h-6 text-success" />
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Processing & Value Addition</h3>
+                    <p class="text-muted-foreground text-sm">Enhancing local agro-processing to boost incomes and reduce post-harvest losses.</p>
+                </div>
+
+                <!-- Training & Capacity Building -->
+                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-all text-center">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto">
+                        <x-heroicon-o-academic-cap class="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Training & Capacity Building</h3>
+                    <p class="text-muted-foreground text-sm">Hands-on skills in precision agriculture and AI-powered decision-making to maximize productivity.</p>
+                </div>
+            </div>
+        </x-ui.container>
     </section>
 
     <!-- Products Section -->
-    <section id="home-products">
+    <section id="home-products" class="py-18">
         <x-ui.container>
             <x-ui.section-header
                 title="Our Products"
@@ -512,7 +535,7 @@
     </section>
 
     <!-- Progress Section -->
-    <section id="home-progress">
+    <section id="home-progress" class="py-4.5">
         <x-ui.container>
             <x-ui.section-header
                 title="Progress Toward Our 2028 Goals"
@@ -584,7 +607,7 @@
     </section>
 
     <!-- Partners Section -->
-    <section>
+    <section class="py-4.5">
         <x-ui.container>
             <x-ui.section-header
                 title="Our Partners"

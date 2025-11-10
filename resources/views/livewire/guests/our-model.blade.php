@@ -31,10 +31,10 @@
 
                 <div class="mt-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
                     <div class="flex items-start gap-3 p-4 border rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98]">
-                        <x-heroicon-o-beaker class="w-7 h-7 text-primary flex-shrink-0" />
+                        <img src="{{ asset('logo/icons/seed.png') }}" alt="Seed Icon" class="w-7 h-7 text-primary flex-shrink-0" />
                         <div>
-                            <h4 class="font-semibold">Seed Access</h4>
-                            <p class="text-sm text-muted-foreground">Delivering high-quality, locally adapted seeds.</p>
+                            <h4 class="font-semibold">Seed Access & Multiplication</h4>
+                            <p class="text-sm text-muted-foreground">Empowering farmers with high-quality, locally adapted seeds. Building resilient, farmer-led seed systems through community-based Seed Villages.</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-3 p-4 border rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98]">
