@@ -82,12 +82,10 @@
             <!-- Header -->
             <div class="bg-primary text-white px-6 py-4 flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                    <div class="bg-white/20 rounded-full p-2">
-                        <x-heroicon-o-sparkles class="h-5 w-5" />
-                    </div>
+                   
                     <div>
                         <h3 class="font-semibold text-lg">HarvestGlow Assistant</h3>
-                        <p class="text-xs text-white/80">Ask me anything!</p>
+                     
                     </div>
                 </div>
                 <button 
@@ -111,11 +109,11 @@
                             <div class="flex-shrink-0">
                                 @if($message['role'] === 'user')
                                     <div class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center">
-                                        <x-heroicon-o-user class="h-5 w-5" />
+                                        <span class="text-xs font-semibold uppercase tracking-wide">Me</span>
                                     </div>
                                 @else
                                     <div class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center">
-                                        <x-heroicon-o-sparkles class="h-5 w-5" />
+                                        <span class="text-xs font-semibold uppercase tracking-wide">AI</span>
                                     </div>
                                 @endif
                             </div>
