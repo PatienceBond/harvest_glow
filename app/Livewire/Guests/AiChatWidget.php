@@ -50,20 +50,19 @@ class AiChatWidget extends Component
         $this->isLoading = true;
 
         try {
-            // Get response from local chat service
-            $chatService = new LocalChatService();
-            $response = $chatService->getResponse($messageToSend);
+            /** @var \App\Services\LocalChatService $chatService */
+            $chatService = app(LocalChatService::class);
+            $response = $chatService->getResponse($messageToSend, $this->messages);
 
-            // Add AI response to chat
             $this->messages[] = [
                 'role' => 'assistant',
                 'content' => $response['message'],
                 'timestamp' => now()->format('H:i'),
             ];
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             $this->messages[] = [
                 'role' => 'assistant',
-                'content' => 'I apologize, but I\'m having trouble responding right now. Please try again later or visit our contact page for assistance.',
+                'content' => 'I do not have that information yet.',
                 'timestamp' => now()->format('H:i'),
             ];
         } finally {

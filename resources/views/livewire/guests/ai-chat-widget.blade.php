@@ -111,11 +111,11 @@
                             <div class="flex-shrink-0">
                                 @if($message['role'] === 'user')
                                     <div class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center">
-                                        <x-heroicon-o-user class="h-5 w-5" />
+                                        <span class="text-xs font-semibold uppercase tracking-wide">Me</span>
                                     </div>
                                 @else
                                     <div class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center">
-                                        <x-heroicon-o-sparkles class="h-5 w-5" />
+                                        <span class="text-xs font-semibold uppercase tracking-wide">AI</span>
                                     </div>
                                 @endif
                             </div>
