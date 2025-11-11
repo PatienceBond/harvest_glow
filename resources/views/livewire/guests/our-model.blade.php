@@ -30,6 +30,7 @@
                 />
 
                 <div class="mt-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                    <!-- Seed Access & Multiplication -->
                     <div class="flex items-start gap-3 p-4 border rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98]">
                         <img src="{{ asset('logo/icons/seed.png') }}" alt="Seed Icon" class="w-7 h-7 text-primary flex-shrink-0" />
                         <div>
@@ -37,6 +38,26 @@
                             <p class="text-sm text-muted-foreground">Empowering farmers with high-quality, locally adapted seeds. Building resilient, farmer-led seed systems through community-based Seed Villages.</p>
                         </div>
                     </div>
+
+                    <!-- Financial & Gender Inclusion -->
+                    <div class="flex items-start gap-3 p-4 border rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98]">
+                        <x-heroicon-o-users class="w-7 h-7 text-secondary flex-shrink-0" />
+                        <div>
+                            <h4 class="font-semibold text-base">Financial & Gender Inclusion</h4>
+                            <p class="text-sm text-muted-foreground">Empowering all genders equally: respecting differences, embracing strengths, building inclusive spaces where everyone thrives together.</p>
+                        </div>
+                    </div>
+
+                    <!-- Training & Capacity Building -->
+                    <div class="flex items-start gap-3 p-4 border rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98]">
+                        <x-heroicon-o-academic-cap class="w-7 h-7 text-primary flex-shrink-0" />
+                        <div>
+                            <h4 class="font-semibold">Training & Capacity Building</h4>
+                            <p class="text-sm text-muted-foreground">Hands-on skills in precision agriculture and AI-powered decision-making to maximize productivity.</p>
+                        </div>
+                    </div>
+
+                    <!-- Village Savings & Loans -->
                     <div class="flex items-start gap-3 p-4 border rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98]">
                         <x-heroicon-o-banknotes class="w-7 h-7 text-secondary flex-shrink-0" />
                         <div>
@@ -44,18 +65,13 @@
                             <p class="text-sm text-muted-foreground">Empowering farmers with financial tools to invest in their farms.</p>
                         </div>
                     </div>
+
+                    <!-- Processing & Value Addition -->
                     <div class="flex items-start gap-3 p-4 border rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98]">
                         <x-heroicon-o-cog-6-tooth class="w-7 h-7 text-success flex-shrink-0" />
                         <div>
                             <h4 class="font-semibold">Processing & Value Addition</h4>
                             <p class="text-sm text-muted-foreground">Enhancing local agro-processing to boost incomes and reduce post-harvest losses.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-3 p-4 border rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98]">
-                        <x-heroicon-o-academic-cap class="w-7 h-7 text-primary flex-shrink-0" />
-                        <div>
-                            <h4 class="font-semibold">Training & Capacity Building</h4>
-                            <p class="text-sm text-muted-foreground">Hands-on skills in precision agriculture and AI-powered decision-making to maximize productivity.</p>
                         </div>
                     </div>
                 </div>
