@@ -441,10 +441,6 @@
                         value="200 hectares of basic seed produced"
                         description="to strengthen food security and boost farmer productivity"
                     />
-                    <x-ui.impact-card
-                        value="$30,000 mobilized in seed capital"
-                        description="to support trainings, community enterprises, and farmer-led innovations"
-                    />
                 </div>
             @endif
         </x-ui.container>
