@@ -460,7 +460,7 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                 <!-- Seed Access & Multiplication -->
                 <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-all text-center">
                     <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto">
@@ -504,6 +504,15 @@
                     </div>
                     <h3 class="text-lg font-semibold mb-2">Processing & Value Addition</h3>
                     <p class="text-muted-foreground text-sm">Enhancing local agro-processing to boost incomes and reduce post-harvest losses.</p>
+                </div>
+
+                <!-- Clean & Renewable Energy -->
+                <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-all text-center">
+                    <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center mb-4 mx-auto">
+                        <img src="{{ asset('logo/icons/renewable-energy.png') }}" alt="Clean & Renewable Energy" class="w-6 h-6">
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Clean & Renewable Energy</h3>
+                    <p class="text-muted-foreground text-sm">Expanding access to sustainable, solar-powered solutions that support farming, education, and community livelihoods.</p>
                 </div>
             </div>
         </x-ui.container>

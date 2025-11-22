@@ -29,7 +29,7 @@
                     description="HarvestGlow transforms agriculture and strengthens communities through a smart, technology-driven model that integrates:"
                 />
 
-                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Seed Access & Multiplication -->
                     <div class="flex items-start gap-3 p-4 border rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98]">
                         <img src="{{ asset('logo/icons/seed.png') }}" alt="Seed Icon" class="w-7 h-7 text-primary flex-shrink-0" />
@@ -72,6 +72,15 @@
                         <div>
                             <h4 class="font-semibold">Processing & Value Addition</h4>
                             <p class="text-sm text-muted-foreground">Enhancing local agro-processing to boost incomes and reduce post-harvest losses.</p>
+                        </div>
+                    </div>
+
+                    <!-- Clean & Renewable Energy -->
+                    <div class="flex items-start gap-3 p-4 border rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98]">
+                        <img src="{{ asset('logo/icons/renewable-energy.png') }}" alt="Clean & Renewable Energy" class="w-7 h-7 flex-shrink-0" />
+                        <div>
+                            <h4 class="font-semibold">Clean & Renewable Energy</h4>
+                            <p class="text-sm text-muted-foreground">Expanding access to sustainable, solar-powered solutions that support farming, education, and community livelihoods.</p>
                         </div>
                     </div>
                 </div>
